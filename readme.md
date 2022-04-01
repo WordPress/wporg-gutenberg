@@ -1,4 +1,4 @@
-# WordPress.org Gutenberg Theme, 2021 edition
+# WordPress.org Gutenberg Theme
 
 ℹ️ The header/footer live in [the mu-plugins repository](https://github.com/WordPress/wporg-mu-plugins/), but are
 automatically provisioned into this one. Changes to the header/footer should be made in the `mu-plugins` repo.
