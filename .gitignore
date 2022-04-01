@@ -1,0 +1,34 @@
+/**/.DS_STORE
+/**/.idea
+/**/.svn
+/**/build
+/**/node_modules
+/vendor
+*.map
+wp-cli.yml
+
+# Allow local environment overrides.
+.wp-env.override.json
+
+# Configs from wporg-repo-tools.
+.eslintrc.js
+.prettierrc.js
+.stylelintrc
+phpcs.xml.dist
+
+# Production-only files
+README-svn.txt
+
+# Ignore everything in source...
+/source/wp-content/*
+/source/wp-content/themes/*
+
+# `.env/0-sandbox.php` is tracked, so these files can contain local tweaks that shouldn't be tracked.
+/source/wp-content/mu-plugins/sandbox-*.php
+
+# Explicitly track the actual source of this project.
+!/source/wp-content/themes
+!/source/wp-content/themes/wporg-news-2021
+
+# Ignore built files in source directories.
+/source/wp-content/themes/wporg-news-2021/style.css

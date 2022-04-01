@@ -1,0 +1,28 @@
+{
+	"name": "wporg-news-2021-project",
+	"version": "1.0.0",
+	"description": "The codebase and development environment for w.org/news.",
+	"author": "WordPress.org",
+	"license": "GPL-2.0-or-later",
+	"private": true,
+	"dependencies": {},
+	"devDependencies": {
+		"@wordpress/env": "^4.1.0"
+	},
+	"scripts": {
+		"initial-setup": "composer install && yarn && yarn run update-configs",
+		"update-configs": "TEXTDOMAIN=wporg composer exec update-configs",
+		"wp-env": "wp-env",
+		"env": "wp-env start",
+		"env:stop": "wp-env stop",
+		"env:cli": "wp-env run cli",
+		"env:setup": "wp-env start --update && yarn run env:reset && yarn run env:misc",
+		"env:reset": "wp-env clean all && wp-env run cli \"wp site empty --yes\"",
+		"env:misc": "wp-env run cli \"bash env/misc.sh\"",
+		"start:all": "yarn workspaces run start & npm run sync & (cd source/wp-content/mu-plugins/wporg-mu-plugins/ && npm run start)"
+	},
+	"workspaces": [
+		"source/wp-content/themes/wporg-gutenberg",
+		"source/wp-content/mu-plugins/wporg-mu-plugins"
+	]
+}
