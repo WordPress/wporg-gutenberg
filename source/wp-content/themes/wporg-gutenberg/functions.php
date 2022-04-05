@@ -512,27 +512,27 @@ add_action( 'template_redirect', function() {
 		);
 
 		// Use a middleware preloader to load the custom post content:
-		$frontendburg_content = include __DIR__ . '/gutenfront-content.php';
-		wp_add_inline_script( 'wp-api-fetch',
-			sprintf(
-				'wp.apiFetch.use( wp.apiFetch.createPreloadingMiddleware( %s ) );',
-				wp_json_encode( array(
-					"/wp/v2/pages/" . get_post()->ID . "?context=edit" => [ 'body' => [
-						'id' => get_post()->ID,
-						'title' => [ 'raw' => $frontendburg_content['title'] ],
-						'content' => [ 'block_format' => 1, 'raw' => $frontendburg_content['content'] ],
-						'excerpt' => [ 'raw' => '' ],
-						'date' => '', 'date_gmt' => '', 'modified' => '', 'modified_gmt' => '',
-						'link' => home_url('/'), 'guid' => [],
-						'parent' => 0, 'menu_order' => 0, 'author' => 0, 'featured_media' => 0,
-						'comment_status' => 'closed', 'ping_status' => 'closed', 'template' => '', 'meta' => [], '_links' => [],
-						'type' => 'page', 'status' => 'draft',
-						'slug' => '', 'generated_slug' => '', 'permalink_template' => home_url('/'),
-					] ]
-				) )
-			),
-			'after'
-		);
+		// $frontendburg_content = include __DIR__ . '/gutenfront-content.php';
+		// wp_add_inline_script( 'wp-api-fetch',
+		// 	sprintf(
+		// 		'wp.apiFetch.use( wp.apiFetch.createPreloadingMiddleware( %s ) );',
+		// 		wp_json_encode( array(
+		// 			"/wp/v2/pages/" . get_post()->ID . "?context=edit" => [ 'body' => [
+		// 				'id' => get_post()->ID,
+		// 				'title' => [ 'raw' => $frontendburg_content['title'] ],
+		// 				'content' => [ 'block_format' => 1, 'raw' => $frontendburg_content['content'] ],
+		// 				'excerpt' => [ 'raw' => '' ],
+		// 				'date' => '', 'date_gmt' => '', 'modified' => '', 'modified_gmt' => '',
+		// 				'link' => home_url('/'), 'guid' => [],
+		// 				'parent' => 0, 'menu_order' => 0, 'author' => 0, 'featured_media' => 0,
+		// 				'comment_status' => 'closed', 'ping_status' => 'closed', 'template' => '', 'meta' => [], '_links' => [],
+		// 				'type' => 'page', 'status' => 'draft',
+		// 				'slug' => '', 'generated_slug' => '', 'permalink_template' => home_url('/'),
+		// 			] ]
+		// 		) )
+		// 	),
+		// 	'after'
+		// );
 
 		// Add a middleware provider which intercepts all uploads and stores them within the browser
 		wp_add_inline_script( 'wp-api-fetch',
