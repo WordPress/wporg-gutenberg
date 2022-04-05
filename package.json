@@ -10,7 +10,8 @@
 		"@wordpress/env": "^4.1.0"
 	},
 	"scripts": {
-		"initial-setup": "composer install && yarn && yarn run update-configs",
+		"initial-setup": "composer install && yarn && yarn run update-configs && yarn un install:mu-plugins",
+		"install:mu-plugins": "cd source/wp-content/mu-plugins/wporg-mu-plugins/ && npm install && npm run build",
 		"update-configs": "TEXTDOMAIN=wporg composer exec update-configs",
 		"wp-env": "wp-env",
 		"env": "wp-env start",
