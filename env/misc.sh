@@ -6,6 +6,9 @@ content=$(cat "${root}/env/gutenberg-content.txt")
 # Activate our local theme
 wp theme activate wporg-gutenberg
 
+# Delete all the content
+wp site empty --yes
+
 # Add in default page and configure it as the home page
 page_id=`wp post create --post_type=page --post_status='publish' --post_name='test' --post_title='Gutenberg Home' --post_content="$content" --porcelain`
 wp option update show_on_front 'page'
