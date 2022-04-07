@@ -519,7 +519,7 @@ add_action( 'template_redirect', function() {
 				wp_json_encode( array(
 					"/wp/v2/pages/" . $post->ID . "?context=edit" => [ 'body' => [
 						'id' => $post->ID,
-						'title' => [ 'raw' => 'title' ],
+						'title' => [ 'raw' => $post->post_title ],
 						'content' => [ 'block_format' => 1, 'raw' => $post->post_content ],
 						'excerpt' => [ 'raw' => '' ],
 						'date' => '', 'date_gmt' => '', 'modified' => '', 'modified_gmt' => '',
