@@ -1,8 +1,4 @@
 # WordPress.org Gutenberg Theme
-
-ℹ️ The header/footer live in [the mu-plugins repository](https://github.com/WordPress/wporg-mu-plugins/), but are
-automatically provisioned into this one. Changes to the header/footer should be made in the `mu-plugins` repo.
-
 ## Development
 
 ### Prerequisites
@@ -15,7 +11,6 @@ automatically provisioned into this one. Changes to the header/footer should be 
 ### Setup
 
 1. Set up repo dependencies: `yarn run initial-setup`
-1. Build the assets: `yarn workspaces run build`. The theme can't be activated until this step is done.
 1. Start up and provision the environment: `yarn run env:setup`
 1. Visit site at `localhost:8888`
 1. Log in with username `admin` and password `password`
