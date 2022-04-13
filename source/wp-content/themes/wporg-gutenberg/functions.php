@@ -11,6 +11,14 @@ if ( ! defined( 'WPORGPATH' ) ) {
 	define( 'WPORGPATH', get_theme_file_path( '/inc/' ) );
 }
 
+
+add_action(
+	'enqueue_block_assets',
+	function () {
+		wp_enqueue_script( 'editor-modifications', get_template_directory_uri() . '/js/editor-modifications.js', array( 'wp-blocks', 'wp-edit-post' ), null );
+	}
+);
+
 /**
  * Prevent errors resulting from change to Gutenberg plugin in 4.9 that adds call to
  * `get_current_screen()`.
@@ -606,13 +614,6 @@ add_action(
                 } );',
 					'after'
 				);
-				wp_add_inline_script(
-					'wp-edit-post',
-					'wp.data.dispatch( "core/edit-post" ).closeGeneralSidebar();' .
-					'if ( wp.data.select( "core/edit-post" ).isFeatureActive( "welcomeGuide" )) { wp.data.dispatch( "core/edit-post" ).toggleFeature( "welcomeGuide" )};' .
-					'_wpLoadBlockEditor.then( function() { wp.blocks.unregisterBlockType( "core/shortcode" ); } );'
-				);
-
 			},
 			11
 		);
