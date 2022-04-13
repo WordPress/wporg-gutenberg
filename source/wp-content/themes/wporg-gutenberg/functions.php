@@ -7,13 +7,12 @@
  * @package Gutenbergtheme
  */
 
-
 if ( ! defined( 'WPORGPATH' ) ) {
 	define( 'WPORGPATH', get_theme_file_path( '/inc/' ) );
 }
 
 add_action( 'enqueue_block_assets', function () {
-	wp_enqueue_script( 'button-readonly', get_template_directory_uri() . '/js/button-readonly.js', array( 'wp-blocks', 'wp-element', 'wp-i18n', 'wp-block-editor' ), null );
+	wp_enqueue_script( 'button-readonly', get_template_directory_uri() . '/js/button-readonly.js', array( 'wp-blocks', 'wp-element', 'wp-block-editor' ), null );
 } );
 
 /**
