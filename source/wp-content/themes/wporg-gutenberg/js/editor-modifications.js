@@ -5,7 +5,10 @@ if ( select( 'core/edit-post' ).isEditorSidebarOpened() ) {
     dispatch( 'core/edit-post' ).closeGeneralSidebar();
 }
 
-dispatch( 'core/edit-post' ).toggleFeature( 'welcomeGuide' );
+if( select( 'core/edit-post' ).isFeatureActive( 'welcomeGuide' ) ) {
+    dispatch( 'core/edit-post' ).toggleFeature( 'welcomeGuide' );
+}
+
 
 _wpLoadBlockEditor.then( function() { 
     wp.blocks.unregisterBlockType( 'core/shortcode' );
