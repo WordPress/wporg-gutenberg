@@ -869,10 +869,6 @@ function gutenbergtheme_scripts() {
 	wp_enqueue_style( 'gutenbergtheme-style', get_stylesheet_uri(), [], 14 );
 
 	wp_enqueue_style( 'gutenbergtheme-fonts', gutenbergtheme_fonts_url(), array(), null );
-
-	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
-		wp_enqueue_script( 'comment-reply' );
-	}
 }
 add_action( 'wp_enqueue_scripts', 'gutenbergtheme_scripts' );
 
