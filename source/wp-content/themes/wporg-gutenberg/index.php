@@ -1,5 +1,5 @@
 <?php
 
-namespace WordPressdotorg\Theme\News_2021;
+namespace WordPressdotorg\Theme\Gutenberg;
 
 defined( 'WPINC' ) || die();
