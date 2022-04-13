@@ -28,10 +28,6 @@
 <div style="height:100px" aria-hidden="true" class="wp-block-spacer"></div>
 <!-- /wp:spacer -->
 
-<!-- wp:wporg/download-button -->
-<div class="wp-block-wporg-download-button wp-block-button aligncenter"><a class="wp-block-button__link has-background has-strong-blue-background-color" href="https://wordpress.org/download/" style="color:#fff">Try it Today in WordPress</a></div>
-<!-- /wp:wporg/download-button -->
-
 <!-- wp:paragraph {"align":"center","className":"gutenberg-landing\u002d\u002dbutton-disclaimer","fontSize":"small"} -->
 <p class="has-text-align-center gutenberg-landing--button-disclaimer has-small-font-size"><em>Gutenberg is available as part of WordPress 5.0 and later. The <a href="https://wordpress.org/plugins/classic-editor/">Classic Editor</a> plugin allows users to switch back to the previous editor if needed. Future development will continue in the <a href="https://wordpress.org/plugins/gutenberg/">Gutenberg</a> plugin.</em></p>
 <!-- /wp:paragraph -->
@@ -203,10 +199,6 @@
 <!-- wp:spacer -->
 <div style="height:100px" aria-hidden="true" class="wp-block-spacer"></div>
 <!-- /wp:spacer -->
-
-<!-- wp:wporg/download-button -->
-<div class="wp-block-wporg-download-button wp-block-button aligncenter"><a class="wp-block-button__link has-background has-strong-blue-background-color" href="https://wordpress.org/download/" style="color:#fff">Try it Today in WordPress</a></div>
-<!-- /wp:wporg/download-button -->
 
 <!-- wp:paragraph {"align":"center","className":"gutenberg-landing\u002d\u002dbutton-disclaimer","fontSize":"small"} -->
 <p class="has-text-align-center gutenberg-landing--button-disclaimer has-small-font-size"><em>Gutenberg is available as part of WordPress 5.0 and later. The <a href="https://wordpress.org/plugins/classic-editor/">Classic Editor</a> plugin allows users to switch back to the previous editor if needed. Future development will continue in the <a href="https://wordpress.org/plugins/gutenberg/">Gutenberg</a> plugin.</em></p>
