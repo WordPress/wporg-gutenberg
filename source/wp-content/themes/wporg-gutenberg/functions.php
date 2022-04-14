@@ -274,6 +274,7 @@ if ( ! function_exists( 'gutenberg_editor_scripts_and_styles' ) ) {
 			'styles'                 => $styles,
 			'imageSizes'             => gutenberg_get_available_image_sizes(),
 			'richEditingEnabled'     => user_can_richedit(),
+			'fullscreenMode'         => true,
 
 			// Ideally, we'd remove this and rely on a REST API endpoint.
 			'postLock'               => $lock_details,
