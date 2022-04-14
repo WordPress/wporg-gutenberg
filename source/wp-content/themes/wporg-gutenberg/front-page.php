@@ -7,7 +7,7 @@
 		<?php wp_head(); ?>
 	</head>
 
-	<body <?php body_class( 'folded' ); ?>>
+	<body <?php body_class(); ?>>
 		<?php wp_body_open(); ?>
 		<div class="gutenberg">
 			<div id="editor" class="gutenberg__editor"></div>
