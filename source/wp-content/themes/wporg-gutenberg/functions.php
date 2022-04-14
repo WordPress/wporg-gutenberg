@@ -15,7 +15,8 @@ if ( ! defined( 'WPORGPATH' ) ) {
 add_action(
 	'enqueue_block_assets',
 	function () {
-		wp_enqueue_script( 'editor-modifications', get_template_directory_uri() . '/js/editor-modifications.js', array( 'wp-blocks', 'wp-edit-post' ), null );
+		//wp_enqueue_script( 'editor-modifications', get_template_directory_uri() . '/js/editor-modifications.js', array( 'wp-blocks', 'wp-edit-post' ), null );
+		wp_enqueue_style( 'custom-editor-styles', get_template_directory_uri() . '/style-editor.css', false, '20220406' );
 	}
 );
 
@@ -522,7 +523,6 @@ add_action(
 			'enqueue_block_editor_assets',
 			function() {
 				wp_enqueue_script( 'button-readonly', get_template_directory_uri() . '/js/button-readonly.js', array( 'wp-blocks', 'wp-element' ), null );
-				wp_enqueue_style( 'custom-editor-styles', get_template_directory_uri() . '/editor-styles.css', false, '20220406' );
 			}
 		);
 
@@ -714,6 +714,18 @@ if ( ! function_exists( 'gutenbergtheme_setup' ) ) :
 		 * @link https://developer.wordpress.org/themes/functionality/featured-images-post-thumbnails/
 		 */
 		add_theme_support( 'post-thumbnails' );
+
+
+		// Support custom logo.
+		add_theme_support(
+			'custom-logo',
+			array(
+				'height'      => 192,
+				'width'       => 192,
+				'flex-width'  => true,
+				'flex-height' => true,
+			)
+		);
 
 		// This theme uses wp_nav_menu() in one location.
 		register_nav_menus(

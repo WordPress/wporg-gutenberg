@@ -3,5 +3,10 @@
 	--wp-admin-theme-color-darker-10: #3E58F2 !important;
 	--wp-admin-theme-color-darker-10--rgb: 62, 88, 242;
 	--wp-admin-theme-color-darker-20: #213fd4 !important;
-    --wp-admin-theme-color-darker-20--rgb: 33, 63, 212;
+  --wp-admin-theme-color-darker-20--rgb: 33, 63, 212;
+}
+
+/* Hide the title within the Editor */
+.edit-post-visual-editor__post-title-wrapper {
+  display: none;
 }
