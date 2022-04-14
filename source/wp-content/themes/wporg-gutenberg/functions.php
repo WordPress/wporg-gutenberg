@@ -443,7 +443,7 @@ add_action(
 			return;
 		}
 
-		show_admin_bar( true );
+		show_admin_bar( false );
 
 		add_action(
 			'wp_enqueue_scripts',
