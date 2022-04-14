@@ -771,53 +771,10 @@ endif;
 add_action( 'after_setup_theme', 'gutenbergtheme_setup' );
 
 /**
- * Set the content width in pixels, based on the theme's design and stylesheet.
- *
- * Priority 0 to make it available to lower priority callbacks.
- *
- * @global int $content_width
- */
-function gutenbergtheme_content_width() {
-	$GLOBALS['content_width'] = apply_filters( 'gutenbergtheme_content_width', 640 );
-}
-add_action( 'after_setup_theme', 'gutenbergtheme_content_width', 0 );
-
-/**
- * Register Google Fonts
- */
-function gutenbergtheme_fonts_url() {
-	$fonts_url = '';
-
-	/*
-	 Translators: If there are characters in your language that are not
-	 * supported by Karla, translate this to 'off'. Do not translate
-	 * into your own language.
-	 */
-	$notoserif = esc_html_x( 'on', 'Noto Serif font: on or off', 'gutenbergtheme' );
-
-	if ( 'off' !== $notoserif ) {
-		$font_families   = array();
-		$font_families[] = 'Noto Serif:400,400italic,700,700italic';
-
-		$query_args = array(
-			'family' => urlencode( implode( '|', $font_families ) ),
-			'subset' => urlencode( 'latin,latin-ext' ),
-		);
-
-		$fonts_url = add_query_arg( $query_args, 'https://fonts.googleapis.com/css' );
-	}
-
-	return $fonts_url;
-
-}
-
-/**
  * Enqueue scripts and styles.
  */
 function gutenbergtheme_scripts() {
 	wp_enqueue_style( 'gutenbergtheme-style', get_stylesheet_uri(), array(), 14 );
-
-	wp_enqueue_style( 'gutenbergtheme-fonts', gutenbergtheme_fonts_url(), array(), null );
 }
 add_action( 'wp_enqueue_scripts', 'gutenbergtheme_scripts' );
 
