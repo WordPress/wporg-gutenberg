@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a321149ca4830a27764f0b6437ff3bb8",
+    "content-hash": "da1cabf8f784c9d8386035a348fc9a82",
     "packages": [],
     "packages-dev": [
         {
@@ -2213,7 +2213,7 @@
         },
         {
             "name": "wp-phpunit/wp-phpunit",
-            "version": "5.9.2",
+            "version": "5.9.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/wp-phpunit/wp-phpunit.git",
@@ -2260,46 +2260,6 @@
             "time": "2022-02-22T20:53:17+00:00"
         },
         {
-            "name": "wporg/wporg-mu-plugins",
-            "version": "dev-trunk",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/WordPress/wporg-mu-plugins.git",
-                "reference": "31cf127c684f15db39dcce83943679d234cbe879"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/WordPress/wporg-mu-plugins/zipball/31cf127c684f15db39dcce83943679d234cbe879",
-                "reference": "31cf127c684f15db39dcce83943679d234cbe879",
-                "shasum": ""
-            },
-            "require": {
-                "composer/installers": "~1.0"
-            },
-            "require-dev": {
-                "wporg/wporg-repo-tools": "dev-trunk"
-            },
-            "default-branch": true,
-            "type": "wordpress-muplugin",
-            "extra": {
-                "sync-svn": {
-                    "main-branch": "trunk",
-                    "paths": {
-                        "mu-plugins/": "https://dotorg.svn.wordpress.org/wordpress/website/wp-content/mu-plugins/pub-sync/"
-                    }
-                }
-            },
-            "license": [
-                "GPL-2.0-or-later"
-            ],
-            "description": "`mu-plugins` for the WordPress.org network",
-            "support": {
-                "source": "https://github.com/WordPress/wporg-mu-plugins/tree/trunk",
-                "issues": "https://github.com/WordPress/wporg-mu-plugins/issues"
-            },
-            "time": "2022-04-01T21:34:28+00:00"
-        },
-        {
             "name": "wporg/wporg-repo-tools",
             "version": "dev-trunk",
             "source": {
@@ -2333,8 +2293,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "wporg/wporg-repo-tools": 20,
-        "wporg/wporg-mu-plugins": 20
+        "wporg/wporg-repo-tools": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
@@ -2343,5 +2302,5 @@
     "platform-overrides": {
         "php": "7.4"
     },
-    "plugin-api-version": "2.2.0"
+    "plugin-api-version": "2.0.0"
 }
