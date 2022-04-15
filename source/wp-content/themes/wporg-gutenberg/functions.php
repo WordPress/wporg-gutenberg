@@ -15,8 +15,8 @@ if ( ! defined( 'WPORGPATH' ) ) {
 add_action(
 	'enqueue_block_assets',
 	function () {
-		//wp_enqueue_script( 'editor-modifications', get_template_directory_uri() . '/js/editor-modifications.js', array( 'wp-blocks', 'wp-edit-post' ), null );
 		wp_enqueue_style( 'custom-editor-styles', get_stylesheet_directory_uri() . '/style-editor.css', false, '20220406' );
+		wp_enqueue_script( 'editor-modifications', get_template_directory_uri() . '/js/editor-modifications.js', array( 'wp-blocks', 'wp-edit-post', 'wp-hooks', 'wp-i18n' ), null );
 	}
 );
 
