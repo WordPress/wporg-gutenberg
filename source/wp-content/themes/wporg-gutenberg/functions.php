@@ -515,7 +515,7 @@ add_action(
 			function() {
 				wp_enqueue_script( 'button-readonly', get_stylesheet_directory_uri() . '/js/button-readonly.js', array( 'wp-blocks', 'wp-element' ), null );
 				wp_enqueue_script( 'editor-modifications', get_stylesheet_directory_uri() . '/js/editor-modifications.js', array( 'wp-blocks', 'wp-edit-post', 'wp-hooks', 'wp-i18n' ), null );
-				wp_enqueue_style( 'custom-editor-styles', get_stylesheet_directory_uri() . '/style-editor.css', false, '20220406' );
+				wp_enqueue_style( 'custom-editor-styles', get_stylesheet_directory_uri() . '/style-editor.css', false, filemtime( __DIR__ . '/style-editor.css' ) );
 			}
 		);
 
