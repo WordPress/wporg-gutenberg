@@ -11,9 +11,26 @@ if( select( 'core/edit-post' ).isFeatureActive( 'welcomeGuide' ) ) {
     dispatch( 'core/edit-post' ).toggleFeature( 'welcomeGuide' );
 }
 
+// We don't want the post to appear publishable
+dispatch('core/editor').disablePublishSidebar()
+
+// Always lock the post
+dispatch('core/editor').lockPostSaving()
 
 // Stop Autosaving
 dispatch('core/editor').lockPostAutosaving()
+
+// Update the publish button text
+hooks.addFilter(
+	'i18n.gettext',
+	'wporg-gutenberg/update-btn-text',
+	( translation, text ) => {
+		if ( text === 'Submit for Review' ) {
+			return __( 'Publish', 'wporg-gutenberg');
+		}
+		return translation;
+	}
+);
 
 // Update the publish button text
 hooks.addFilter(
