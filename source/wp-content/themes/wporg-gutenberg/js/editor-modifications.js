@@ -9,6 +9,11 @@ if( select( 'core/edit-post' ).isFeatureActive( 'welcomeGuide' ) ) {
     dispatch( 'core/edit-post' ).toggleFeature( 'welcomeGuide' );
 }
 
+// We don't want the post to appear publishable
+dispatch('core/editor').disablePublishSidebar()
+
+// Always lock the post
+dispatch('core/editor').lockPostSaving()
 
 _wpLoadBlockEditor.then( function() { 
     wp.blocks.unregisterBlockType( 'core/shortcode' );
