@@ -441,7 +441,8 @@ add_action(
 			return;
 		}
 
-		show_admin_bar( true );
+		// Hide the admin bar, it overlaps with Gutenberg
+		show_admin_bar( false );
 
 		add_action(
 			'wp_enqueue_scripts',
