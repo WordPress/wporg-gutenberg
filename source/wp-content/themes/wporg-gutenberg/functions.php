@@ -11,12 +11,10 @@ if ( ! defined( 'WPORGPATH' ) ) {
 	define( 'WPORGPATH', get_theme_file_path( '/inc/' ) );
 }
 
-
 add_action(
 	'enqueue_block_assets',
 	function () {
-		wp_enqueue_script( 'editor-modifications', get_template_directory_uri() . '/js/editor-modifications.js', array( 'wp-blocks', 'wp-edit-post' ), null );
-		wp_enqueue_script( 'button-readonly', get_template_directory_uri() . '/js/button-readonly.js', array( 'wp-blocks', 'wp-edit-post', 'wp-block-editor' ), null );
+		wp_enqueue_script( 'button-readonly', get_stylesheet_directory_uri() . '/js/button-readonly.js', array( 'wp-blocks', 'wp-edit-post', 'wp-block-editor' ), null );
 	}
 );
 
