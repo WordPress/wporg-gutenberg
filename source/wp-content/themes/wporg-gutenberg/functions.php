@@ -14,7 +14,8 @@ if ( ! defined( 'WPORGPATH' ) ) {
 add_action(
 	'enqueue_block_assets',
 	function () {
-		wp_enqueue_script( 'button-readonly', get_stylesheet_directory_uri() . '/js/button-readonly.js', array( 'wp-blocks', 'wp-edit-post', 'wp-block-editor' ), null );
+		wp_enqueue_script( 'button-readonly', get_stylesheet_directory_uri() . '/js/button-readonly.js', array( 'wp-blocks', 'wp-element', 'wp-block-editor' ), null );
+		wp_enqueue_script( 'shared-modifications', get_stylesheet_directory_uri() . '/js/shared-modifications.js', array( 'wp-blocks', 'wp-hooks' ), filemtime( __DIR__ . '/js/shared-modifications.js' ) );
 	}
 );
 
@@ -521,8 +522,7 @@ add_action(
 		add_action(
 			'enqueue_block_editor_assets',
 			function() {
-				wp_enqueue_script( 'button-readonly', get_stylesheet_directory_uri() . '/js/button-readonly.js', array( 'wp-blocks', 'wp-element' ), null );
-				wp_enqueue_script( 'editor-modifications', get_stylesheet_directory_uri() . '/js/editor-modifications.js', array( 'wp-blocks', 'wp-edit-post', 'wp-hooks', 'wp-i18n' ), null );
+				wp_enqueue_script( 'editor-modifications', get_stylesheet_directory_uri() . '/js/editor-modifications.js', array( 'wp-blocks', 'wp-edit-post', 'wp-hooks', 'wp-i18n' ), filemtime( __DIR__ . '/js/editor-modifications.js' ) );
 				wp_enqueue_style( 'custom-editor-styles', get_stylesheet_directory_uri() . '/style-editor.css', false, filemtime( __DIR__ . '/style-editor.css' ) );
 			}
 		);
