@@ -275,6 +275,7 @@ if ( ! function_exists( 'gutenberg_editor_scripts_and_styles' ) ) {
 			'styles'                 => $styles,
 			'imageSizes'             => gutenberg_get_available_image_sizes(),
 			'richEditingEnabled'     => user_can_richedit(),
+			'fullscreenMode'         => true,
 
 			// Ideally, we'd remove this and rely on a REST API endpoint.
 			'postLock'               => $lock_details,
@@ -522,8 +523,9 @@ add_action(
 		add_action(
 			'enqueue_block_editor_assets',
 			function() {
-				wp_enqueue_script( 'button-readonly', get_template_directory_uri() . '/js/button-readonly.js', array( 'wp-blocks', 'wp-element' ), null );
-				wp_enqueue_style( 'custom-editor-styles', get_template_directory_uri() . '/editor-styles.css', false, '20220406' );
+				wp_enqueue_script( 'button-readonly', get_stylesheet_directory_uri() . '/js/button-readonly.js', array( 'wp-blocks', 'wp-element' ), null );
+				wp_enqueue_script( 'editor-modifications', get_stylesheet_directory_uri() . '/js/editor-modifications.js', array( 'wp-blocks', 'wp-edit-post', 'wp-hooks', 'wp-i18n' ), null );
+				wp_enqueue_style( 'custom-editor-styles', get_stylesheet_directory_uri() . '/style-editor.css', false, filemtime( __DIR__ . '/style-editor.css' ) );
 			}
 		);
 
@@ -773,79 +775,9 @@ endif;
 add_action( 'after_setup_theme', 'gutenbergtheme_setup' );
 
 /**
- * Set the content width in pixels, based on the theme's design and stylesheet.
- *
- * Priority 0 to make it available to lower priority callbacks.
- *
- * @global int $content_width
- */
-function gutenbergtheme_content_width() {
-	$GLOBALS['content_width'] = apply_filters( 'gutenbergtheme_content_width', 640 );
-}
-add_action( 'after_setup_theme', 'gutenbergtheme_content_width', 0 );
-
-/**
- * Register Google Fonts
- */
-function gutenbergtheme_fonts_url() {
-	$fonts_url = '';
-
-	/*
-	 Translators: If there are characters in your language that are not
-	 * supported by Karla, translate this to 'off'. Do not translate
-	 * into your own language.
-	 */
-	$notoserif = esc_html_x( 'on', 'Noto Serif font: on or off', 'gutenbergtheme' );
-
-	if ( 'off' !== $notoserif ) {
-		$font_families   = array();
-		$font_families[] = 'Noto Serif:400,400italic,700,700italic';
-
-		$query_args = array(
-			'family' => urlencode( implode( '|', $font_families ) ),
-			'subset' => urlencode( 'latin,latin-ext' ),
-		);
-
-		$fonts_url = add_query_arg( $query_args, 'https://fonts.googleapis.com/css' );
-	}
-
-	return $fonts_url;
-
-}
-
-/**
  * Enqueue scripts and styles.
  */
 function gutenbergtheme_scripts() {
 	wp_enqueue_style( 'gutenbergtheme-style', get_stylesheet_uri(), array(), 14 );
-
-	wp_enqueue_style( 'gutenbergtheme-fonts', gutenbergtheme_fonts_url(), array(), null );
 }
 add_action( 'wp_enqueue_scripts', 'gutenbergtheme_scripts' );
-
-/**
- * Implement the Custom Header feature.
- */
-require get_template_directory() . '/inc/custom-header.php';
-
-/**
- * Custom template tags for this theme.
- */
-require get_template_directory() . '/inc/template-tags.php';
-
-/**
- * Functions which enhance the theme by hooking into WordPress.
- */
-require get_template_directory() . '/inc/template-functions.php';
-
-/**
- * Customizer additions.
- */
-require get_template_directory() . '/inc/customizer.php';
-
-/**
- * Load Jetpack compatibility file.
- */
-if ( defined( 'JETPACK__VERSION' ) ) {
-	require get_template_directory() . '/inc/jetpack.php';
-}

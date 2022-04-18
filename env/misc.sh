@@ -3,6 +3,9 @@
 root=$( dirname $( wp config path ) )
 content=$(cat "${root}/env/gutenberg-content.txt")
 
+# Install parent theme
+wp theme install blockbase
+
 # Activate our local theme
 wp theme activate wporg-gutenberg
 

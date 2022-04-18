@@ -1,0 +1,36 @@
+:root, .editor-styles-wrapper {
+	--wp-admin-theme-color: #3e58e1 !important;
+	--wp-admin-theme-color-darker-10: #3E58F2 !important;
+	--wp-admin-theme-color-darker-10--rgb: 62, 88, 242;
+	--wp-admin-theme-color-darker-20: #213fd4 !important;
+  	--wp-admin-theme-color-darker-20--rgb: 33, 63, 212;
+}
+
+.editor-styles-wrapper {
+	padding-bottom: 0 !important;
+}
+
+/* Hide the title within the Editor */
+.edit-post-visual-editor__post-title-wrapper {
+  display: none;
+}
+
+/* We hide the last group because it's empty because you can't preview the post */
+.block-editor-post-preview__dropdown-content .components-menu-group:last-child { 
+	display: none;
+}
+
+/* We don't want this editor style because we prefer full width */
+.editor-styles-wrapper > .is-root-container {
+	padding: 0 !important;
+}
+
+/* This adds spacing between outer containers to allow block injections.  */
+.editor-styles-wrapper .block-editor-block-list__layout.is-root-container > * + * {
+	margin-block-start: unset !important;
+}
+
+/* This hides the last appender when it's in the root. It make the page look cleaner */
+.is-root-container > div:last-of-type:is(.block-list-appender) {
+	display: none !important
+}

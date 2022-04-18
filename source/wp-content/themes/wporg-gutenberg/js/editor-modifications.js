@@ -1,5 +1,7 @@
 var select   = wp.data.select;
 var dispatch = wp.data.dispatch;
+var hooks = wp.hooks;
+var __ = wp.i18n.__
 
 if ( select( 'core/edit-post' ).isEditorSidebarOpened() ) {
     dispatch( 'core/edit-post' ).closeGeneralSidebar();
@@ -14,6 +16,33 @@ dispatch('core/editor').disablePublishSidebar()
 
 // Always lock the post
 dispatch('core/editor').lockPostSaving()
+
+// Stop Autosaving
+dispatch('core/editor').lockPostAutosaving()
+
+// Update the publish button text
+hooks.addFilter(
+	'i18n.gettext',
+	'wporg-gutenberg/update-btn-text',
+	( translation, text ) => {
+		if ( text === 'Submit for Review' ) {
+			return __( 'Publish', 'wporg-gutenberg');
+		}
+		return translation;
+	}
+);
+
+// Update the publish button text
+hooks.addFilter(
+	'i18n.gettext',
+	'wporg-gutenberg/update-btn-text',
+	( translation, text ) => {
+		if ( text === 'Submit for Review' ) {
+			return __( 'Publish', 'wporg-gutenberg');
+		}
+		return translation;
+	}
+);
 
 _wpLoadBlockEditor.then( function() { 
     wp.blocks.unregisterBlockType( 'core/shortcode' );
