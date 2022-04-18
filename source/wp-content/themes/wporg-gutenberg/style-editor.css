@@ -34,3 +34,18 @@
 .is-root-container > div:last-of-type:is(.block-list-appender) {
 	display: none !important
 }
+
+/*
+ We need to use columns to achieve a somewhat responsive layout.
+ However, an empty column displays the block-edutor-inserter.
+ When there are multiple empty columns, it is visiaully unappealing.
+ We can either hide it and turn it on onHover, or hide them completely.
+ This implement the onHover approach.
+*/
+.wp-block-columns .block-editor-inserter {
+	visibility: hidden;
+}
+
+.wp-block-column:hover .block-editor-inserter {
+	visibility: visible;
+}
