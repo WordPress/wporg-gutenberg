@@ -32,18 +32,6 @@ hooks.addFilter(
 	}
 );
 
-// Update the publish button text
-hooks.addFilter(
-	'i18n.gettext',
-	'wporg-gutenberg/update-btn-text',
-	( translation, text ) => {
-		if ( text === 'Submit for Review' ) {
-			return __( 'Publish', 'wporg-gutenberg');
-		}
-		return translation;
-	}
-);
-
 _wpLoadBlockEditor.then( function() { 
     wp.blocks.unregisterBlockType( 'core/shortcode' );
 } );
