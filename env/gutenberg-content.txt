@@ -5,19 +5,29 @@
 <!-- /wp:group -->
 
 <!-- wp:group {"align":"full","style":{"spacing":{"padding":{"top":"60px","right":"60px","bottom":"60px","left":"60px"}}}} -->
-<div class="wp-block-group alignfull" style="padding-top:60px;padding-right:60px;padding-bottom:60px;padding-left:60px"><!-- wp:heading {"level":1,"align":"wide","style":{"typography":{"fontSize":"80px"}}} -->
-<h1 class="alignwide" id="say-hello-to-gutenberg-the-wordpress-editor" style="font-size:80px">Say Hello to Gutenberg, the WordPress Editor</h1>
+<div class="wp-block-group alignfull" style="padding-top:60px;padding-right:60px;padding-bottom:60px;padding-left:60px"><!-- wp:columns {"align":"wide","style":{"spacing":{"padding":{"bottom":"60px"}}}} -->
+<div class="wp-block-columns alignwide" style="padding-bottom:60px"><!-- wp:column {"width":"70%"} -->
+<div class="wp-block-column" style="flex-basis:70%"><!-- wp:group {"layout":{"type":"flex","orientation":"vertical"}} -->
+<div class="wp-block-group"><!-- wp:heading {"level":1,"style":{"typography":{"fontSize":"80px"}}} -->
+<h1 style="font-size:80px">Say Hello to Gutenberg, the WordPress Editor</h1>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
 <p>Experience the flexibility that blocks allow, whether you’re building your first site or write code for a living.</p>
 <!-- /wp:paragraph -->
 
-<!-- wp:buttons -->
-<div class="wp-block-buttons"><!-- wp:button {"textColor":"secondary","className":"is-style-outline"} -->
-<div class="wp-block-button is-style-outline"><a class="wp-block-button__link has-secondary-color has-text-color" href="https://wordpress.org/download/">Try Gutenberg today in WordPress</a></div>
+<!-- wp:wporg/wporg-gutenberg-button -->
+<div class="wp-block-wporg-wporg-gutenberg-button wp-block-buttons"><!-- wp:button {"className":"is-style-outline"} -->
+<div class="wp-block-button is-style-outline"><a class="wp-block-button__link" href="https://wordpress.org/download/">Try Gutenberg today in Wordpress</a></div>
 <!-- /wp:button --></div>
-<!-- /wp:buttons -->
+<!-- /wp:wporg/wporg-gutenberg-button --></div>
+<!-- /wp:group --></div>
+<!-- /wp:column -->
+
+<!-- wp:column {"width":"30%"} -->
+<div class="wp-block-column" style="flex-basis:30%"></div>
+<!-- /wp:column --></div>
+<!-- /wp:columns -->
 
 <!-- wp:paragraph {"fontSize":"small"} -->
 <p class="has-small-font-size">This page was built with blocks — pieces of content, similar to LEGO bricks — that you can move around. <strong>Click around to explore them.</strong></p>
@@ -30,7 +40,11 @@
 <!-- /wp:spacer -->
 
 <!-- wp:columns -->
-<div class="wp-block-columns"><!-- wp:column {"verticalAlignment":"top","style":{"spacing":{"padding":{"top":"30px","right":"30px","bottom":"30px","left":"30px"}}}} -->
+<div class="wp-block-columns"><!-- wp:column {"width":"10%"} -->
+<div class="wp-block-column" style="flex-basis:10%"></div>
+<!-- /wp:column -->
+
+<!-- wp:column {"verticalAlignment":"top","style":{"spacing":{"padding":{"top":"30px","right":"30px","bottom":"30px","left":"30px"}}}} -->
 <div class="wp-block-column is-vertically-aligned-top" style="padding-top:30px;padding-right:30px;padding-bottom:30px;padding-left:30px"><!-- wp:group {"layout":{"type":"flex","orientation":"vertical"}} -->
 <div class="wp-block-group"><!-- wp:image {"id":1208,"width":60,"height":60,"sizeSlug":"full","linkDestination":"none"} -->
 <figure class="wp-block-image size-full is-resized"><img src="https://blockpatterndesigns.mystagingwebsite.com/wp-content/uploads/2022/04/block-media-texticon.png" alt="" class="wp-image-1208" width="60" height="60"/></figure>
@@ -52,11 +66,19 @@
 <!-- wp:paragraph {"textColor":"tertiary"} -->
 <p class="has-tertiary-color has-text-color">Trust that your editor looks like your website.</p>
 <!-- /wp:paragraph --></div>
+<!-- /wp:column -->
+
+<!-- wp:column {"width":"10%"} -->
+<div class="wp-block-column" style="flex-basis:10%"></div>
 <!-- /wp:column --></div>
 <!-- /wp:columns -->
 
 <!-- wp:columns -->
-<div class="wp-block-columns"><!-- wp:column {"style":{"spacing":{"padding":{"top":"30px","right":"30px","bottom":"30px","left":"30px"}}}} -->
+<div class="wp-block-columns"><!-- wp:column {"width":"10%"} -->
+<div class="wp-block-column" style="flex-basis:10%"></div>
+<!-- /wp:column -->
+
+<!-- wp:column {"style":{"spacing":{"padding":{"top":"30px","right":"30px","bottom":"30px","left":"30px"}}}} -->
 <div class="wp-block-column" style="padding-top:30px;padding-right:30px;padding-bottom:30px;padding-left:30px"><!-- wp:group {"layout":{"type":"flex","orientation":"vertical"}} -->
 <div class="wp-block-group"><!-- wp:image {"id":1216,"width":45,"height":45,"sizeSlug":"full","linkDestination":"none"} -->
 <figure class="wp-block-image size-full is-resized"><img src="https://blockpatterndesigns.mystagingwebsite.com/wp-content/uploads/2022/04/devicesicon.png" alt="" class="wp-image-1216" width="45" height="45"/></figure>
@@ -78,6 +100,10 @@
 <!-- wp:paragraph {"textColor":"tertiary"} -->
 <p class="has-tertiary-color has-text-color">Do more with fewer plugins.</p>
 <!-- /wp:paragraph --></div>
+<!-- /wp:column -->
+
+<!-- wp:column {"width":"10%"} -->
+<div class="wp-block-column" style="flex-basis:10%"></div>
 <!-- /wp:column --></div>
 <!-- /wp:columns -->
 
@@ -238,6 +264,10 @@
 <!-- /wp:buttons --></div>
 <!-- /wp:column -->
 
+<!-- wp:column {"width":"20%"} -->
+<div class="wp-block-column" style="flex-basis:20%"></div>
+<!-- /wp:column -->
+
 <!-- wp:column {"verticalAlignment":"bottom","width":"60%"} -->
 <div class="wp-block-column is-vertically-aligned-bottom" style="flex-basis:60%"><!-- wp:image {"id":1197,"width":473,"height":597,"sizeSlug":"full","linkDestination":"none"} -->
 <figure class="wp-block-image size-full is-resized"><img src="https://blockpatterndesigns.mystagingwebsite.com/wp-content/uploads/2022/04/Mask-Group.png" alt="" class="wp-image-1197" width="473" height="597"/></figure>
@@ -361,11 +391,7 @@
 <!-- /wp:button --></div>
 <!-- /wp:buttons --></div>
 <!-- /wp:column --></div>
-<!-- /wp:columns -->
-
-<!-- wp:paragraph -->
-<p></p>
-<!-- /wp:paragraph --></div>
+<!-- /wp:columns --></div>
 <!-- /wp:group -->
 
 <!-- wp:cover {"customOverlayColor":"#ecf6fa","minHeight":765,"minHeightUnit":"px","contentPosition":"center center","isDark":false,"align":"full"} -->
@@ -456,8 +482,8 @@
 <div style="height:30px" aria-hidden="true" class="wp-block-spacer"></div>
 <!-- /wp:spacer -->
 
-<!-- wp:columns {"align":"full","style":{"spacing":{"blockGap":"0px"}}} -->
-<div class="wp-block-columns alignfull"><!-- wp:column {"verticalAlignment":"bottom"} -->
+<!-- wp:columns {"verticalAlignment":"bottom","align":"full","style":{"spacing":{"blockGap":"0px"}}} -->
+<div class="wp-block-columns alignfull are-vertically-aligned-bottom"><!-- wp:column {"verticalAlignment":"bottom"} -->
 <div class="wp-block-column is-vertically-aligned-bottom"><!-- wp:paragraph {"fontSize":"normal"} -->
 <p class="has-normal-font-size">Gutenberg is available as part of WordPress 5.0 and later. New developments and experiments will continue in the <a href="https://wordpress.org/plugins/gutenberg/">Gutenberg plugin</a>.</p>
 <!-- /wp:paragraph --></div>
