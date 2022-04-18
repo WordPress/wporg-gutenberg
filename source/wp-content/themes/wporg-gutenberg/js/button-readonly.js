@@ -1,8 +1,9 @@
 var el = wp.element.createElement,
-	registerBlockType = wp.blocks.registerBlockType;
+	registerBlockType = wp.blocks.registerBlockType,
+	InnerBlocks = wp.blockEditor.InnerBlocks;
 
-registerBlockType( 'wporg/download-button', {
-	title: 'Download Gutenberg Button',
+registerBlockType( 'wporg/wporg-gutenberg-button', {
+	title: 'Demo Button',
 	icon: 'button',
 	category: 'layout',
 
@@ -21,46 +22,23 @@ registerBlockType( 'wporg/download-button', {
 			source: 'text',
 			selector: 'a',
 		},
-		align: {
-			type: 'string',
-			default: 'center',
+	},
+
+	edit: function ( props ) {
+		if ( ! window.location.pathname.includes( 'wp-admin' ) ) {
+			var blockEditorData = wp.data.select( 'core/block-editor' );
+			var innerHtml = blockEditorData.getBlock( props.clientId ).innerBlocks[ 0 ].originalContent;
+
+			return el( 'div', { dangerouslySetInnerHTML: { __html: innerHtml } } );
 		}
+
+		return el( InnerBlocks, {
+			template: [ [ 'core/button' ] ],
+			templateLock: 'all',
+		} );
 	},
 
-	supports: {
-		inserter: false
-	},
-
-	edit: function( props ) {
-
-		return el(
-			'div',
-			{ className: 'wp-block-button align' + props.attributes.align, },
-			el(
-				'a',
-				{ className: 'wp-block-button__link has-background has-strong-blue-background-color', href: props.attributes.url,
-					style: { backgroundColor: 'rgb(0,115,170)', color: '#fff' },
-					title: props.attributes.title
-				},
-				props.attributes.text
-			)
-		);
-	},
-
-	save: function( props ) {
-
-		return el(
-			'div',
-			{ className: 'wp-block-button align' + props.attributes.align },
-			el(
-				'a',
-				{ className: 'wp-block-button__link has-background has-strong-blue-background-color', href: props.attributes.url,
-					style: { backgroundColor: 'rgb(0,115,170)', color: '#fff' },
-					title: props.attributes.title
-				},
-				props.attributes.text
-			)
-		);
+	save: function ( props ) {
+		return el( 'div', { className: 'wp-block-buttons' }, el( InnerBlocks.Content ) );
 	},
 } );
-
