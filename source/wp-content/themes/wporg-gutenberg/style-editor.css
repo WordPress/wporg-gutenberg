@@ -10,6 +10,11 @@
 	padding-bottom: 0 !important;
 }
 
+/* The editor turns this off because its the editor */  
+.editor-styles-wrapper a {
+	text-decoration: underline;
+}
+
 /* Hide the title within the Editor */
 .edit-post-visual-editor__post-title-wrapper {
   display: none;

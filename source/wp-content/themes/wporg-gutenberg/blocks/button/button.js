@@ -29,13 +29,15 @@ registerBlockType( 'wporg/wporg-gutenberg-button', {
 			var blockEditorData = wp.data.select( 'core/block-editor' );
 			var innerHtml = blockEditorData.getBlock( props.clientId ).innerBlocks[ 0 ].originalContent;
 
-			return el( 'div', { dangerouslySetInnerHTML: { __html: innerHtml } } );
+			return el( 'div', { className: props.className, dangerouslySetInnerHTML: { __html: innerHtml } } );
 		}
-
-		return el( InnerBlocks, {
+		return el(
+            'div',
+            { className: props.className },
+            el( InnerBlocks, {
 			template: [ [ 'core/button' ] ],
 			templateLock: 'all',
-		} );
+		} ));
 	},
 
 	save: function ( props ) {
