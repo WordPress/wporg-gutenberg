@@ -1,24 +1,28 @@
-<!-- wp:group {"align":"full","style":{"spacing":{"padding":{"top":"60px","right":"60px","bottom":"60px","left":"60px"}},"elements":{"link":{"color":{"text":"var:preset|color|black"}}}},"className":"site-header","layout":{"type":"flex","orientation":"vertical"}} -->
-<div class="wp-block-group alignfull site-header has-link-color" style="padding-top:60px;padding-right:60px;padding-bottom:60px;padding-left:60px"><!-- wp:image {"id":4,"width":38,"height":38,"sizeSlug":"full","linkDestination":"none"} -->
+<!-- wp:group {"align":"full","style":{"elements":{"link":{"color":{"text":"var:preset|color|black"}}},"spacing":{"padding":{"bottom":"120px","top":"60px"}}},"className":"site-header","layout":{"type":"flex","orientation":"vertical"}} -->
+<div class="wp-block-group alignfull site-header has-link-color" style="padding-top:60px;padding-bottom:120px"><!-- wp:image {"id":4,"width":38,"height":38,"sizeSlug":"full","linkDestination":"none"} -->
 <figure class="wp-block-image size-full is-resized"><img src="http://localhost:8888/wp-content/uploads/2022/04/site_title-150x150-1.png" alt="" class="wp-image-4" width="38" height="38"/></figure>
 <!-- /wp:image --></div>
 <!-- /wp:group -->
 
-<!-- wp:group {"align":"full","style":{"spacing":{"padding":{"top":"60px","right":"60px","bottom":"60px","left":"60px"}}}} -->
-<div class="wp-block-group alignfull" style="padding-top:60px;padding-right:60px;padding-bottom:60px;padding-left:60px"><!-- wp:columns {"align":"wide","style":{"spacing":{"padding":{"bottom":"60px"}}}} -->
-<div class="wp-block-columns alignwide" style="padding-bottom:60px"><!-- wp:column {"width":"70%"} -->
-<div class="wp-block-column" style="flex-basis:70%"><!-- wp:group {"layout":{"type":"flex","orientation":"vertical"}} -->
+<!-- wp:group {"align":"full","layout":{"inherit":false}} -->
+<div class="wp-block-group alignfull"><!-- wp:columns {"align":"wide"} -->
+<div class="wp-block-columns alignwide"><!-- wp:column {"width":"60%"} -->
+<div class="wp-block-column" style="flex-basis:60%"><!-- wp:group {"layout":{"type":"flex","orientation":"vertical"}} -->
 <div class="wp-block-group"><!-- wp:heading {"level":1,"style":{"typography":{"fontSize":"80px"}}} -->
 <h1 style="font-size:80px">Say Hello to Gutenberg, the WordPress Editor</h1>
 <!-- /wp:heading -->
 
-<!-- wp:paragraph -->
-<p>Experience the flexibility that blocks allow, whether you’re building your first site or write code for a living.</p>
+<!-- wp:paragraph {"fontSize":"medium"} -->
+<p class="has-medium-font-size">Experience the flexibility that blocks allow, whether you’re building your first site or write code for a living.</p>
 <!-- /wp:paragraph -->
 
+<!-- wp:spacer {"height":"30px"} -->
+<div style="height:30px" aria-hidden="true" class="wp-block-spacer"></div>
+<!-- /wp:spacer -->
+
 <!-- wp:wporg/wporg-gutenberg-button -->
-<div class="wp-block-wporg-wporg-gutenberg-button wp-block-buttons"><!-- wp:button {"className":"is-style-outline"} -->
-<div class="wp-block-button is-style-outline"><a class="wp-block-button__link" href="https://wordpress.org/download/">Try Gutenberg today in Wordpress</a></div>
+<div class="wp-block-wporg-wporg-gutenberg-button wp-block-buttons"><!-- wp:button {"width":100,"className":"is-style-outline"} -->
+<div class="wp-block-button has-custom-width wp-block-button__width-100 is-style-outline"><a class="wp-block-button__link" href="https://wordpress.org/download/">Try Gutenberg today in Wordpress</a></div>
 <!-- /wp:button --></div>
 <!-- /wp:wporg/wporg-gutenberg-button --></div>
 <!-- /wp:group --></div>
@@ -29,119 +33,99 @@
 <!-- /wp:column --></div>
 <!-- /wp:columns -->
 
-<!-- wp:paragraph {"fontSize":"small"} -->
-<p class="has-small-font-size">This page was built with blocks — pieces of content, similar to LEGO bricks — that you can move around. <strong>Click around to explore them.</strong></p>
-<!-- /wp:paragraph --></div>
-<!-- /wp:group -->
-
-<!-- wp:cover {"url":"https://blockpatterndesigns.mystagingwebsite.com/wp-content/uploads/2022/04/Gradient-Background.png","id":1194,"hasParallax":true,"dimRatio":10,"isDark":false,"align":"full"} -->
-<div class="wp-block-cover alignfull is-light has-parallax" style="background-image:url(https://blockpatterndesigns.mystagingwebsite.com/wp-content/uploads/2022/04/Gradient-Background.png)"><span aria-hidden="true" class="wp-block-cover__background has-background-dim-10 has-background-dim"></span><div class="wp-block-cover__inner-container"><!-- wp:spacer -->
+<!-- wp:spacer -->
 <div style="height:100px" aria-hidden="true" class="wp-block-spacer"></div>
 <!-- /wp:spacer -->
 
-<!-- wp:columns -->
-<div class="wp-block-columns"><!-- wp:column {"width":"10%"} -->
-<div class="wp-block-column" style="flex-basis:10%"></div>
-<!-- /wp:column -->
+<!-- wp:group {"style":{"spacing":{"padding":{"bottom":"60px"}}}} -->
+<div class="wp-block-group" style="padding-bottom:60px"><!-- wp:paragraph {"fontSize":"small"} -->
+<p class="has-small-font-size">This page was built with blocks — pieces of content, similar to LEGO bricks — that you can move around. <strong>Click around to explore them.</strong></p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group --></div>
+<!-- /wp:group -->
 
-<!-- wp:column {"verticalAlignment":"top","style":{"spacing":{"padding":{"top":"30px","right":"30px","bottom":"30px","left":"30px"}}}} -->
-<div class="wp-block-column is-vertically-aligned-top" style="padding-top:30px;padding-right:30px;padding-bottom:30px;padding-left:30px"><!-- wp:group {"layout":{"type":"flex","orientation":"vertical"}} -->
+<!-- wp:cover {"url":"https://blockpatterndesigns.mystagingwebsite.com/wp-content/uploads/2022/04/Gradient-Background.png","id":1194,"hasParallax":true,"dimRatio":10,"isDark":false,"align":"full","style":{"spacing":{"padding":{"top":"120px","bottom":"120px"}}}} -->
+<div class="wp-block-cover alignfull is-light has-parallax" style="padding-top:120px;padding-bottom:120px;background-image:url(https://blockpatterndesigns.mystagingwebsite.com/wp-content/uploads/2022/04/Gradient-Background.png)"><span aria-hidden="true" class="wp-block-cover__background has-background-dim-10 has-background-dim"></span><div class="wp-block-cover__inner-container"><!-- wp:group {"layout":{"inherit":false,"wideSize":"1200px"}} -->
+<div class="wp-block-group"><!-- wp:columns -->
+<div class="wp-block-columns"><!-- wp:column {"verticalAlignment":"top","style":{"spacing":{"padding":{"top":"0px","left":"0px","bottom":"30px"}}}} -->
+<div class="wp-block-column is-vertically-aligned-top" style="padding-top:0px;padding-bottom:30px;padding-left:0px"><!-- wp:group {"layout":{"type":"flex","orientation":"vertical"}} -->
 <div class="wp-block-group"><!-- wp:image {"id":1208,"width":60,"height":60,"sizeSlug":"full","linkDestination":"none"} -->
 <figure class="wp-block-image size-full is-resized"><img src="https://blockpatterndesigns.mystagingwebsite.com/wp-content/uploads/2022/04/block-media-texticon.png" alt="" class="wp-image-1208" width="60" height="60"/></figure>
 <!-- /wp:image -->
 
-<!-- wp:paragraph {"textColor":"tertiary"} -->
-<p class="has-tertiary-color has-text-color">Create modern layouts with rich content.</p>
+<!-- wp:paragraph {"textColor":"tertiary","fontSize":"medium"} -->
+<p class="has-tertiary-color has-text-color has-medium-font-size">Create modern layouts with rich content.</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:column -->
 
-<!-- wp:column {"style":{"spacing":{"padding":{"top":"30px","right":"30px","bottom":"30px","left":"30px"}}}} -->
-<div class="wp-block-column" style="padding-top:30px;padding-right:30px;padding-bottom:30px;padding-left:30px"><!-- wp:group {"layout":{"type":"flex","orientation":"vertical"}} -->
+<!-- wp:column {"style":{"spacing":{"padding":{"top":"0px","right":"0px","bottom":"30px","left":"0px"}}}} -->
+<div class="wp-block-column" style="padding-top:0px;padding-right:0px;padding-bottom:30px;padding-left:0px"><!-- wp:group {"layout":{"type":"flex","orientation":"vertical"}} -->
 <div class="wp-block-group"><!-- wp:image {"id":1214,"width":48,"height":48,"sizeSlug":"full","linkDestination":"none"} -->
 <figure class="wp-block-image size-full is-resized"><img src="https://blockpatterndesigns.mystagingwebsite.com/wp-content/uploads/2022/04/copyicon.png" alt="" class="wp-image-1214" width="48" height="48"/></figure>
-<!-- /wp:image --></div>
-<!-- /wp:group -->
+<!-- /wp:image -->
 
-<!-- wp:paragraph {"textColor":"tertiary"} -->
-<p class="has-tertiary-color has-text-color">Trust that your editor looks like your website.</p>
+<!-- wp:paragraph {"textColor":"tertiary","fontSize":"medium"} -->
+<p class="has-tertiary-color has-text-color has-medium-font-size">Trust that your editor looks like your website.</p>
 <!-- /wp:paragraph --></div>
-<!-- /wp:column -->
-
-<!-- wp:column {"width":"10%"} -->
-<div class="wp-block-column" style="flex-basis:10%"></div>
+<!-- /wp:group --></div>
 <!-- /wp:column --></div>
 <!-- /wp:columns -->
 
 <!-- wp:columns -->
-<div class="wp-block-columns"><!-- wp:column {"width":"10%"} -->
-<div class="wp-block-column" style="flex-basis:10%"></div>
-<!-- /wp:column -->
-
-<!-- wp:column {"style":{"spacing":{"padding":{"top":"30px","right":"30px","bottom":"30px","left":"30px"}}}} -->
-<div class="wp-block-column" style="padding-top:30px;padding-right:30px;padding-bottom:30px;padding-left:30px"><!-- wp:group {"layout":{"type":"flex","orientation":"vertical"}} -->
+<div class="wp-block-columns"><!-- wp:column {"style":{"spacing":{"padding":{"bottom":"30px"}}}} -->
+<div class="wp-block-column" style="padding-bottom:30px"><!-- wp:group {"layout":{"type":"flex","orientation":"vertical"}} -->
 <div class="wp-block-group"><!-- wp:image {"id":1216,"width":45,"height":45,"sizeSlug":"full","linkDestination":"none"} -->
 <figure class="wp-block-image size-full is-resized"><img src="https://blockpatterndesigns.mystagingwebsite.com/wp-content/uploads/2022/04/devicesicon.png" alt="" class="wp-image-1216" width="45" height="45"/></figure>
-<!-- /wp:image --></div>
-<!-- /wp:group -->
+<!-- /wp:image -->
 
-<!-- wp:paragraph {"textColor":"tertiary"} -->
-<p class="has-tertiary-color has-text-color">Work across screen sizes and devices.</p>
+<!-- wp:paragraph {"textColor":"tertiary","fontSize":"medium"} -->
+<p class="has-tertiary-color has-text-color has-medium-font-size">Work across screen sizes and devices.</p>
 <!-- /wp:paragraph --></div>
+<!-- /wp:group --></div>
 <!-- /wp:column -->
 
-<!-- wp:column {"style":{"spacing":{"padding":{"top":"30px","right":"30px","bottom":"30px","left":"30px"}}}} -->
-<div class="wp-block-column" style="padding-top:30px;padding-right:30px;padding-bottom:30px;padding-left:30px"><!-- wp:group {"layout":{"type":"flex","orientation":"vertical"}} -->
+<!-- wp:column -->
+<div class="wp-block-column"><!-- wp:group {"layout":{"type":"flex","orientation":"vertical"}} -->
 <div class="wp-block-group"><!-- wp:image {"id":1217,"width":36,"height":36,"sizeSlug":"full","linkDestination":"none"} -->
 <figure class="wp-block-image size-full is-resized"><img src="https://blockpatterndesigns.mystagingwebsite.com/wp-content/uploads/2022/04/pluginicon.png" alt="" class="wp-image-1217" width="36" height="36"/></figure>
-<!-- /wp:image --></div>
-<!-- /wp:group -->
+<!-- /wp:image -->
 
-<!-- wp:paragraph {"textColor":"tertiary"} -->
-<p class="has-tertiary-color has-text-color">Do more with fewer plugins.</p>
+<!-- wp:paragraph {"textColor":"tertiary","fontSize":"medium"} -->
+<p class="has-tertiary-color has-text-color has-medium-font-size">Do more with fewer plugins.</p>
 <!-- /wp:paragraph --></div>
-<!-- /wp:column -->
-
-<!-- wp:column {"width":"10%"} -->
-<div class="wp-block-column" style="flex-basis:10%"></div>
+<!-- /wp:group --></div>
 <!-- /wp:column --></div>
-<!-- /wp:columns -->
-
-<!-- wp:spacer -->
-<div style="height:100px" aria-hidden="true" class="wp-block-spacer"></div>
-<!-- /wp:spacer --></div></div>
+<!-- /wp:columns --></div>
+<!-- /wp:group --></div></div>
 <!-- /wp:cover -->
 
-<!-- wp:cover {"overlayColor":"tertiary","minHeight":762,"minHeightUnit":"px","contentPosition":"center center","isDark":false,"align":"full"} -->
-<div class="wp-block-cover alignfull is-light" style="min-height:762px"><span aria-hidden="true" class="wp-block-cover__background has-tertiary-background-color has-background-dim-100 has-background-dim"></span><div class="wp-block-cover__inner-container"><!-- wp:spacer {"height":"70px"} -->
-<div style="height:70px" aria-hidden="true" class="wp-block-spacer"></div>
-<!-- /wp:spacer -->
-
-<!-- wp:columns {"style":{"spacing":{"padding":{"top":"0px","right":"60px","bottom":"0px","left":"60px"}}}} -->
-<div class="wp-block-columns" style="padding-top:0px;padding-right:60px;padding-bottom:0px;padding-left:60px"><!-- wp:column {"width":"100%"} -->
+<!-- wp:cover {"overlayColor":"background","minHeight":762,"minHeightUnit":"px","contentPosition":"center center","isDark":false,"align":"full","style":{"spacing":{"padding":{"top":"120px","bottom":"120px"}}}} -->
+<div class="wp-block-cover alignfull is-light" style="padding-top:120px;padding-bottom:120px;min-height:762px"><span aria-hidden="true" class="wp-block-cover__background has-background-background-color has-background-dim-100 has-background-dim"></span><div class="wp-block-cover__inner-container"><!-- wp:columns {"style":{"spacing":{"padding":{"top":"0px","bottom":"0px"}}}} -->
+<div class="wp-block-columns" style="padding-top:0px;padding-bottom:0px"><!-- wp:column {"width":"100%"} -->
 <div class="wp-block-column" style="flex-basis:100%"><!-- wp:heading {"align":"wide","style":{"typography":{"fontSize":"72px"}}} -->
 <h2 class="alignwide" id="be-your-own-builder" style="font-size:72px">Be your own builder.</h2>
 <!-- /wp:heading --></div>
 <!-- /wp:column --></div>
 <!-- /wp:columns -->
 
-<!-- wp:spacer {"height":"20px"} -->
-<div style="height:20px" aria-hidden="true" class="wp-block-spacer"></div>
-<!-- /wp:spacer -->
-
-<!-- wp:columns {"align":"wide","style":{"spacing":{"blockGap":"0px","padding":{"top":"0px","right":"60px","bottom":"0px","left":"60px"}}}} -->
-<div class="wp-block-columns alignwide" style="padding-top:0px;padding-right:60px;padding-bottom:0px;padding-left:60px"><!-- wp:column {"width":"70%","style":{"spacing":{"padding":{"top":"0px","right":"0px","bottom":"0px","left":"0px"}}}} -->
-<div class="wp-block-column" style="padding-top:0px;padding-right:0px;padding-bottom:0px;padding-left:0px;flex-basis:70%"><!-- wp:paragraph {"style":{"typography":{"fontSize":"22px"}}} -->
+<!-- wp:columns {"align":"wide","style":{"spacing":{"blockGap":"0px","padding":{"top":"0px","bottom":"0px"}}}} -->
+<div class="wp-block-columns alignwide" style="padding-top:0px;padding-bottom:0px"><!-- wp:column {"width":"60%","style":{"spacing":{"padding":{"top":"30px","right":"0px","bottom":"0px","left":"0px"}}}} -->
+<div class="wp-block-column" style="padding-top:30px;padding-right:0px;padding-bottom:0px;padding-left:0px;flex-basis:60%"><!-- wp:paragraph {"style":{"typography":{"fontSize":"22px"}}} -->
 <p style="font-size:22px">Blocks allow you to build your own custom posts and pages without any coding knowledge. Here’s a selection of the default blocks included with Gutenberg:</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:column -->
 
-<!-- wp:column {"verticalAlignment":"top"} -->
-<div class="wp-block-column is-vertically-aligned-top"><!-- wp:buttons {"layout":{"type":"flex","justifyContent":"right"}} -->
-<div class="wp-block-buttons"><!-- wp:button {"textColor":"secondary","className":"is-style-outline"} -->
-<div class="wp-block-button is-style-outline"><a class="wp-block-button__link has-secondary-color has-text-color" href="https://wordpress.org/plugins/browse/block/">Browse all blocks</a></div>
+<!-- wp:column {"style":{"spacing":{"padding":{"top":"30px","right":"30px","left":"30px"}}}} -->
+<div class="wp-block-column" style="padding-top:30px;padding-right:30px;padding-left:30px"></div>
+<!-- /wp:column -->
+
+<!-- wp:column {"verticalAlignment":"top","width":"30%","style":{"spacing":{"padding":{"top":"30px"}}},"layout":{"inherit":false}} -->
+<div class="wp-block-column is-vertically-aligned-top" style="padding-top:30px;flex-basis:30%"><!-- wp:wporg/wporg-gutenberg-button -->
+<div class="wp-block-wporg-wporg-gutenberg-button wp-block-buttons"><!-- wp:button {"textColor":"primary","align":"right","className":"is-style-outline"} -->
+<div class="wp-block-button alignright is-style-outline"><a class="wp-block-button__link has-primary-color has-text-color" href="https://wordpress.org/plugins/browse/block/">Browse all blocks</a></div>
 <!-- /wp:button --></div>
-<!-- /wp:buttons --></div>
+<!-- /wp:wporg/wporg-gutenberg-button --></div>
 <!-- /wp:column --></div>
 <!-- /wp:columns -->
 
@@ -149,8 +133,8 @@
 <div style="height:20px" aria-hidden="true" class="wp-block-spacer"></div>
 <!-- /wp:spacer -->
 
-<!-- wp:columns {"align":"wide","style":{"spacing":{"padding":{"top":"0px","right":"60px","bottom":"0px","left":"60px"}}}} -->
-<div class="wp-block-columns alignwide" style="padding-top:0px;padding-right:60px;padding-bottom:0px;padding-left:60px"><!-- wp:column -->
+<!-- wp:columns {"align":"wide","style":{"spacing":{"padding":{"top":"0px","bottom":"0px"}}}} -->
+<div class="wp-block-columns alignwide" style="padding-top:0px;padding-bottom:0px"><!-- wp:column -->
 <div class="wp-block-column"><!-- wp:image {"id":1192,"sizeSlug":"full","linkDestination":"none"} -->
 <figure class="wp-block-image size-full"><img src="https://blockpatterndesigns.mystagingwebsite.com/wp-content/uploads/2022/04/Paragraph.png" alt="" class="wp-image-1192"/><figcaption>Paragraph</figcaption></figure>
 <!-- /wp:image --></div>
@@ -187,8 +171,8 @@
 <!-- /wp:column --></div>
 <!-- /wp:columns -->
 
-<!-- wp:columns {"align":"wide","style":{"spacing":{"padding":{"top":"0px","right":"60px","bottom":"0px","left":"60px"}}}} -->
-<div class="wp-block-columns alignwide" style="padding-top:0px;padding-right:60px;padding-bottom:0px;padding-left:60px"><!-- wp:column -->
+<!-- wp:columns {"align":"wide","style":{"spacing":{"padding":{"top":"0px","right":"0px","bottom":"0px","left":"0px"}}}} -->
+<div class="wp-block-columns alignwide" style="padding-top:0px;padding-right:0px;padding-bottom:0px;padding-left:0px"><!-- wp:column -->
 <div class="wp-block-column"><!-- wp:image {"id":1226,"sizeSlug":"full","linkDestination":"none"} -->
 <figure class="wp-block-image size-full"><img src="https://blockpatterndesigns.mystagingwebsite.com/wp-content/uploads/2022/04/Video.png" alt="" class="wp-image-1226"/><figcaption>Video</figcaption></figure>
 <!-- /wp:image --></div>
@@ -223,21 +207,13 @@
 <figure class="wp-block-image size-full"><img src="https://blockpatterndesigns.mystagingwebsite.com/wp-content/uploads/2022/04/List.png" alt="" class="wp-image-1231"/><figcaption>List</figcaption></figure>
 <!-- /wp:image --></div>
 <!-- /wp:column --></div>
-<!-- /wp:columns -->
-
-<!-- wp:spacer {"height":"70px"} -->
-<div style="height:70px" aria-hidden="true" class="wp-block-spacer"></div>
-<!-- /wp:spacer --></div></div>
+<!-- /wp:columns --></div></div>
 <!-- /wp:cover -->
 
-<!-- wp:cover {"customOverlayColor":"#fbfaf7","minHeight":1085,"minHeightUnit":"px","contentPosition":"center center","isDark":false,"align":"full"} -->
-<div class="wp-block-cover alignfull is-light" style="min-height:1085px"><span aria-hidden="true" class="wp-block-cover__background has-background-dim-100 has-background-dim" style="background-color:#fbfaf7"></span><div class="wp-block-cover__inner-container"><!-- wp:spacer {"height":"70px"} -->
-<div style="height:70px" aria-hidden="true" class="wp-block-spacer"></div>
-<!-- /wp:spacer -->
-
-<!-- wp:columns {"style":{"spacing":{"padding":{"top":"0px","right":"60px","bottom":"0px","left":"60px"}}}} -->
-<div class="wp-block-columns" style="padding-top:0px;padding-right:60px;padding-bottom:0px;padding-left:60px"><!-- wp:column {"width":"75%"} -->
-<div class="wp-block-column" style="flex-basis:75%"><!-- wp:heading {"align":"wide","style":{"typography":{"fontSize":"72px"}}} -->
+<!-- wp:cover {"customOverlayColor":"#fbfaf7","minHeight":500,"minHeightUnit":"px","contentPosition":"center center","isDark":false,"align":"full"} -->
+<div class="wp-block-cover alignfull is-light" style="min-height:500px"><span aria-hidden="true" class="wp-block-cover__background has-background-dim-100 has-background-dim" style="background-color:#fbfaf7"></span><div class="wp-block-cover__inner-container"><!-- wp:columns {"style":{"spacing":{"padding":{"top":"120px","right":"0px","bottom":"120px","left":"0px"}}}} -->
+<div class="wp-block-columns" style="padding-top:120px;padding-right:0px;padding-bottom:120px;padding-left:0px"><!-- wp:column {"width":"50%"} -->
+<div class="wp-block-column" style="flex-basis:50%"><!-- wp:heading {"align":"wide","style":{"typography":{"fontSize":"72px"}}} -->
 <h2 class="alignwide" id="be-your-own-builder" style="font-size:72px">Give your creativity a head start.</h2>
 <!-- /wp:heading -->
 
@@ -253,166 +229,158 @@
 <div style="height:20px" aria-hidden="true" class="wp-block-spacer"></div>
 <!-- /wp:spacer -->
 
-<!-- wp:buttons -->
-<div class="wp-block-buttons"><!-- wp:button {"textColor":"secondary","className":"is-style-outline"} -->
-<div class="wp-block-button is-style-outline"><a class="wp-block-button__link has-secondary-color has-text-color" href="https://wordpress.org/patterns/">Browse Pattern Directory</a></div>
-<!-- /wp:button -->
-
-<!-- wp:button {"textColor":"secondary","className":"is-style-outline"} -->
-<div class="wp-block-button is-style-outline"><a class="wp-block-button__link has-secondary-color has-text-color" href="https://learn.wordpress.org/lesson-plan/how-to-use-wordpress-block-patterns/">Learn how to create patterns</a></div>
+<!-- wp:wporg/wporg-gutenberg-button -->
+<div class="wp-block-wporg-wporg-gutenberg-button wp-block-buttons"><!-- wp:button {"align":"left","className":"is-style-outline"} -->
+<div class="wp-block-button alignleft is-style-outline"><a class="wp-block-button__link" href="//wordpress.org/patterns/">Block Pattern Directory</a></div>
 <!-- /wp:button --></div>
-<!-- /wp:buttons --></div>
+<!-- /wp:wporg/wporg-gutenberg-button -->
+
+<!-- wp:wporg/wporg-gutenberg-button -->
+<div class="wp-block-wporg-wporg-gutenberg-button wp-block-buttons"><!-- wp:button {"align":"left","className":"is-style-outline"} -->
+<div class="wp-block-button alignleft is-style-outline"><a class="wp-block-button__link" href="https://learn.wordpress.org/lesson-plan/how-to-use-wordpress-block-patterns/">Learn how to create patterns</a></div>
+<!-- /wp:button --></div>
+<!-- /wp:wporg/wporg-gutenberg-button --></div>
 <!-- /wp:column -->
 
-<!-- wp:column {"width":"20%"} -->
-<div class="wp-block-column" style="flex-basis:20%"></div>
-<!-- /wp:column -->
-
-<!-- wp:column {"verticalAlignment":"bottom","width":"60%"} -->
-<div class="wp-block-column is-vertically-aligned-bottom" style="flex-basis:60%"><!-- wp:image {"id":1197,"width":473,"height":597,"sizeSlug":"full","linkDestination":"none"} -->
-<figure class="wp-block-image size-full is-resized"><img src="https://blockpatterndesigns.mystagingwebsite.com/wp-content/uploads/2022/04/Mask-Group.png" alt="" class="wp-image-1197" width="473" height="597"/></figure>
+<!-- wp:column {"verticalAlignment":"bottom","width":"50%"} -->
+<div class="wp-block-column is-vertically-aligned-bottom" style="flex-basis:50%"><!-- wp:image {"id":1197,"sizeSlug":"full","linkDestination":"none"} -->
+<figure class="wp-block-image size-full"><img src="https://blockpatterndesigns.mystagingwebsite.com/wp-content/uploads/2022/04/Mask-Group.png" alt="" class="wp-image-1197"/></figure>
 <!-- /wp:image --></div>
 <!-- /wp:column --></div>
-<!-- /wp:columns -->
-
-<!-- wp:spacer {"height":"70px"} -->
-<div style="height:70px" aria-hidden="true" class="wp-block-spacer"></div>
-<!-- /wp:spacer --></div></div>
+<!-- /wp:columns --></div></div>
 <!-- /wp:cover -->
 
-<!-- wp:group {"align":"full","style":{"spacing":{"padding":{"top":"60px","right":"60px","bottom":"60px","left":"60px"}}},"backgroundColor":"tertiary"} -->
-<div class="wp-block-group alignfull has-tertiary-background-color has-background" style="padding-top:60px;padding-right:60px;padding-bottom:60px;padding-left:60px"><!-- wp:spacer {"height":"70px"} -->
-<div style="height:70px" aria-hidden="true" class="wp-block-spacer"></div>
-<!-- /wp:spacer -->
-
-<!-- wp:heading {"align":"wide","style":{"typography":{"fontSize":"72px"}},"textColor":"secondary"} -->
-<h2 class="alignwide has-secondary-color has-text-color" id="gutenberg-everyone" style="font-size:72px">Gutenberg ❤️ everyone</h2>
+<!-- wp:cover {"overlayColor":"background","isDark":false,"align":"full","style":{"spacing":{"padding":{"top":"80px","bottom":"120px"}}}} -->
+<div class="wp-block-cover alignfull is-light" style="padding-top:80px;padding-bottom:120px"><span aria-hidden="true" class="wp-block-cover__background has-background-background-color has-background-dim-100 has-background-dim"></span><div class="wp-block-cover__inner-container"><!-- wp:heading {"align":"wide","style":{"typography":{"fontSize":"72px"}},"textColor":"primary"} -->
+<h2 class="alignwide has-primary-color has-text-color" id="gutenberg-everyone" style="font-size:72px">Gutenberg ❤️ everyone</h2>
 <!-- /wp:heading -->
 
-<!-- wp:spacer {"height":"60px"} -->
-<div style="height:60px" aria-hidden="true" class="wp-block-spacer"></div>
-<!-- /wp:spacer -->
-
-<!-- wp:columns {"verticalAlignment":"top","align":"wide"} -->
-<div class="wp-block-columns alignwide are-vertically-aligned-top"><!-- wp:column {"verticalAlignment":"top"} -->
-<div class="wp-block-column is-vertically-aligned-top"><!-- wp:paragraph {"textColor":"secondary","fontSize":"medium"} -->
-<p class="has-secondary-color has-text-color has-medium-font-size"><strong>Created by the community.</strong></p>
+<!-- wp:group {"align":"wide","style":{"spacing":{"padding":{"top":"60px","right":"0px","left":"0px"}}}} -->
+<div class="wp-block-group alignwide" style="padding-top:60px;padding-right:0px;padding-left:0px"><!-- wp:columns {"verticalAlignment":"top","align":"wide","style":{"spacing":{"padding":{"top":"30px"}}}} -->
+<div class="wp-block-columns alignwide are-vertically-aligned-top" style="padding-top:30px"><!-- wp:column {"verticalAlignment":"top","layout":{"inherit":false}} -->
+<div class="wp-block-column is-vertically-aligned-top"><!-- wp:paragraph {"textColor":"primary","fontSize":"medium"} -->
+<p class="has-primary-color has-text-color has-medium-font-size"><strong>Created by the community.</strong></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:column -->
 
 <!-- wp:column {"verticalAlignment":"top"} -->
-<div class="wp-block-column is-vertically-aligned-top"><!-- wp:paragraph {"textColor":"secondary"} -->
-<p class="has-secondary-color has-text-color">Built by people from all over the world who work daily, meet weekly, and ship biweekly. You can be a part of it.</p>
+<div class="wp-block-column is-vertically-aligned-top"><!-- wp:paragraph {"textColor":"primary"} -->
+<p class="has-primary-color has-text-color">Built by people from all over the world who work daily, meet weekly, and ship biweekly. You can be a part of it.</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:column -->
 
-<!-- wp:column {"verticalAlignment":"top"} -->
-<div class="wp-block-column is-vertically-aligned-top"><!-- wp:buttons {"layout":{"type":"flex","justifyContent":"right"}} -->
-<div class="wp-block-buttons"><!-- wp:button {"textColor":"secondary","className":"is-style-outline"} -->
-<div class="wp-block-button is-style-outline"><a class="wp-block-button__link has-secondary-color has-text-color" href="https://make.wordpress.org/core/handbook/tutorials/navigating-the-community/">Join the WordPress Community</a></div>
+<!-- wp:column {"verticalAlignment":"top","width":""} -->
+<div class="wp-block-column is-vertically-aligned-top"><!-- wp:group -->
+<div class="wp-block-group"><!-- wp:wporg/wporg-gutenberg-button -->
+<div class="wp-block-wporg-wporg-gutenberg-button wp-block-buttons"><!-- wp:button {"textColor":"primary","width":100,"className":"is-style-outline"} -->
+<div class="wp-block-button has-custom-width wp-block-button__width-100 is-style-outline"><a class="wp-block-button__link has-primary-color has-text-color" href="https://make.wordpress.org/core/handbook/tutorials/navigating-the-community/">Join the WordPress Community</a></div>
 <!-- /wp:button --></div>
-<!-- /wp:buttons --></div>
+<!-- /wp:wporg/wporg-gutenberg-button --></div>
+<!-- /wp:group --></div>
 <!-- /wp:column --></div>
 <!-- /wp:columns -->
 
-<!-- wp:separator {"opacity":"css","backgroundColor":"secondary","className":"alignwide is-style-wide"} -->
-<hr class="wp-block-separator has-text-color has-secondary-color has-css-opacity has-secondary-background-color has-background alignwide is-style-wide"/>
+<!-- wp:separator {"backgroundColor":"primary","className":"alignwide is-style-wide"} -->
+<hr class="wp-block-separator has-text-color has-primary-color has-alpha-channel-opacity has-primary-background-color has-background alignwide is-style-wide"/>
 <!-- /wp:separator -->
 
 <!-- wp:columns {"verticalAlignment":"top","align":"wide"} -->
 <div class="wp-block-columns alignwide are-vertically-aligned-top"><!-- wp:column {"verticalAlignment":"top"} -->
-<div class="wp-block-column is-vertically-aligned-top"><!-- wp:paragraph {"textColor":"secondary","fontSize":"medium"} -->
-<p class="has-secondary-color has-text-color has-medium-font-size"><strong>Built for a great developer experience.</strong></p>
+<div class="wp-block-column is-vertically-aligned-top"><!-- wp:paragraph {"textColor":"primary","fontSize":"medium"} -->
+<p class="has-primary-color has-text-color has-medium-font-size"><strong>Built for a great developer experience.</strong></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:column -->
 
 <!-- wp:column {"verticalAlignment":"top"} -->
-<div class="wp-block-column is-vertically-aligned-top"><!-- wp:paragraph {"textColor":"secondary"} -->
-<p class="has-secondary-color has-text-color">Gutenberg was developed on GitHub using the WordPress REST API, JavaScript, and React.</p>
+<div class="wp-block-column is-vertically-aligned-top"><!-- wp:paragraph {"textColor":"primary"} -->
+<p class="has-primary-color has-text-color">Gutenberg was developed on GitHub using the WordPress REST API, JavaScript, and React.</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:column -->
 
 <!-- wp:column {"verticalAlignment":"top"} -->
-<div class="wp-block-column is-vertically-aligned-top"><!-- wp:buttons {"layout":{"type":"flex","justifyContent":"right"}} -->
-<div class="wp-block-buttons"><!-- wp:button {"textColor":"secondary","className":"is-style-outline"} -->
-<div class="wp-block-button is-style-outline"><a class="wp-block-button__link has-secondary-color has-text-color" href="https://developer.wordpress.org/block-editor/explanations/architecture/key-concepts/">Browse the documentation</a></div>
+<div class="wp-block-column is-vertically-aligned-top"><!-- wp:wporg/wporg-gutenberg-button -->
+<div class="wp-block-wporg-wporg-gutenberg-button wp-block-buttons"><!-- wp:button {"textColor":"primary","width":100,"className":"is-style-outline"} -->
+<div class="wp-block-button has-custom-width wp-block-button__width-100 is-style-outline"><a class="wp-block-button__link has-primary-color has-text-color" href="https://developer.wordpress.org/block-editor/explanations/architecture/key-concepts/">Browse the documentation</a></div>
 <!-- /wp:button --></div>
-<!-- /wp:buttons --></div>
+<!-- /wp:wporg/wporg-gutenberg-button --></div>
 <!-- /wp:column --></div>
 <!-- /wp:columns -->
 
-<!-- wp:separator {"opacity":"css","backgroundColor":"secondary","className":"alignwide is-style-wide"} -->
-<hr class="wp-block-separator has-text-color has-secondary-color has-css-opacity has-secondary-background-color has-background alignwide is-style-wide"/>
+<!-- wp:separator {"backgroundColor":"primary","className":"alignwide is-style-wide"} -->
+<hr class="wp-block-separator has-text-color has-primary-color has-alpha-channel-opacity has-primary-background-color has-background alignwide is-style-wide"/>
 <!-- /wp:separator -->
 
 <!-- wp:columns {"verticalAlignment":"top","align":"wide"} -->
 <div class="wp-block-columns alignwide are-vertically-aligned-top"><!-- wp:column {"verticalAlignment":"top"} -->
-<div class="wp-block-column is-vertically-aligned-top"><!-- wp:paragraph {"textColor":"secondary","fontSize":"medium"} -->
-<p class="has-secondary-color has-text-color has-medium-font-size"><strong>Designed for compatibility.</strong></p>
+<div class="wp-block-column is-vertically-aligned-top"><!-- wp:paragraph {"textColor":"primary","fontSize":"medium"} -->
+<p class="has-primary-color has-text-color has-medium-font-size"><strong>Designed for compatibility.</strong></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:column -->
 
 <!-- wp:column {"verticalAlignment":"top"} -->
-<div class="wp-block-column is-vertically-aligned-top"><!-- wp:paragraph {"textColor":"secondary"} -->
-<p class="has-secondary-color has-text-color">We recommend migrating features to blocks, but support previous versions.</p>
+<div class="wp-block-column is-vertically-aligned-top"><!-- wp:paragraph {"textColor":"primary"} -->
+<p class="has-primary-color has-text-color">We recommend migrating features to blocks, but support previous versions.</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:column -->
 
 <!-- wp:column {"verticalAlignment":"top"} -->
-<div class="wp-block-column is-vertically-aligned-top"><!-- wp:buttons {"layout":{"type":"flex","justifyContent":"right"}} -->
-<div class="wp-block-buttons"><!-- wp:button {"textColor":"secondary","className":"is-style-outline"} -->
-<div class="wp-block-button is-style-outline"><a class="wp-block-button__link has-secondary-color has-text-color" href="https://developer.wordpress.org/block-editor/explanations/faq/#compatibility">Learn more about compatibility</a></div>
+<div class="wp-block-column is-vertically-aligned-top"><!-- wp:wporg/wporg-gutenberg-button -->
+<div class="wp-block-wporg-wporg-gutenberg-button wp-block-buttons"><!-- wp:button {"textColor":"primary","width":100,"className":"is-style-outline"} -->
+<div class="wp-block-button has-custom-width wp-block-button__width-100 is-style-outline"><a class="wp-block-button__link has-primary-color has-text-color" href="https://developer.wordpress.org/block-editor/explanations/faq/#compatibility">Learn more about compatibility</a></div>
 <!-- /wp:button --></div>
-<!-- /wp:buttons --></div>
+<!-- /wp:wporg/wporg-gutenberg-button --></div>
 <!-- /wp:column --></div>
 <!-- /wp:columns -->
 
-<!-- wp:separator {"opacity":"css","backgroundColor":"secondary","className":"alignwide is-style-wide"} -->
-<hr class="wp-block-separator has-text-color has-secondary-color has-css-opacity has-secondary-background-color has-background alignwide is-style-wide"/>
+<!-- wp:separator {"backgroundColor":"primary","className":"alignwide is-style-wide"} -->
+<hr class="wp-block-separator has-text-color has-primary-color has-alpha-channel-opacity has-primary-background-color has-background alignwide is-style-wide"/>
 <!-- /wp:separator -->
 
 <!-- wp:columns {"verticalAlignment":"top","align":"wide"} -->
 <div class="wp-block-columns alignwide are-vertically-aligned-top"><!-- wp:column {"verticalAlignment":"top"} -->
-<div class="wp-block-column is-vertically-aligned-top"><!-- wp:paragraph {"textColor":"secondary","fontSize":"medium"} -->
-<p class="has-secondary-color has-text-color has-medium-font-size"><strong>Focused on accessibility.</strong></p>
+<div class="wp-block-column is-vertically-aligned-top"><!-- wp:paragraph {"textColor":"primary","fontSize":"medium"} -->
+<p class="has-primary-color has-text-color has-medium-font-size"><strong>Focused on accessibility.</strong></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:column -->
 
 <!-- wp:column {"verticalAlignment":"top"} -->
-<div class="wp-block-column is-vertically-aligned-top"><!-- wp:paragraph {"textColor":"secondary"} -->
-<p class="has-secondary-color has-text-color">Designing with and for everyone is at the core of the editor and its future.</p>
+<div class="wp-block-column is-vertically-aligned-top"><!-- wp:paragraph {"textColor":"primary"} -->
+<p class="has-primary-color has-text-color">Designing with and for everyone is at the core of the editor and its future.</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:column -->
 
 <!-- wp:column {"verticalAlignment":"top"} -->
-<div class="wp-block-column is-vertically-aligned-top"><!-- wp:buttons {"layout":{"type":"flex","justifyContent":"right"}} -->
-<div class="wp-block-buttons"><!-- wp:button {"textColor":"secondary","className":"is-style-outline"} -->
-<div class="wp-block-button is-style-outline"><a class="wp-block-button__link has-secondary-color has-text-color" href="https://make.wordpress.org/accessibility/">See accessibility improvements</a></div>
+<div class="wp-block-column is-vertically-aligned-top"><!-- wp:wporg/wporg-gutenberg-button -->
+<div class="wp-block-wporg-wporg-gutenberg-button wp-block-buttons"><!-- wp:button {"textColor":"primary","width":100,"className":"is-style-outline"} -->
+<div class="wp-block-button has-custom-width wp-block-button__width-100 is-style-outline"><a class="wp-block-button__link has-primary-color has-text-color" href="https://make.wordpress.org/accessibility/">See accessibility improvements</a></div>
 <!-- /wp:button --></div>
-<!-- /wp:buttons --></div>
+<!-- /wp:wporg/wporg-gutenberg-button --></div>
 <!-- /wp:column --></div>
 <!-- /wp:columns --></div>
-<!-- /wp:group -->
+<!-- /wp:group --></div></div>
+<!-- /wp:cover -->
 
 <!-- wp:cover {"customOverlayColor":"#ecf6fa","minHeight":765,"minHeightUnit":"px","contentPosition":"center center","isDark":false,"align":"full"} -->
-<div class="wp-block-cover alignfull is-light" style="min-height:765px"><span aria-hidden="true" class="wp-block-cover__background has-background-dim-100 has-background-dim" style="background-color:#ecf6fa"></span><div class="wp-block-cover__inner-container"><!-- wp:columns {"style":{"spacing":{"padding":{"top":"0px","right":"60px","bottom":"0px","left":"60px"}}}} -->
-<div class="wp-block-columns" style="padding-top:0px;padding-right:60px;padding-bottom:0px;padding-left:60px"><!-- wp:column {"verticalAlignment":"bottom","width":"50%"} -->
-<div class="wp-block-column is-vertically-aligned-bottom" style="flex-basis:50%"><!-- wp:heading {"align":"wide","style":{"typography":{"fontSize":"72px"}}} -->
+<div class="wp-block-cover alignfull is-light" style="min-height:765px"><span aria-hidden="true" class="wp-block-cover__background has-background-dim-100 has-background-dim" style="background-color:#ecf6fa"></span><div class="wp-block-cover__inner-container"><!-- wp:group {"align":"wide","style":{"spacing":{"padding":{"bottom":"60px"}}},"layout":{"contentSize":""}} -->
+<div class="wp-block-group alignwide" style="padding-bottom:60px"><!-- wp:heading {"align":"wide","style":{"typography":{"fontSize":"72px"}}} -->
 <h2 class="alignwide" id="be-your-own-builder" style="font-size:72px">New to WordPress? No problem.</h2>
-<!-- /wp:heading -->
+<!-- /wp:heading --></div>
+<!-- /wp:group -->
 
-<!-- wp:spacer {"height":"190px"} -->
+<!-- wp:columns {"style":{"spacing":{"padding":{"top":"0px","bottom":"0px"}}}} -->
+<div class="wp-block-columns" style="padding-top:0px;padding-bottom:0px"><!-- wp:column {"verticalAlignment":"bottom","width":"50%"} -->
+<div class="wp-block-column is-vertically-aligned-bottom" style="flex-basis:50%"><!-- wp:spacer {"height":"190px"} -->
 <div style="height:190px" aria-hidden="true" class="wp-block-spacer"></div>
 <!-- /wp:spacer -->
 
 <!-- wp:paragraph {"style":{"typography":{"fontSize":"22px"}}} -->
-<p style="font-size:22px">You can learn all the basics on <a href="https://learn.wordpress.org/workshops/?series=&amp;topic=7&amp;language=&amp;captions=">Learn Wordpress</a>, a whole section dedicated to helping you get started.</p>
+<p style="font-size:22px">You can learn all the basics on <a href="https://learn.wordpress.org/workshops/?series=&amp;topic=7&amp;language=&amp;captions=">Learn Wordpress</a>, a whole section dedicated to helping you get started. </p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:column -->
 
 <!-- wp:column {"verticalAlignment":"bottom","width":"50%"} -->
 <div class="wp-block-column is-vertically-aligned-bottom" style="flex-basis:50%"><!-- wp:paragraph {"style":{"typography":{"fontSize":"36px","lineHeight":"1.3"}},"textColor":"secondary"} -->
-<p class="has-secondary-color has-text-color" style="font-size:36px;line-height:1.3"><a href="https://learn.wordpress.org/workshop/how-to-install-wordpress/">How to Install WordPress ↗</a></p>
+<p class="has-secondary-color has-text-color" style="font-size:36px;line-height:1.3"><a href="https://learn.wordpress.org/workshop/how-to-install-wordpress/">How to Install WordPress </a></p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"style":{"typography":{"fontSize":"36px","lineHeight":"1.3"}},"textColor":"secondary"} -->
@@ -458,23 +426,9 @@
 <!-- /wp:columns --></div></div>
 <!-- /wp:cover -->
 
-<!-- wp:cover {"url":"https://blockpatterndesigns.mystagingwebsite.com/wp-content/uploads/2022/04/Gradient-Background-2-1.png","id":1202,"hasParallax":true,"dimRatio":10,"isDark":false,"align":"full","style":{"spacing":{"padding":{"top":"140px","right":"40px","bottom":"140px","left":"40px"}}}} -->
-<div class="wp-block-cover alignfull is-light has-parallax" style="padding-top:140px;padding-right:40px;padding-bottom:140px;padding-left:40px;background-image:url(https://blockpatterndesigns.mystagingwebsite.com/wp-content/uploads/2022/04/Gradient-Background-2-1.png)"><span aria-hidden="true" class="wp-block-cover__background has-background-dim-10 has-background-dim"></span><div class="wp-block-cover__inner-container"><!-- wp:columns {"style":{"spacing":{"padding":{"top":"0px","right":"60px","bottom":"0px","left":"60px"}}}} -->
-<div class="wp-block-columns" style="padding-top:0px;padding-right:60px;padding-bottom:0px;padding-left:60px"><!-- wp:column {"width":"100%"} -->
-<div class="wp-block-column" style="flex-basis:100%"><!-- wp:paragraph {"align":"center","style":{"typography":{"fontSize":"52px","lineHeight":"1.1","fontStyle":"normal","fontWeight":"300"}},"textColor":"tertiary"} -->
-<p class="has-text-align-center has-tertiary-color has-text-color" style="font-size:52px;font-style:normal;font-weight:300;line-height:1.1">“Gutenberg meets our challenges and opportunities head on while simultaneously benefitting everyone who makes a living working in the WP ecosystem. It’s about a lot more than just blocks.”</p>
-<!-- /wp:paragraph --></div>
-<!-- /wp:column --></div>
-<!-- /wp:columns -->
-
-<!-- wp:paragraph {"align":"center","style":{"elements":{"link":{"color":{"text":"var:preset|color|tertiary"}}}},"textColor":"tertiary","fontSize":"small"} -->
-<p class="has-text-align-center has-tertiary-color has-text-color has-link-color has-small-font-size">MATT MULLENWEG, IN <a href="https://ma.tt/2017/08/we-called-it-gutenberg-for-a-reason/">MA.TT</a></p>
-<!-- /wp:paragraph --></div></div>
-<!-- /wp:cover -->
-
 <!-- wp:cover {"customOverlayColor":"#ecf6fa","minHeight":539,"minHeightUnit":"px","isDark":false,"align":"full"} -->
-<div class="wp-block-cover alignfull is-light" style="min-height:539px"><span aria-hidden="true" class="wp-block-cover__background has-background-dim-100 has-background-dim" style="background-color:#ecf6fa"></span><div class="wp-block-cover__inner-container"><!-- wp:group {"align":"wide","style":{"spacing":{"padding":{"top":"60px","right":"60px","bottom":"60px","left":"60px"}}}} -->
-<div class="wp-block-group alignwide" style="padding-top:60px;padding-right:60px;padding-bottom:60px;padding-left:60px"><!-- wp:heading {"align":"wide","style":{"typography":{"fontSize":"72px"}}} -->
+<div class="wp-block-cover alignfull is-light" style="min-height:539px"><span aria-hidden="true" class="wp-block-cover__background has-background-dim-100 has-background-dim" style="background-color:#ecf6fa"></span><div class="wp-block-cover__inner-container"><!-- wp:group {"align":"wide","style":{"spacing":{"padding":{"top":"0px","right":"0px","bottom":"0px","left":"0px"}}}} -->
+<div class="wp-block-group alignwide" style="padding-top:0px;padding-right:0px;padding-bottom:0px;padding-left:0px"><!-- wp:heading {"align":"wide","style":{"typography":{"fontSize":"72px"}}} -->
 <h2 class="alignwide" id="thanks-for-trying-gutenberg" style="font-size:72px">Thanks for trying Gutenberg!</h2>
 <!-- /wp:heading -->
 
