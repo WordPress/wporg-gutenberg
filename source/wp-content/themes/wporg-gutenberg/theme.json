@@ -2,6 +2,35 @@
 	"$schema": "https://json.schemastore.org/theme-v1.json",
 	"version": 1,
 	"settings": {
+		"color": {
+			"palette": [
+				{
+					"slug": "primary",
+					"color": "#3858E9",
+					"name": "Primary"
+				},
+				{
+					"slug": "secondary",
+					"color": "#ECF6FA",
+					"name": "Secondary"
+				},
+				{
+					"slug": "foreground",
+					"color": "#1E1E1E",
+					"name": "Foreground"
+				},
+				{
+					"slug": "background",
+					"color": "#ffffff",
+					"name": "Background"
+				},
+				{
+					"slug": "tertiary",
+					"color": "#F0F0F0",
+					"name": "Tertiary"
+				}
+			]
+		},
 		"custom": {
 			"alignment": {
 				"alignedMaxWidth": "100%"
