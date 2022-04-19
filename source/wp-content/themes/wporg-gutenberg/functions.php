@@ -522,7 +522,7 @@ add_action(
 		add_action(
 			'enqueue_block_editor_assets',
 			function() {
-				wp_enqueue_script( 'editor-modifications', get_stylesheet_directory_uri() . '/js/editor-modifications.js', array( 'wp-blocks', 'wp-edit-post', 'wp-hooks', 'wp-i18n' ), filemtime( __DIR__ . '/js/editor-modifications.js' ) );
+				wp_enqueue_script( 'editor-modifications', get_stylesheet_directory_uri() . '/js/editor-modifications.js', array( 'wp-blocks', 'wp-edit-post', 'wp-hooks', 'wp-i18n', 'wp-plugins', 'wp-element' ), filemtime( __DIR__ . '/js/editor-modifications.js' ) );
 				wp_enqueue_style( 'custom-editor-styles', get_stylesheet_directory_uri() . '/style-editor.css', false, filemtime( __DIR__ . '/style-editor.css' ) );
 			}
 		);

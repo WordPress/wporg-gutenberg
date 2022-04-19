@@ -1,7 +1,8 @@
 var select   = wp.data.select;
 var dispatch = wp.data.dispatch;
 var hooks = wp.hooks;
-var __ = wp.i18n.__
+var __ = wp.i18n.__;
+var el = wp.element.createElement;
 
 if ( select( 'core/edit-post' ).isEditorSidebarOpened() ) {
     dispatch( 'core/edit-post' ).closeGeneralSidebar();
@@ -34,6 +35,22 @@ hooks.addFilter(
 
 _wpLoadBlockEditor.then( function() { 
     wp.blocks.unregisterBlockType( 'core/shortcode' );
+} );
+
+// We replace the MainDashboarButton because we want to control the href.
+function MainDashboardButton() {
+    return el(
+        wp.editPost.__experimentalMainDashboardButton,
+        {},
+        el(
+            wp.editPost.__experimentalFullscreenModeClose,
+            { href: document.referrer.length ? document.referrer : "//wordpress.org" }
+        )
+    );
+}
+
+wp.plugins.registerPlugin( 'main-dashboard-button-plugin', {
+    render: MainDashboardButton
 } );
 
 // Use a middleware provider to intercept and modify API calls. Short-circuit POST requests, bound queries, allow media, etc.
@@ -76,20 +93,6 @@ wp.apiFetch.use( wp.apiFetch.createPreloadingMiddleware( {
             "labels": {
                 "singular_name": "Block",
             }
-        }
-    } },
-    "/wp/v2/types/page?context=edit": { "body": {
-        "rest_base": "pages",
-        "supports": {},
-        "labels": {
-            "singular_name": "Page",
-        }
-    } },
-    "/wp/v2/types/wp_block?context=edit": { "body": {
-        "rest_base": "blocks",
-        "supports": {},
-        "labels": {
-            "singular_name": "Block",
         }
     } }
  } ) );
