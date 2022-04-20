@@ -54,3 +54,22 @@
 h1, h2, h3 {
 	word-break: normal;
 }
+
+/* We need this to override blockbase styles */
+@media (max-width: 782px) { // WPAdmin-bar breakpoint
+	body.admin-bar {
+	  --wpadmin-bar--height: 46px;
+	}
+}
+
+/* Fix the admin bar */
+.admin-bar .interface-interface-skeleton {
+	top: var(--wpadmin-bar--height);
+}
+
+/*
+ WPadmin-bar adds in these styles as inline style.
+ We don't want the space.
+*/
+html.interface-interface-skeleton__html-container { margin-top: 0 !important; }
+

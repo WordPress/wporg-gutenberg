@@ -443,8 +443,7 @@ add_action(
 			return;
 		}
 
-		// Hide the admin bar, it overlaps with Gutenberg
-		show_admin_bar( false );
+		show_admin_bar( true );
 
 		add_action(
 			'wp_enqueue_scripts',
