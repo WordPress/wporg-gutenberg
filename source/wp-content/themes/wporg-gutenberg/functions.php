@@ -21,16 +21,6 @@ add_action(
 );
 
 /**
- * Prevent errors resulting from change to Gutenberg plugin in 4.9 that adds call to
- * `get_current_screen()`.
- */
-if ( ! function_exists( 'get_current_screen' ) && ! is_admin() && ! wp_doing_cron() && ! wp_doing_ajax() && ! ( defined( 'WP_CLI' ) && WP_CLI ) && ! ( defined( 'XMLRPC_REQUEST' ) && XMLRPC_REQUEST ) ) {
-	function get_current_screen() {
-		return null;
-	}
-}
-
-/**
  * This function was removed from the Gutenberg plugin in v5.3.
  */
 if ( ! function_exists( 'gutenberg_editor_scripts_and_styles' ) ) {
@@ -45,7 +35,6 @@ if ( ! function_exists( 'gutenberg_editor_scripts_and_styles' ) ) {
 	 * @param string $hook Screen name.
 	 */
 	function gutenberg_editor_scripts_and_styles( $hook ) {
-		global $wp_meta_boxes;
 
 		// Enqueue heartbeat separately as an "optional" dependency of the editor.
 		// Heartbeat is used for automatic nonce refreshing, but some hosts choose
@@ -136,19 +125,6 @@ if ( ! function_exists( 'gutenberg_editor_scripts_and_styles' ) ) {
 			'wp-blocks',
 			'wp.blocks.unstable__bootstrapServerSideBlockDefinitions(' . json_encode( get_block_editor_server_block_settings() ) . ');'
 		);
-
-		// Get admin url for handling meta boxes.
-		$meta_box_url = admin_url( 'post.php' );
-		$meta_box_url = add_query_arg(
-			array(
-				'post'            => $post->ID,
-				'action'          => 'edit',
-				'meta-box-loader' => true,
-				'_wpnonce'        => wp_create_nonce( 'meta-box-loader' ),
-			),
-			$meta_box_url
-		);
-		wp_add_inline_script( 'wp-editor', sprintf( 'var _wpMetaBoxUrl = %s;', wp_json_encode( $meta_box_url ) ), 'before' );
 
 		/**
 		 * Filters the allowed block types for the editor, defaulting to true (all
@@ -288,19 +264,6 @@ if ( ! function_exists( 'gutenberg_editor_scripts_and_styles' ) ) {
 		if ( ! empty( $post_type_object->template ) ) {
 			$editor_settings['template']     = $post_type_object->template;
 			$editor_settings['templateLock'] = ! empty( $post_type_object->template_lock ) ? $post_type_object->template_lock : false;
-		}
-
-		$current_screen  = get_current_screen();
-		$core_meta_boxes = array();
-
-		// Make sure the current screen is set as well as the normal core metaboxes.
-		if ( isset( $current_screen->id ) && isset( $wp_meta_boxes[ $current_screen->id ]['normal']['core'] ) ) {
-			$core_meta_boxes = $wp_meta_boxes[ $current_screen->id ]['normal']['core'];
-		}
-
-		// Check if the Custom Fields meta box has been removed at some point.
-		if ( ! isset( $core_meta_boxes['postcustom'] ) || ! $core_meta_boxes['postcustom'] ) {
-			unset( $editor_settings['enableCustomFields'] );
 		}
 
 		$editor_context  = new WP_Block_Editor_Context( array( 'post' => $post ) );
