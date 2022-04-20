@@ -73,3 +73,8 @@ h1, h2, h3 {
 */
 html.interface-interface-skeleton__html-container { margin-top: 0 !important; }
 
+
+.wporg-gutenberg-link {
+	text-decoration: underline;
+	text-underline-offset: 0.15em;
+}
