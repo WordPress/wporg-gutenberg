@@ -339,7 +339,6 @@ JS;
 				'post' => $post->ID,
 			)
 		);
-		wp_tinymce_inline_scripts();
 		wp_enqueue_editor();
 
 		/**
