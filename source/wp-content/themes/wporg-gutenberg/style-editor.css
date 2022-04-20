@@ -73,6 +73,7 @@ h1, h2, h3 {
 */
 html.interface-interface-skeleton__html-container { margin-top: 0 !important; }
 
+/* We want some links to be underlined. */
 p > a {
 	text-decoration: underline !important;
 	text-underline-offset: 0.15em !important;
