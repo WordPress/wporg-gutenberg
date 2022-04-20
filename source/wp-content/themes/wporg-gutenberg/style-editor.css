@@ -10,11 +10,6 @@
 	padding-bottom: 0 !important;
 }
 
-/* The editor turns this off because its the editor */  
-.editor-styles-wrapper a {
-	text-decoration: underline;
-}
-
 /* Hide the title within the Editor */
 .edit-post-visual-editor__post-title-wrapper {
   display: none;
@@ -53,4 +48,9 @@
 
 .wp-block-column:hover .block-editor-inserter {
 	visibility: visible;
+}
+
+/* There's no way to control this in the editor */
+h1, h2, h3 {
+	word-break: normal;
 }
