@@ -77,3 +77,11 @@ p > a {
 	text-decoration: underline !important;
 	text-underline-offset: 0.15em !important;
 }
+
+/*
+There's no way to hide reusable block in Gutenberg yet.
+Since it just loads a broken page, we can just hide it
+*/
+a[href='edit.php?post_type=wp_block'] {
+	display: none;
+}
