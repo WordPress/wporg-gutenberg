@@ -739,35 +739,6 @@ if ( ! function_exists( 'gutenbergtheme_setup' ) ) :
 		);
 
 		add_theme_support( 'align-wide' );
-
-		add_theme_support(
-			'editor-color-palette',
-			array(
-				array(
-					'name'  => esc_html__( 'Dark Blue', 'gutenbergtheme' ),
-					'slug'  => 'dark-blue',
-					'color' => '#0073aa',
-				),
-				array(
-
-					'name'  => esc_html__( 'Light Blue', 'gutenbergtheme' ),
-					'slug'  => 'light-blue',
-					'color' => '#229fd8',
-				),
-				array(
-
-					'name'  => esc_html__( 'Dark Gray', 'gutenbergtheme' ),
-					'slug'  => 'dark-gray',
-					'color' => '#444',
-				),
-				array(
-
-					'name'  => esc_html__( 'Light Gray', 'gutenbergtheme' ),
-					'slug'  => 'light-gray',
-					'color' => '#eee',
-				),
-			)
-		);
 	}
 endif;
 add_action( 'after_setup_theme', 'gutenbergtheme_setup' );
