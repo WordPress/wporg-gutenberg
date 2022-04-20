@@ -436,15 +436,10 @@ add_action(
 			function() {
 				wp_enqueue_script( 'postbox', admin_url( 'js/postbox.min.js' ), array( 'jquery-ui-sortable' ), false, 1 );
 				wp_enqueue_style( 'dashicons' );
-				wp_enqueue_style( 'common' );
-				wp_enqueue_style( 'forms' );
-				wp_enqueue_style( 'dashboard' );
 				wp_enqueue_style( 'media' );
 				wp_enqueue_style( 'admin-menu' );
 				wp_enqueue_style( 'admin-bar' );
-				wp_enqueue_style( 'nav-menus' );
 				wp_enqueue_style( 'l10n' );
-				wp_enqueue_style( 'buttons' );
 
 				$post = get_post();
 
