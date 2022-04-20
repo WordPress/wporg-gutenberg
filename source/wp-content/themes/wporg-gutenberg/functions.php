@@ -150,11 +150,6 @@ if ( ! function_exists( 'gutenberg_editor_scripts_and_styles' ) ) {
 		);
 		wp_add_inline_script( 'wp-editor', sprintf( 'var _wpMetaBoxUrl = %s;', wp_json_encode( $meta_box_url ) ), 'before' );
 
-		// Initialize the editor.
-		$align_wide    = get_theme_support( 'align-wide' );
-		$color_palette = current( (array) get_theme_support( 'editor-color-palette' ) );
-		$font_sizes    = current( (array) get_theme_support( 'editor-font-sizes' ) );
-
 		/**
 		 * Filters the allowed block types for the editor, defaulting to true (all
 		 * block types supported).
@@ -260,7 +255,6 @@ if ( ! function_exists( 'gutenberg_editor_scripts_and_styles' ) ) {
 		}
 
 		$editor_settings = array(
-			'alignWide'              => $align_wide,
 			'availableTemplates'     => $available_templates,
 			'allowedBlockTypes'      => $allowed_block_types,
 			'disableCustomColors'    => get_theme_support( 'disable-custom-colors' ),
@@ -295,14 +289,6 @@ if ( ! function_exists( 'gutenberg_editor_scripts_and_styles' ) ) {
 			$editor_settings['autosave'] = array(
 				'editLink' => get_edit_post_link( $post_autosave->ID ),
 			);
-		}
-
-		if ( false !== $color_palette ) {
-			$editor_settings['colors'] = $color_palette;
-		}
-
-		if ( false !== $font_sizes ) {
-			$editor_settings['fontSizes'] = $font_sizes;
 		}
 
 		if ( ! empty( $post_type_object->template ) ) {
