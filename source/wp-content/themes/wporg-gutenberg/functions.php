@@ -41,10 +41,6 @@ if ( ! function_exists( 'gutenberg_editor_scripts_and_styles' ) ) {
 		// to disable it outright.
 		wp_enqueue_script( 'heartbeat' );
 
-		wp_enqueue_script( 'wp-edit-post' );
-		wp_enqueue_script( 'wp-format-library' );
-		wp_enqueue_style( 'wp-format-library' );
-
 		global $post;
 
 		// Set initial title to empty string for auto draft for duration of edit.
@@ -302,6 +298,25 @@ JS;
 		 * Styles
 		 */
 		wp_enqueue_style( 'wp-edit-post' );
+
+		/*
+		These styles are usually registered by Gutenberg and register properly when the user is signed in.
+		However, if the use is not registered they are not added. For now, include them, but this isn't a good long term strategy
+
+		See: https://github.com/WordPress/wporg-gutenberg/issues/26
+		*/
+		wp_enqueue_style( 'global-styles' );
+		wp_enqueue_style( 'wp-block-library' );
+		wp_enqueue_style( 'wp-block-image' );
+		wp_enqueue_style( 'wp-block-group' );
+		wp_enqueue_style( 'wp-block-heading' );
+		wp_enqueue_style( 'wp-block-button' );
+		wp_enqueue_style( 'wp-block-paragraph' );
+		wp_enqueue_style( 'wp-block-separator' );
+		wp_enqueue_style( 'wp-block-columns' );
+		wp_enqueue_style( 'wp-block-cover' );
+		wp_enqueue_style( 'global-styles-css-custom-properties' );
+		wp_enqueue_style( 'wp-block-spacer' );
 
 		/**
 		 * Fires after block assets have been enqueued for the editing interface.
