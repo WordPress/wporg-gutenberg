@@ -381,19 +381,19 @@
 
 <!-- wp:column {"verticalAlignment":"bottom","width":"50%"} -->
 <div class="wp-block-column is-vertically-aligned-bottom" style="flex-basis:50%"><!-- wp:paragraph {"style":{"typography":{"fontSize":"36px","lineHeight":"1.3"}},"textColor":"secondary"} -->
-<p class="has-secondary-color has-text-color" style="font-size:36px;line-height:1.3"><a href="https://learn.wordpress.org/workshop/how-to-install-wordpress/">How to Install WordPress </a></p>
+<p class="has-secondary-color has-text-color" style="font-size:36px;line-height:1.3"><a href="https://learn.wordpress.org/workshop/how-to-install-wordpress/">How to Install WordPress ↗</a></p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"style":{"typography":{"fontSize":"36px","lineHeight":"1.3"}},"textColor":"secondary"} -->
-<p class="has-secondary-color has-text-color" style="font-size:36px;line-height:1.3"><a href="https://learn.wordpress.org/workshop/how-to-choose-install-a-theme/">How to Choose and Install a Theme</a></p>
+<p class="has-secondary-color has-text-color" style="font-size:36px;line-height:1.3"><a href="https://learn.wordpress.org/workshop/how-to-choose-install-a-theme/">How to Choose and Install a Theme ↗</a></p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"style":{"typography":{"fontSize":"36px","lineHeight":"1.3"}},"textColor":"secondary"} -->
-<p class="has-secondary-color has-text-color" style="font-size:36px;line-height:1.3"><a href="https://learn.wordpress.org/workshop/intro-to-block-patterns/">Intro to Block Patterns</a></p>
+<p class="has-secondary-color has-text-color" style="font-size:36px;line-height:1.3"><a href="https://learn.wordpress.org/workshop/intro-to-block-patterns/">Intro to Block Patterns ↗</a></p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"style":{"typography":{"fontSize":"36px","lineHeight":"1.3"}},"textColor":"secondary"} -->
-<p class="has-secondary-color has-text-color" style="font-size:36px;line-height:1.3"><a href="https://learn.wordpress.org/workshop/advanced-layouts-with-the-block-editor/">Advanced Layouts With the Block Editor</a></p>
+<p class="has-secondary-color has-text-color" style="font-size:36px;line-height:1.3"><a href="https://learn.wordpress.org/workshop/advanced-layouts-with-the-block-editor/">Advanced Layouts With the Block Editor ↗</a> </p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:column --></div>
 <!-- /wp:columns --></div>
@@ -409,7 +409,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"style":{"typography":{"fontSize":"36px"}},"textColor":"secondary"} -->
-<p class="has-secondary-color has-text-color" style="font-size:36px"><a href="https://developer.wordpress.org/block-editor/explanations/faq/">Gutenberg FAQs</a><br><a href="https://wordpress.tv/?s=gutenberg">WordPress.tv talks about Gutenberg</a><br><a href="https://developer.wordpress.org/block-editor/contributors/design/#goal-of-gutenberg">Gutenberg Design Principles</a><br><a href="https://wordpress.org/support/article/wordpress-editor/">WordPress Editor Documentation</a><br><a href="https://make.wordpress.org/core/2020/05/20/ways-to-keep-up-with-full-site-editing-fse/">Development Updates</a></p>
+<p class="has-secondary-color has-text-color" style="font-size:36px"><a href="https://developer.wordpress.org/block-editor/explanations/faq/">Gutenberg FAQs ↗</a><br><a href="https://wordpress.tv/?s=gutenberg">WordPress.tv talks about Gutenberg ↗</a><br><a href="https://developer.wordpress.org/block-editor/contributors/design/#goal-of-gutenberg">Gutenberg Design Principles ↗</a> <br><a href="https://wordpress.org/support/article/wordpress-editor/">WordPress Editor Documentation ↗</a><br><a href="https://make.wordpress.org/core/2020/05/20/ways-to-keep-up-with-full-site-editing-fse/">Development Updates ↗</a></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:column -->
 
@@ -463,7 +463,7 @@
 <!-- wp:column {"verticalAlignment":"bottom"} -->
 <div class="wp-block-column is-vertically-aligned-bottom"><!-- wp:group {"style":{"spacing":{"padding":{"top":"30px"}}},"layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"space-between"}} -->
 <div class="wp-block-group" style="padding-top:30px"><!-- wp:paragraph {"align":"right","fontSize":"normal"} -->
-<p class="has-text-align-right has-normal-font-size"><a href="https://twitter.com/WordPress">Twitter<br></a><a href="https://github.com/WordPress/gutenberg">GitHub</a></p>
+<p class="has-text-align-right has-normal-font-size"><a href="https://twitter.com/WordPress">Twitter ↗<br></a><a href="https://github.com/WordPress/gutenberg">GitHub ↗</a></p>
 <!-- /wp:paragraph -->
 
 <!-- wp:image {"align":"right","id":4,"width":38,"height":38,"sizeSlug":"full","linkDestination":"none"} -->
