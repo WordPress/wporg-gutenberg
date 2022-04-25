@@ -4,8 +4,9 @@ var el = wp.element.createElement,
 
 registerBlockType( 'wporg/wporg-gutenberg-link', {
 	title: 'Demo Link',
-	icon: 'button',
-	category: 'layout',
+    description: 'Create a link for the demo page.',
+	icon: 'link',
+	category: 'text',
 
 	edit: function ( props ) {
 		if ( ! window.location.pathname.includes( 'wp-admin' ) ) {
