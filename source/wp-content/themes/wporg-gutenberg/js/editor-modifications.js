@@ -20,21 +20,7 @@ _wpLoadBlockEditor.then( function() {
     wp.blocks.unregisterBlockType( 'core/shortcode' );
 } );
 
-// We replace the MainDashboarButton because we want to control the href.
-function MainDashboardButton() {
-    return el(
-        wp.editPost.__experimentalMainDashboardButton,
-        {},
-        el(
-            wp.editPost.__experimentalFullscreenModeClose,
-            { href: document.referrer.length ? document.referrer : "//wordpress.org" }
-        )
-    );
-}
 
-wp.plugins.registerPlugin( 'main-dashboard-button-plugin', {
-    render: MainDashboardButton
-} );
 
 /*
  We have to track whether we rendered because gutenberg will re-render plugins often.

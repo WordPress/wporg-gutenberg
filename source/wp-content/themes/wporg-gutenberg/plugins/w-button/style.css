@@ -1,0 +1,38 @@
+.edit-post-header .wporg-gutenberg-w-button{
+	display: flex;
+	align-items: center;
+	align-self: stretch;
+	border: none;
+	background: #1e1e1e;
+	color: #fff;
+	border-radius: 0;
+	height: 61px;
+	width: 60px;
+	position: relative;
+	margin-bottom: -1px;
+}
+
+.edit-post-header .wporg-gutenberg-w-button:active,
+.edit-post-header .wporg-gutenberg-w-button:hover {
+	color: #fff;
+	text-decoration: none;
+}
+
+.edit-post-header .wporg-gutenberg-w-button:focus {
+	box-shadow: none;
+	color: #fff;
+}
+
+.edit-post-header .wporg-gutenberg-w-button span,
+.edit-post-header .wporg-gutenberg-w-button span:active
+.edit-post-header .wporg-gutenberg-w-button span:focus  {
+	width: 100%;
+    height: unset;
+    font-size: 32px;
+	color: #fff;
+}
+
+.edit-post-header .wporg-gutenberg-w-button span:hover {
+	box-shadow: 0px 0px 0px 3px #000, 0px 0px 0px 4px #757575;
+	border-radius: 2px;
+}
