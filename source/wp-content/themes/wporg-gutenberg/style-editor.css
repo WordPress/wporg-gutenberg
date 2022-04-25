@@ -55,14 +55,18 @@ h1, h2, h3 {
 	word-break: normal;
 }
 
+/* Fix the admin bar */
+.interface-interface-skeleton {
+	top: 0;
+}
+
 /* We need this to override blockbase styles */
 @media (max-width: 782px) { // WPAdmin-bar breakpoint
-	body.admin-bar {
-	  --wpadmin-bar--height: 46px;
+	.admin-bar .interface-interface-skeleton {
+		top: 46px;
 	}
 }
 
-/* Fix the admin bar */
 .admin-bar .interface-interface-skeleton {
 	top: var(--wpadmin-bar--height);
 }
