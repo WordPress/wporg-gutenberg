@@ -90,3 +90,11 @@ Since it just loads a broken page, we can just hide it
 a[href='edit.php?post_type=wp_block'] {
 	display: none;
 }
+
+/*
+There's some weirdness with flex layouts appearing seemingly out of nowhere.
+This is a utility class to override it. Add as additional CSS class to block.
+*/
+.wporg-gutenberg-block-layout {
+	display: block !important;
+}
