@@ -34,6 +34,20 @@
 		"custom": {
 			"alignment": {
 				"alignedMaxWidth": "100%"
+			},
+			"button": {
+				"border": {
+					"width": "1px",
+					"radius": "2px"
+				},
+				"spacing": {
+					"padding": {
+						"top": "0.5em",
+						"bottom": "0.5em",
+						"left": "1em",
+						"right": "1em"
+					}
+				}
 			}
 		},
 		"typography": {
