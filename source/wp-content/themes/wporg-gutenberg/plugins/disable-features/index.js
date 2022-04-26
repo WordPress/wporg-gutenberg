@@ -12,8 +12,6 @@ function DisableFeaturePlugin() {
         return null;
     }
 
-    console.log('rendered');
-
     // Get rid of the welcome guide
     if( select( 'core/edit-post' ).isFeatureActive( 'welcomeGuide' ) ) {
         dispatch( 'core/edit-post' ).toggleFeature( 'welcomeGuide' );
