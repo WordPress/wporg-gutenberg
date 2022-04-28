@@ -109,3 +109,13 @@ html {
 		font-size: 16px;
 	}
 }
+
+.wporg-gutenberg-hide-on-mobile {
+	display: none !important;
+}
+
+@media (min-width: 782px) {
+	.wporg-gutenberg-hide-on-mobile {
+		display: inherit !important;
+	}
+}
