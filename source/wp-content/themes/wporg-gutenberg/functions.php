@@ -450,7 +450,7 @@ add_action(
 										'meta'           => array(),
 										'_links'         => array(),
 										'type'           => 'page',
-										'status'         => 'draft',
+										'status'         => 'pending', // pending is the best state to remove draft saving possibilities.
 										'slug'           => '',
 										'generated_slug' => '',
 										'permalink_template' => home_url( '/' ),
