@@ -1,15 +1,20 @@
 var el = wp.element.createElement,
 	registerBlockType = wp.blocks.registerBlockType,
-	InnerBlocks = wp.blockEditor.InnerBlocks;
+	InnerBlocks = wp.blockEditor.InnerBlocks,
+    isAdmin = window.location.pathname.includes( 'wp-admin' );
 
 registerBlockType( 'wporg/wporg-gutenberg-link', {
 	title: 'Demo Link',
     description: 'Create a link for the demo page.',
-	icon: 'link',
+	icon: 'button',
 	category: 'text',
 
+    supports: {
+		inserter: isAdmin
+	},
+
 	edit: function ( props ) {
-		if ( ! window.location.pathname.includes( 'wp-admin' ) ) {
+		if ( ! isAdmin ) {
 			var blockEditorData = wp.data.select( 'core/block-editor' );
 			var innerHtml = blockEditorData.getBlock( props.clientId ).innerBlocks[ 0 ].originalContent;
 
