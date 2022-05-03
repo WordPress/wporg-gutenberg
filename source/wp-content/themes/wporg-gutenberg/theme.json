@@ -1,7 +1,8 @@
 {
-	"$schema": "https://json.schemastore.org/theme-v1.json",
-	"version": 1,
+	"$schema": "https://schemas.wp.org/trunk/theme.json",
+	"version": 2,
 	"settings": {
+		"appearanceTools": true,
 		"color": {
 			"palette": [
 				{
@@ -47,15 +48,73 @@
 						"left": "1em",
 						"right": "1em"
 					}
+				},
+				"typography": {
+					"fontSize": "var(--wp--preset--font-size--normal)"
 				}
 			}
-		},
-		"typography": {
-			
 		},
 		"layout": {
             "contentSize": "800px",
             "wideSize": "1440px"
-        }
+        },
+		"typography": {
+			"fontSizes": [
+					{
+						"name": "Small",
+						"slug": "small",
+						"size": "0.8889rem"
+					},
+					{
+						"name": "Normal",
+						"slug": "normal",
+						"size": "1rem"
+					},
+					{
+						"name": "Level 1",
+						"slug": "level-1",
+						"size": "clamp(1rem, 1vw, 1.125rem) !important"
+					},
+					{
+						"name": "Level 2",
+						"slug": "level-2",
+						"size": "clamp(1rem, 1vw, 1.375rem) !important"
+					},
+					{
+						"name": "Level 3",
+						"slug": "level-3",
+						"size": "clamp(1.334rem, 3vw, 2rem) !important"
+					},
+					{
+						"name": "Level 4",
+						"slug": "level-4",
+						"size": "clamp(1.5556rem, 3vw, 3.25rem) !important"
+					},
+					{
+						"name": "Level 5",
+						"slug": "level-5",
+						"size": "clamp(2rem, 8vw, 4.5rem) !important"
+					},
+					{
+						"name": "Level 6",
+						"slug": "level-6",
+						"size": "clamp(2rem, 8vw, 5rem) !important"
+					}
+			]
+		}
+	},
+	"styles": {
+		"elements": {
+			"h1": {
+				"typography": {
+					"fontSize": "var(--wp--preset--font-size--x-large)"
+				}
+			},
+			"h2": {
+				"typography": {
+					"fontSize": "var(--wp--preset--font-size--large)"
+				}
+			}
+		}
 	}
 }

@@ -101,13 +101,7 @@ This is a utility class to override it. Add as additional CSS class to block.
 
 /* We use rem units for fonts to make the page responsive. */
 html {
-	font-size: 13px;
-}
-
-@media (min-width: 600px) {
-	html {
-		font-size: 16px;
-	}
+	font-size: 18px;
 }
 
 .wporg-gutenberg-hide-on-mobile {
