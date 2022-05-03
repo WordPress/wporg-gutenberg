@@ -401,8 +401,9 @@ if ( ! function_exists( 'gutenberg_get_autosave_newer_than_post_save' ) ) {
 add_action(
 	'template_redirect',
 	function() {
-		if ( ! is_page( 'test' ) ) {
-			return;
+		if ( ! is_front_page() ) {
+			wp_safe_redirect( home_url( '/' ), 301 );
+			exit;
 		}
 
 		show_admin_bar( true );
