@@ -93,12 +93,12 @@
 					{
 						"name": "Level 5",
 						"slug": "level-5",
-						"size": "clamp(2rem, 8vw, 4.5rem) !important"
+						"size": "clamp(2rem, 8vw, 4rem) !important"
 					},
 					{
 						"name": "Level 6",
 						"slug": "level-6",
-						"size": "clamp(2rem, 8vw, 5rem) !important"
+						"size": "clamp(2rem, 8vw, 4.445rem) !important"
 					}
 			]
 		}
