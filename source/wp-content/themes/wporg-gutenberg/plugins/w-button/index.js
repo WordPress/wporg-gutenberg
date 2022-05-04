@@ -1,3 +1,4 @@
+var el = wp.element.createElement;
 var editPost = wp.editPost;
 var plugins = wp.plugins;
 var Button = wp.components.Button;
