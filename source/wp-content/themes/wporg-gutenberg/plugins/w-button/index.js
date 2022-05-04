@@ -1,8 +1,8 @@
-const el = wp.element.createElement;
-const editPost = wp.editPost;
-const plugins = wp.plugins;
-const Button = wp.components.Button;
-const Icon = wp.components.Icon;
+var el = wp.element.createElement;
+var editPost = wp.editPost;
+var plugins = wp.plugins;
+var Button = wp.components.Button;
+var Icon = wp.components.Icon;
 
 // We replace the MainDashboardButton because we want to control the href.
 function MainDashboardButton() {

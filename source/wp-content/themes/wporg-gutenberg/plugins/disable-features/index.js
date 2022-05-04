@@ -1,6 +1,6 @@
-const select = wp.data.select;
-const dispatch = wp.data.dispatch;
-const plugins = wp.plugins;
+var select = wp.data.select;
+var dispatch = wp.data.dispatch;
+var plugins = wp.plugins;
 
 /*
  We have to track whether we rendered because gutenberg will re-render plugins often.

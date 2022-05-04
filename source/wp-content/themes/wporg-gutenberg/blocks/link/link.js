@@ -1,4 +1,4 @@
-const el = wp.element.createElement,
+var el = wp.element.createElement,
 	registerBlockType = wp.blocks.registerBlockType,
 	InnerBlocks = wp.blockEditor.InnerBlocks,
 	isAdmin = window.location.pathname.includes( 'wp-admin' );

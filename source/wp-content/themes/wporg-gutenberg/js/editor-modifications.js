@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
-const hooks = wp.hooks;
-const __ = wp.i18n.__;
+var hooks = wp.hooks;
+var __ = wp.i18n.__;
 
 // Update the publish button text
 hooks.addFilter( 'i18n.gettext', 'wporg-gutenberg/update-btn-text', ( translation, text ) => {
