@@ -1,46 +1,58 @@
-:root, .editor-styles-wrapper {
+:root,
+.editor-styles-wrapper {
 	--wp-admin-theme-color: #3e58e1 !important;
-	--wp-admin-theme-color-darker-10: #3E58F2 !important;
+	--wp-admin-theme-color-darker-10: #3e58f2 !important;
 	--wp-admin-theme-color-darker-10--rgb: 62, 88, 242;
 	--wp-admin-theme-color-darker-20: #213fd4 !important;
-  	--wp-admin-theme-color-darker-20--rgb: 33, 63, 212;
+	--wp-admin-theme-color-darker-20--rgb: 33, 63, 212;
 }
 
 .editor-styles-wrapper {
 	padding-bottom: 0 !important;
 }
 
-/* Hide the title within the Editor */
+/**
+* Hide the title within the Editor
+*/
 .edit-post-visual-editor__post-title-wrapper {
-  display: none;
-}
-
-/* We hide the last group because it's empty because you can't preview the post */
-.block-editor-post-preview__dropdown-content .components-menu-group:last-child { 
 	display: none;
 }
 
-/* We don't want this editor style because we prefer full width */
+/**
+* We hide the last group because it's empty because you can't preview the post
+*/
+.block-editor-post-preview__dropdown-content .components-menu-group:last-child {
+	display: none;
+}
+
+/**
+* We don't want this editor style because we prefer full width
+*/
 .editor-styles-wrapper > .is-root-container {
 	padding: 0 !important;
 }
 
-/* This adds spacing between outer containers to allow block injections.  */
+/**
+* This adds spacing between outer containers to allow block injections.
+*/
 .editor-styles-wrapper .block-editor-block-list__layout.is-root-container > * + * {
 	margin-block-start: unset !important;
 }
 
-/* This hides the last appender when it's in the root. It make the page look cleaner */
+/**
+* This hides the last appender when it's in the root.
+* It makes the page look cleaner,
+*/
 .is-root-container > div:last-of-type:is(.block-list-appender) {
-	display: none !important
+	display: none !important;
 }
 
-/*
- We need to use columns to achieve a somewhat responsive layout.
- However, an empty column displays the block-edutor-inserter.
- When there are multiple empty columns, it is visiaully unappealing.
- We can either hide it and turn it on onHover, or hide them completely.
- This implement the onHover approach.
+/**
+* We need to use columns to achieve a somewhat responsive layout.
+* However, an empty column displays the block-edutor-inserter.
+* When there are multiple empty columns, it is visiaully unappealing.
+* We can either hide it and turn it on onHover, or hide them completely.
+* This implement the onHover approach.
 */
 .wp-block-columns .block-editor-inserter {
 	visibility: hidden;
@@ -50,8 +62,12 @@
 	visibility: visible;
 }
 
-/* There's no way to control this in the editor */
-h1, h2, h3 {
+/**
+* There's no way to control this in the editor
+*/
+h1,
+h2,
+h3 {
 	word-break: normal;
 }
 
@@ -71,35 +87,41 @@ h1, h2, h3 {
 	top: var(--wpadmin-bar--height);
 }
 
-/*
- WPadmin-bar adds in these styles as inline style.
- We don't want the space.
+/**
+* WPadmin-bar adds in these styles as inline style.
+* We don't want the space.
 */
-html.interface-interface-skeleton__html-container { margin-top: 0 !important; }
+html.interface-interface-skeleton__html-container {
+	margin-top: 0 !important;
+}
 
-/* We want some links to be underlined. */
+/**
+* We want some links to be underlined.
+*/
 p > a {
 	text-decoration: underline !important;
 	text-underline-offset: 0.15em !important;
 }
 
-/*
-There's no way to hide reusable block in Gutenberg yet.
-Since it just loads a broken page, we can just hide it
+/**
+* There's no way to hide reusable block in Gutenberg yet.
+* Since it just loads a broken page, we can just hide it
 */
-a[href='edit.php?post_type=wp_block'] {
+a[href="edit.php?post_type=wp_block"] {
 	display: none;
 }
 
-/*
-There's some weirdness with flex layouts appearing seemingly out of nowhere.
-This is a utility class to override it. Add as additional CSS class to block.
+/**
+* There's some weirdness with flex layouts appearing seemingly out of nowhere.
+* This is a utility class to override it. Add as additional CSS class to block.
 */
 .wporg-gutenberg-block-layout {
 	display: block !important;
 }
 
-/* We use rem units for fonts to make the page responsive. */
+/**
+* We use rem units for fonts to make the page responsive.
+*/
 html {
 	font-size: 18px;
 }
@@ -109,6 +131,7 @@ html {
 }
 
 @media (min-width: 782px) {
+
 	.wporg-gutenberg-hide-on-mobile {
 		display: inherit !important;
 	}
