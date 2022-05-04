@@ -1,7 +1,7 @@
-var el = wp.element.createElement,
+const el = wp.element.createElement,
 	registerBlockType = wp.blocks.registerBlockType,
 	InnerBlocks = wp.blockEditor.InnerBlocks,
-    isAdmin = window.location.pathname.includes( 'wp-admin' );
+	isAdmin = window.location.pathname.includes( 'wp-admin' );
 
 registerBlockType( 'wporg/wporg-gutenberg-button', {
 	title: 'Demo Button',
@@ -26,26 +26,30 @@ registerBlockType( 'wporg/wporg-gutenberg-button', {
 	},
 
 	supports: {
-		inserter: isAdmin
+		inserter: isAdmin,
 	},
 
-	edit: function ( props ) {
+	edit( props ) {
 		if ( ! isAdmin ) {
-			var blockEditorData = wp.data.select( 'core/block-editor' );
-			var innerHtml = blockEditorData.getBlock( props.clientId ).innerBlocks[ 0 ].originalContent;
+			const blockEditorData = wp.data.select( 'core/block-editor' );
+			const innerHtml = blockEditorData.getBlock( props.clientId ).innerBlocks[ 0 ].originalContent;
 
-			return el( 'div', { className: props.className, dangerouslySetInnerHTML: { __html: innerHtml } } );
+			return el( 'div', {
+				className: props.className,
+				dangerouslySetInnerHTML: { __html: innerHtml },
+			} );
 		}
 		return el(
-            'div',
-            { className: props.className },
-            el( InnerBlocks, {
-			template: [ [ 'core/button' ] ],
-			templateLock: 'all',
-		} ));
+			'div',
+			{ className: props.className },
+			el( InnerBlocks, {
+				template: [ [ 'core/button' ] ],
+				templateLock: 'all',
+			} )
+		);
 	},
 
-	save: function ( props ) {
+	save() {
 		return el( 'div', { className: 'wp-block-buttons' }, el( InnerBlocks.Content ) );
 	},
 } );

@@ -1,7 +1,7 @@
-/* 
-The core/button component has styles that expect it to be a child of core/buttons.
-We need to reimplement these styles for widths to work.
-*/ 
+/**
+* The core/button component has styles that expect it to be a child of core/buttons.
+* We need to reimplement these styles for widths to work.
+*/
 .wp-block-wporg-wporg-gutenberg-button .wp-block-button.wp-block-button__width-100 {
 	width: 100%;
 }

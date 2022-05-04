@@ -1,0 +1,19 @@
+{
+	"name": "wporg-gutenberg-theme",
+	"version": "1.0.0",
+	"description": "The codebase and development environment for w.org/gutenberg.",
+	"author": "WordPress.org",
+	"license": "GPL-2.0-or-later",
+	"private": true,
+	"dependencies": {
+		"@wordpress/scripts": "^22.5.0"
+	},
+	"scripts": {
+		"format": "wp-scripts format",
+		"lint:css": "wp-scripts lint-style",
+		"lint:js": "wp-scripts lint-js"
+	},
+	"workspaces": [
+		"source/wp-content/themes/wporg-gutenberg"
+	]
+}
