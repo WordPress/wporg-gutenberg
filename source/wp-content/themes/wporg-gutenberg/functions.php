@@ -677,7 +677,6 @@ if ( ! function_exists( 'gutenbergtheme_setup' ) ) :
 		 */
 		add_theme_support( 'title-tag' );
 
-
 		// We use the excerpt for blog description
 		add_post_type_support( 'page', 'excerpt' );
 	}
