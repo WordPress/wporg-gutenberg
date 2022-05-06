@@ -531,8 +531,16 @@ add_action(
 		add_filter( 'the_title', 'frontenberg_site_title' );
 		add_filter( 'option_blogname', 'frontenberg_site_title' );
 
+		/**
+		 * Use the excerpt for the blog description.
+		 *
+		 * @return void
+		 *
+		 * See: https://github.com/WordPress/wporg-gutenberg/issues/8
+		 */
 		function frontenberg_site_description() {
-			return esc_html__( 'A new editing experience for WordPress is in the works, code name Gutenberg. Read more about it and test it!', 'wporg' );
+			$post = get_post();
+			return get_the_excerpt( $post );
 		}
 		add_filter( 'option_blogdescription', 'frontenberg_site_description' );
 
@@ -668,6 +676,10 @@ if ( ! function_exists( 'gutenbergtheme_setup' ) ) :
 		 * provide it for us.
 		 */
 		add_theme_support( 'title-tag' );
+
+
+		// We use the excerpt for blog description
+		add_post_type_support( 'page', 'excerpt' );
 	}
 endif;
 add_action( 'after_setup_theme', 'gutenbergtheme_setup' );
