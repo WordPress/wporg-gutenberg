@@ -676,7 +676,6 @@ function gutenbergtheme_scripts() {
 }
 add_action( 'wp_enqueue_scripts', 'gutenbergtheme_scripts' );
 
-
 /**
  * Add meta tags for richer social media integrations.
  */
