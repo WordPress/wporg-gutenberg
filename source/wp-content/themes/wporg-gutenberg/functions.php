@@ -528,21 +528,6 @@ add_action(
 		function frontenberg_site_title() {
 			return esc_html__( 'The new Gutenberg editing experience', 'wporg' );
 		}
-		add_filter( 'the_title', 'frontenberg_site_title' );
-		add_filter( 'option_blogname', 'frontenberg_site_title' );
-
-		/**
-		 * Use the excerpt for the blog description.
-		 *
-		 * @return void
-		 *
-		 * See: https://github.com/WordPress/wporg-gutenberg/issues/8
-		 */
-		function frontenberg_site_description() {
-			$post = get_post();
-			return get_the_excerpt( $post );
-		}
-		add_filter( 'option_blogdescription', 'frontenberg_site_description' );
 
 		// Disable Jetpack Blocks for now.
 		add_filter( 'jetpack_gutenberg', '__return_false' );
@@ -690,3 +675,39 @@ function gutenbergtheme_scripts() {
 	wp_enqueue_style( 'gutenbergtheme-style', get_stylesheet_uri(), array(), 14 );
 }
 add_action( 'wp_enqueue_scripts', 'gutenbergtheme_scripts' );
+
+
+/**
+ * Add meta tags for richer social media integrations.
+ */
+function add_social_meta_tags() {
+	$post = get_post();
+	$excerpt = get_the_excerpt( $post );
+	$default_image = get_stylesheet_directory_uri() . '/images/gutenberg-editor.png';
+	$site_title    = function_exists( '\WordPressdotorg\site_brand' ) ? \WordPressdotorg\site_brand() : 'WordPress.org';
+	
+	$og_fields = [
+		'og:title'       => esc_html__( 'The new Gutenberg editing experience', 'wporg-gutenberg' ),
+		'og:description' => $excerpt,
+		'og:site_name'   => $site_title,
+		'og:type'        => 'website',
+		'og:url'         => home_url(),
+		'og:image'       => esc_url( $default_image ),
+	];
+
+	foreach ( $og_fields as $property => $content ) {
+		printf(
+			'<meta property="%1$s" content="%2$s" />' . "\n",
+			esc_attr( $property ),
+			esc_attr( $content )
+		);
+	}
+
+	if ( isset( $og_fields['og:description'] ) ) {
+		printf(
+			'<meta name="description" content="%1$s" />' . "\n",
+			esc_attr( $og_fields['og:description'] )
+		);
+	}
+}
+add_action( 'wp_head', 'add_social_meta_tags' );
