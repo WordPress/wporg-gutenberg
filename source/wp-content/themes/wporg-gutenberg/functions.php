@@ -483,7 +483,7 @@ add_action(
 				wp_enqueue_script( 'plugin-w-button-js', get_stylesheet_directory_uri() . '/plugins/w-button/index.js', array( 'wp-blocks', 'wp-edit-post', 'wp-plugins', 'wp-components' ), filemtime( __DIR__ . '/plugins/w-button/index.js' ) );
 				wp_enqueue_style( 'plugin-w-button-css', get_stylesheet_directory_uri() . '/plugins/w-button/style.css', null, filemtime( __DIR__ . '/plugins/w-button/style.css' ) );
 
-				wp_enqueue_script( 'plugin-disable-features-js', get_stylesheet_directory_uri() . '/plugins/disable-features/index.js', array( 'wp-edit-post', 'wp-plugins' ), filemtime( __DIR__ . '/plugins/disable-features/index.js' ) );		
+				wp_enqueue_script( 'plugin-disable-features-js', get_stylesheet_directory_uri() . '/plugins/disable-features/index.js', array( 'wp-edit-post', 'wp-plugins' ), filemtime( __DIR__ . '/plugins/disable-features/index.js' ) );
 
 				wp_enqueue_script( 'editor-modifications', get_stylesheet_directory_uri() . '/js/editor-modifications.js', array( 'wp-blocks', 'wp-edit-post', 'wp-hooks', 'wp-i18n', 'wp-plugins', 'wp-element' ), filemtime( __DIR__ . '/js/editor-modifications.js' ) );
 				wp_enqueue_style( 'custom-editor-styles', get_stylesheet_directory_uri() . '/style-editor.css', false, filemtime( __DIR__ . '/style-editor.css' ) );
