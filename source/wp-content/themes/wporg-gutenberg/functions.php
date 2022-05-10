@@ -686,7 +686,7 @@ function add_social_meta_tags() {
 	$site_title    = function_exists( '\WordPressdotorg\site_brand' ) ? \WordPressdotorg\site_brand() : 'WordPress.org';
 
 	$og_fields = array(
-		'og:title'       => esc_html__( 'The new Gutenberg editing experience', 'wporg-gutenberg' ),
+		'og:title'       => esc_html__( 'The new Gutenberg editing experience', 'wporg' ),
 		'og:description' => $excerpt,
 		'og:site_name'   => $site_title,
 		'og:type'        => 'website',
