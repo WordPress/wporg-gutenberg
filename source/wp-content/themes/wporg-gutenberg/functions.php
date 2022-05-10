@@ -528,13 +528,6 @@ add_action(
 		function frontenberg_site_title() {
 			return esc_html__( 'The new Gutenberg editing experience', 'wporg' );
 		}
-		add_filter( 'the_title', 'frontenberg_site_title' );
-		add_filter( 'option_blogname', 'frontenberg_site_title' );
-
-		function frontenberg_site_description() {
-			return esc_html__( 'A new editing experience for WordPress is in the works, code name Gutenberg. Read more about it and test it!', 'wporg' );
-		}
-		add_filter( 'option_blogdescription', 'frontenberg_site_description' );
 
 		// Disable Jetpack Blocks for now.
 		add_filter( 'jetpack_gutenberg', '__return_false' );
@@ -668,6 +661,9 @@ if ( ! function_exists( 'gutenbergtheme_setup' ) ) :
 		 * provide it for us.
 		 */
 		add_theme_support( 'title-tag' );
+
+		// We use the excerpt for blog description
+		add_post_type_support( 'page', 'excerpt' );
 	}
 endif;
 add_action( 'after_setup_theme', 'gutenbergtheme_setup' );
@@ -679,3 +675,46 @@ function gutenbergtheme_scripts() {
 	wp_enqueue_style( 'gutenbergtheme-style', get_stylesheet_uri(), array(), 14 );
 }
 add_action( 'wp_enqueue_scripts', 'gutenbergtheme_scripts' );
+
+/**
+ * Add meta tags for richer social media integrations.
+ */
+function add_social_meta_tags() {
+	$post          = get_post();
+	$excerpt       = get_the_excerpt( $post );
+	$default_image = get_stylesheet_directory_uri() . '/images/gutenberg-editor.png';
+	$site_title    = function_exists( '\WordPressdotorg\site_brand' ) ? \WordPressdotorg\site_brand() : 'WordPress.org';
+
+	$og_fields = array(
+		'og:title'       => esc_html__( 'The new Gutenberg editing experience', 'wporg-gutenberg' ),
+		'og:description' => $excerpt,
+		'og:site_name'   => $site_title,
+		'og:type'        => 'website',
+		'og:url'         => home_url(),
+		'og:image'       => esc_url( $default_image ),
+	);
+
+	foreach ( $og_fields as $property => $content ) {
+		printf(
+			'<meta property="%1$s" content="%2$s" />' . "\n",
+			esc_attr( $property ),
+			esc_attr( $content )
+		);
+	}
+
+	printf(
+		'<meta name="description" content="%1$s" />' . "\n",
+		esc_attr( $og_fields['og:description'] )
+	);
+
+	printf(
+		'<meta name="twitter:card" content="%1$s" />' . "\n",
+		esc_attr( 'summary_large_image' )
+	);
+
+	printf(
+		'<meta name="twitter:creator" content="%1$s" />' . "\n",
+		esc_attr( '@WordPress' )
+	);
+}
+add_action( 'wp_head', 'add_social_meta_tags' );
