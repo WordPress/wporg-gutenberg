@@ -17,6 +17,11 @@ function DisableFeaturePlugin() {
 		dispatch( 'core/edit-post' ).toggleFeature( 'welcomeGuide' );
 	}
 
+	// Force fullscreen mode on load
+	if ( ! select( 'core/edit-post' ).isFeatureActive( 'fullscreenMode' ) ) {
+		dispatch( 'core/edit-post' ).toggleFeature( 'fullscreenMode' );
+	}
+
 	// Close the sidebar
 	if ( select( 'core/edit-post' ).isEditorSidebarOpened() ) {
 		dispatch( 'core/edit-post' ).closeGeneralSidebar();
