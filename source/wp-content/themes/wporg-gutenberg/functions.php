@@ -682,7 +682,7 @@ add_action( 'wp_enqueue_scripts', 'gutenbergtheme_scripts' );
 function add_social_meta_tags() {
 	$post          = get_post();
 	$excerpt       = get_the_excerpt( $post );
-	$default_image = get_stylesheet_directory_uri() . '/images/gutenberg-editor.png';
+	$default_image = wp_get_attachment_url( get_post_thumbnail_id( $post->ID ), 'thumbnail' );
 	$site_title    = function_exists( '\WordPressdotorg\site_brand' ) ? \WordPressdotorg\site_brand() : 'WordPress.org';
 
 	$og_fields = array(
