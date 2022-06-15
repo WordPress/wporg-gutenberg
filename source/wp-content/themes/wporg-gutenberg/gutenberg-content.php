@@ -103,7 +103,7 @@ $content = '<!-- wp:group {"align":"full","layout":{"inherit":false,"contentSize
 <!-- /wp:cover -->
 
 <!-- wp:cover {"overlayColor":"background","minHeightUnit":"px","contentPosition":"center center","isDark":false,"align":"full","style":{"spacing":{"padding":{"top":"120px","bottom":"120px"}}}} -->
-<div class="wp-block-cover alignfull is-light" style="padding-top:120px;padding-bottom:120px"><span aria-hidden="true" class="wp-block-cover__background has-background-background-color has-background-dim-100 has-background-dim"></span><div class="wp-block-cover__inner-container"><!-- wp:group {"align":"wide","layout":{"contentSize":"1200px"}} -->
+<div class="wp-block-cover alignfull is-light" style="padding-top:120px;padding-bottom:120px"><span aria-hidden="true" class="wp-block-cover__background has-background-background-color has-background-dim-100 has-background-dim"></span><div class="wp-block-cover__inner-container"><!-- wp:group {"align":"wide", "className":"wporg-gutenberg-block-layout", "layout":{"contentSize":"1200px"}} -->
 <div class="wp-block-group alignwide"><!-- wp:columns {"style":{"spacing":{"padding":{"top":"0px","bottom":"0px"}}}} -->
 <div class="wp-block-columns" style="padding-top:0px;padding-bottom:0px"><!-- wp:column {"width":"80%"} -->
 <div class="wp-block-column" style="flex-basis:80%"><!-- wp:group {"align":"wide","className":"wporg-gutenberg-block-layout"} -->
