@@ -7,7 +7,7 @@ $title = __( 'Say Hello to Gutenberg, the WordPress Editor', 'wporg' );
 $content = '<!-- wp:group {"align":"full","layout":{"inherit":false,"contentSize":"1200px"}} -->
 <div class="wp-block-group alignfull"><!-- wp:group {"style":{"elements":{"link":{"color":{"text":"var:preset|color|black"}}},"spacing":{"padding":{"bottom":"10%","top":"60px"}}},"className":"site-header","layout":{"type":"flex","orientation":"vertical","justifyContent":"left","flexWrap":"wrap"}} -->
 <div class="wp-block-group site-header has-link-color" style="padding-top:60px;padding-bottom:10%"><!-- wp:image {"id":17,"width":38,"height":38,"sizeSlug":"full","linkDestination":"none"} -->
-<figure class="wp-block-image size-full is-resized"><img src="https://wordpress.org/gutenberg-test/files/2022/04/site_title-150x150-1.png" alt="" class="wp-image-17" width="38" height="38"/></figure>
+<figure class="wp-block-image size-full is-resized"><img src="https://wordpress.org/gutenberg/files/2022/06/site_icon.png" alt="" class="wp-image-17" width="38" height="38"/></figure>
 <!-- /wp:image --></div>
 <!-- /wp:group -->
  
@@ -46,13 +46,13 @@ $content = '<!-- wp:group {"align":"full","layout":{"inherit":false,"contentSize
 <!-- /wp:group --></div>
 <!-- /wp:group -->
 
-<!-- wp:cover {"url":"https://wordpress.org/gutenberg-test/files/2022/05/Gradient-Background.png","id":1194,"hasParallax":true,"dimRatio":10,"isDark":false,"align":"full","style":{"spacing":{"padding":{"top":"120px","bottom":"120px"}}}} -->
-<div class="wp-block-cover alignfull is-light has-parallax" style="padding-top:120px;padding-bottom:120px;background-image:url(https://wordpress.org/gutenberg-test/files/2022/05/Gradient-Background.png)"><span aria-hidden="true" class="wp-block-cover__background has-background-dim-10 has-background-dim"></span><div class="wp-block-cover__inner-container"><!-- wp:group {"layout":{"inherit":false,"wideSize":"1200px"}} -->
+<!-- wp:cover {"url":"https://wordpress.org/gutenberg/files/2022/05/Gradient-Background.png","id":1194,"hasParallax":true,"dimRatio":10,"isDark":false,"align":"full","style":{"spacing":{"padding":{"top":"120px","bottom":"120px"}}}} -->
+<div class="wp-block-cover alignfull is-light has-parallax" style="padding-top:120px;padding-bottom:120px;background-image:url(https://wordpress.org/gutenberg/files/2022/05/Gradient-Background.png)"><span aria-hidden="true" class="wp-block-cover__background has-background-dim-10 has-background-dim"></span><div class="wp-block-cover__inner-container"><!-- wp:group {"layout":{"inherit":false,"wideSize":"1200px"}} -->
 <div class="wp-block-group"><!-- wp:columns -->
 <div class="wp-block-columns"><!-- wp:column {"verticalAlignment":"top","style":{"spacing":{"padding":{"top":"0px","left":"0px","bottom":"30px"}}}} -->
 <div class="wp-block-column is-vertically-aligned-top" style="padding-top:0px;padding-bottom:30px;padding-left:0px"><!-- wp:group {"layout":{"type":"flex","orientation":"vertical"}} -->
 <div class="wp-block-group"><!-- wp:image {"id":243,"width":35,"height":35,"sizeSlug":"full","linkDestination":"none"} -->
-<figure class="wp-block-image size-full is-resized"><img src="https://wordpress.org/gutenberg-test/files/2022/05/block-media-text.png" alt="" class="wp-image-243" width="35" height="35"/></figure>
+<figure class="wp-block-image size-full is-resized"><img src="https://wordpress.org/gutenberg/files/2022/06/block-media-text.png" alt="" class="wp-image-243" width="35" height="35"/></figure>
 <!-- /wp:image -->
 
 <!-- wp:paragraph {"textColor":"tertiary","fontSize":"medium"} -->
@@ -64,7 +64,7 @@ $content = '<!-- wp:group {"align":"full","layout":{"inherit":false,"contentSize
 <!-- wp:column {"style":{"spacing":{"padding":{"top":"0px","right":"0px","bottom":"30px","left":"0px"}}}} -->
 <div class="wp-block-column" style="padding-top:0px;padding-right:0px;padding-bottom:30px;padding-left:0px"><!-- wp:group {"layout":{"type":"flex","orientation":"vertical"}} -->
 <div class="wp-block-group"><!-- wp:image {"id":244,"width":36,"sizeSlug":"full","linkDestination":"none"} -->
-<figure class="wp-block-image size-full is-resized"><img src="https://wordpress.org/gutenberg-test/files/2022/05/block-gallery.png" alt="" class="wp-image-244" width="36"/></figure>
+<figure class="wp-block-image size-full is-resized"><img src="https://wordpress.org/gutenberg/files/2022/06/block-gallery.png" alt="" class="wp-image-244" width="36"/></figure>
 <!-- /wp:image -->
 
 <!-- wp:paragraph {"textColor":"tertiary","fontSize":"medium"} -->
@@ -78,7 +78,7 @@ $content = '<!-- wp:group {"align":"full","layout":{"inherit":false,"contentSize
 <div class="wp-block-columns"><!-- wp:column {"style":{"spacing":{"padding":{"bottom":"30px"}}}} -->
 <div class="wp-block-column" style="padding-bottom:30px"><!-- wp:group {"layout":{"type":"flex","orientation":"vertical"}} -->
 <div class="wp-block-group"><!-- wp:image {"id":242,"width":22,"sizeSlug":"full","linkDestination":"none"} -->
-<figure class="wp-block-image size-full is-resized"><img src="https://wordpress.org/gutenberg-test/files/2022/05/mobile.png" alt="" class="wp-image-242" width="22"/></figure>
+<figure class="wp-block-image size-full is-resized"><img src="https://wordpress.org/gutenberg/files/2022/06/mobile.png" alt="" class="wp-image-242" width="22"/></figure>
 <!-- /wp:image -->
 
 <!-- wp:paragraph {"textColor":"tertiary","fontSize":"medium"} -->
@@ -90,7 +90,7 @@ $content = '<!-- wp:group {"align":"full","layout":{"inherit":false,"contentSize
 <!-- wp:column {"style":{"spacing":{"padding":{"bottom":"30px"}}}} -->
 <div class="wp-block-column" style="padding-bottom:30px"><!-- wp:group {"layout":{"type":"flex","orientation":"vertical"}} -->
 <div class="wp-block-group"><!-- wp:image {"id":241,"width":25,"sizeSlug":"full","linkDestination":"none"} -->
-<figure class="wp-block-image size-full is-resized"><img src="https://wordpress.org/gutenberg-test/files/2022/05/plugin.png" alt="" class="wp-image-241" width="25"/></figure>
+<figure class="wp-block-image size-full is-resized"><img src="https://wordpress.org/gutenberg/files/2022//06/plugin.png" alt="" class="wp-image-241" width="25"/></figure>
 <!-- /wp:image -->
 
 <!-- wp:paragraph {"textColor":"tertiary","fontSize":"medium"} -->
@@ -139,13 +139,13 @@ $content = '<!-- wp:group {"align":"full","layout":{"inherit":false,"contentSize
 <div class="wp-block-column"><!-- wp:columns {"isStackedOnMobile":false,"align":"wide","style":{"spacing":{"padding":{"top":"0px","bottom":"0px"}}}} -->
 <div class="wp-block-columns alignwide is-not-stacked-on-mobile" style="padding-top:0px;padding-bottom:0px"><!-- wp:column -->
 <div class="wp-block-column"><!-- wp:image {"id":1192,"sizeSlug":"full","linkDestination":"none"} -->
-<figure class="wp-block-image size-full"><img src="https://wordpress.org/gutenberg-test/files/2022/05/Paragraph.png" alt="" class="wp-image-1192"/><figcaption>' . esc_html__( 'Paragraph', 'wporg' ) . '</figcaption></figure>
+<figure class="wp-block-image size-full"><img src="https://wordpress.org/gutenberg/files/2022/05/Paragraph.png" alt="" class="wp-image-1192"/><figcaption>' . esc_html__( 'Paragraph', 'wporg' ) . '</figcaption></figure>
 <!-- /wp:image --></div>
 <!-- /wp:column -->
 
 <!-- wp:column -->
 <div class="wp-block-column"><!-- wp:image {"id":1219,"sizeSlug":"full","linkDestination":"none"} -->
-<figure class="wp-block-image size-full"><img src="https://wordpress.org/gutenberg-test/files/2022/05/Heading.png" alt="" class="wp-image-1219"/><figcaption>' . esc_html__( 'Heading', 'wporg' ) . '</figcaption></figure>
+<figure class="wp-block-image size-full"><img src="https://wordpress.org/gutenberg/files/2022/05/Heading.png" alt="" class="wp-image-1219"/><figcaption>' . esc_html__( 'Heading', 'wporg' ) . '</figcaption></figure>
 <!-- /wp:image --></div>
 <!-- /wp:column --></div>
 <!-- /wp:columns --></div>
@@ -155,13 +155,13 @@ $content = '<!-- wp:group {"align":"full","layout":{"inherit":false,"contentSize
 <div class="wp-block-column"><!-- wp:columns {"isStackedOnMobile":false,"align":"wide","style":{"spacing":{"padding":{"top":"0px","bottom":"0px"}}}} -->
 <div class="wp-block-columns alignwide is-not-stacked-on-mobile" style="padding-top:0px;padding-bottom:0px"><!-- wp:column -->
 <div class="wp-block-column"><!-- wp:image {"id":1220,"sizeSlug":"full","linkDestination":"none"} -->
-<figure class="wp-block-image size-full"><img src="https://wordpress.org/gutenberg-test/files/2022/05/Media-Text.png" alt="" class="wp-image-1220"/><figcaption>' . esc_html__( 'Media &amp; Text', 'wporg' ) . '</figcaption></figure>
+<figure class="wp-block-image size-full"><img src="https://wordpress.org/gutenberg/files/2022/05/Media-Text.png" alt="" class="wp-image-1220"/><figcaption>' . esc_html__( 'Media &amp; Text', 'wporg' ) . '</figcaption></figure>
 <!-- /wp:image --></div>
 <!-- /wp:column -->
 
 <!-- wp:column -->
 <div class="wp-block-column"><!-- wp:image {"id":1221,"sizeSlug":"full","linkDestination":"none"} -->
-<figure class="wp-block-image size-full"><img src="https://wordpress.org/gutenberg-test/files/2022/05/Image.png" alt="" class="wp-image-1221"/><figcaption>' . esc_html__( 'Image', 'wporg' ) . '</figcaption></figure>
+<figure class="wp-block-image size-full"><img src="https://wordpress.org/gutenberg/files/2022/05/Image.png" alt="" class="wp-image-1221"/><figcaption>' . esc_html__( 'Image', 'wporg' ) . '</figcaption></figure>
 <!-- /wp:image --></div>
 <!-- /wp:column --></div>
 <!-- /wp:columns --></div>
@@ -171,13 +171,13 @@ $content = '<!-- wp:group {"align":"full","layout":{"inherit":false,"contentSize
 <div class="wp-block-column"><!-- wp:columns {"isStackedOnMobile":false} -->
 <div class="wp-block-columns is-not-stacked-on-mobile"><!-- wp:column -->
 <div class="wp-block-column"><!-- wp:image {"id":192,"sizeSlug":"large","linkDestination":"none"} -->
-<figure class="wp-block-image size-large"><img src="https://wordpress.org/gutenberg-test/files/2022/05/Cover-1024x1024.png" alt="" class="wp-image-192"/><figcaption>' . esc_html__( 'Cover', 'wporg' ) . '</figcaption></figure>
+<figure class="wp-block-image size-large"><img src="https://wordpress.org/gutenberg/files/2022/05/Cover-1024x1024.png" alt="" class="wp-image-192"/><figcaption>' . esc_html__( 'Cover', 'wporg' ) . '</figcaption></figure>
 <!-- /wp:image --></div>
 <!-- /wp:column -->
 
 <!-- wp:column -->
 <div class="wp-block-column"><!-- wp:image {"id":1222,"sizeSlug":"full","linkDestination":"none"} -->
-<figure class="wp-block-image size-full"><img src="https://wordpress.org/gutenberg-test/files/2022/05/Gallery.png" alt="" class="wp-image-1222"/><figcaption>' . esc_html__( 'Gallery', 'wporg' ) . '</figcaption></figure>
+<figure class="wp-block-image size-full"><img src="https://wordpress.org/gutenberg/files/2022/05/Gallery.png" alt="" class="wp-image-1222"/><figcaption>' . esc_html__( 'Gallery', 'wporg' ) . '</figcaption></figure>
 <!-- /wp:image --></div>
 <!-- /wp:column --></div>
 <!-- /wp:columns --></div>
@@ -189,13 +189,13 @@ $content = '<!-- wp:group {"align":"full","layout":{"inherit":false,"contentSize
 <div class="wp-block-column"><!-- wp:columns {"isStackedOnMobile":false} -->
 <div class="wp-block-columns is-not-stacked-on-mobile"><!-- wp:column -->
 <div class="wp-block-column"><!-- wp:image {"id":1226,"sizeSlug":"full","linkDestination":"none"} -->
-<figure class="wp-block-image size-full"><img src="https://wordpress.org/gutenberg-test/files/2022/05/Video.png" alt="" class="wp-image-1226"/><figcaption>' . esc_html__( 'Video', 'wporg' ) . '</figcaption></figure>
+<figure class="wp-block-image size-full"><img src="https://wordpress.org/gutenberg/files/2022/05/Video.png" alt="" class="wp-image-1226"/><figcaption>' . esc_html__( 'Video', 'wporg' ) . '</figcaption></figure>
 <!-- /wp:image --></div>
 <!-- /wp:column -->
 
 <!-- wp:column -->
 <div class="wp-block-column"><!-- wp:image {"id":1227,"sizeSlug":"full","linkDestination":"none"} -->
-<figure class="wp-block-image size-full"><img src="https://wordpress.org/gutenberg-test/files/2022/05/Audio.png" alt="" class="wp-image-1227"/><figcaption>' . esc_html__( 'Audio', 'wporg' ) . '</figcaption></figure>
+<figure class="wp-block-image size-full"><img src="https://wordpress.org/gutenberg/files/2022/05/Audio.png" alt="" class="wp-image-1227"/><figcaption>' . esc_html__( 'Audio', 'wporg' ) . '</figcaption></figure>
 <!-- /wp:image --></div>
 <!-- /wp:column --></div>
 <!-- /wp:columns --></div>
@@ -205,13 +205,13 @@ $content = '<!-- wp:group {"align":"full","layout":{"inherit":false,"contentSize
 <div class="wp-block-column"><!-- wp:columns {"isStackedOnMobile":false} -->
 <div class="wp-block-columns is-not-stacked-on-mobile"><!-- wp:column -->
 <div class="wp-block-column"><!-- wp:image {"id":225,"sizeSlug":"large","linkDestination":"none"} -->
-<figure class="wp-block-image size-large"><img src="https://wordpress.org/gutenberg-test/files/2022/05/Columns-1024x1024.png" alt="" class="wp-image-225"/><figcaption>' . esc_html__( 'Columns', 'wporg' ) . '</figcaption></figure>
+<figure class="wp-block-image size-large"><img src="https://wordpress.org/gutenberg/files/2022/05/Collumns.png" alt="" class="wp-image-225"/><figcaption>' . esc_html__( 'Columns', 'wporg' ) . '</figcaption></figure>
 <!-- /wp:image --></div>
 <!-- /wp:column -->
 
 <!-- wp:column -->
 <div class="wp-block-column"><!-- wp:image {"id":1229,"sizeSlug":"full","linkDestination":"none"} -->
-<figure class="wp-block-image size-full"><img src="https://wordpress.org/gutenberg-test/files/2022/05/File.png" alt="" class="wp-image-1229"/><figcaption>' . esc_html__( 'File', 'wporg' ) . '</figcaption></figure>
+<figure class="wp-block-image size-full"><img src="https://wordpress.org/gutenberg/files/2022/05/File.png" alt="" class="wp-image-1229"/><figcaption>' . esc_html__( 'File', 'wporg' ) . '</figcaption></figure>
 <!-- /wp:image --></div>
 <!-- /wp:column --></div>
 <!-- /wp:columns --></div>
@@ -221,13 +221,13 @@ $content = '<!-- wp:group {"align":"full","layout":{"inherit":false,"contentSize
 <div class="wp-block-column"><!-- wp:columns {"isStackedOnMobile":false} -->
 <div class="wp-block-columns is-not-stacked-on-mobile"><!-- wp:column -->
 <div class="wp-block-column"><!-- wp:image {"id":1230,"sizeSlug":"full","linkDestination":"none"} -->
-<figure class="wp-block-image size-full"><img src="https://wordpress.org/gutenberg-test/files/2022/05/Code.png" alt="" class="wp-image-1230"/><figcaption>' . esc_html__( 'Code', 'wporg' ) . '</figcaption></figure>
+<figure class="wp-block-image size-full"><img src="https://wordpress.org/gutenberg/files/2022/05/Code.png" alt="" class="wp-image-1230"/><figcaption>' . esc_html__( 'Code', 'wporg' ) . '</figcaption></figure>
 <!-- /wp:image --></div>
 <!-- /wp:column -->
 
 <!-- wp:column -->
 <div class="wp-block-column"><!-- wp:image {"id":1231,"sizeSlug":"full","linkDestination":"none"} -->
-<figure class="wp-block-image size-full"><img src="https://wordpress.org/gutenberg-test/files/2022/05/List.png" alt="" class="wp-image-1231"/><figcaption>' . esc_html__( 'List', 'wporg' ) . '</figcaption></figure>
+<figure class="wp-block-image size-full"><img src="https://wordpress.org/gutenberg/files/2022/05/List.png" alt="" class="wp-image-1231"/><figcaption>' . esc_html__( 'List', 'wporg' ) . '</figcaption></figure>
 <!-- /wp:image --></div>
 <!-- /wp:column --></div>
 <!-- /wp:columns --></div>
@@ -285,7 +285,7 @@ $content = '<!-- wp:group {"align":"full","layout":{"inherit":false,"contentSize
 
 <!-- wp:column {"verticalAlignment":"bottom","width":"55%"} -->
 <div class="wp-block-column is-vertically-aligned-bottom" style="flex-basis:55%"><!-- wp:image {"id":212,"sizeSlug":"large","linkDestination":"none"} -->
-<figure class="wp-block-image size-large"><img src="https://wordpress.org/gutenberg-test/files/2022/05/patterns-preview-810x1024.png" alt="" class="wp-image-212"/></figure>
+<figure class="wp-block-image size-large"><img src="https://wordpress.org/gutenberg/files/2022/06/pattern-preview.png" alt="" class="wp-image-212"/></figure>
 <!-- /wp:image --></div>
 <!-- /wp:column --></div>
 <!-- /wp:columns --></div>
@@ -419,7 +419,7 @@ $content = '<!-- wp:group {"align":"full","layout":{"inherit":false,"contentSize
 
 <!-- wp:column {"width":"20%","style":{"spacing":{"padding":{"top":"20px"}}}} -->
 <div class="wp-block-column" style="padding-top:20px;flex-basis:20%"><!-- wp:image {"align":"right","id":36,"width":30,"height":30,"sizeSlug":"full","linkDestination":"none"} -->
-<figure class="wp-block-image alignright size-full is-resized"><img src="https://wordpress.org/gutenberg-test/files/2022/04/wordpress.png" alt="" class="wp-image-36" width="30" height="30"/></figure>
+<figure class="wp-block-image alignright size-full is-resized"><img src="https://wordpress.org/gutenberg/files/2022/06/wmark.png" alt="" class="wp-image-36" width="30" height="30"/></figure>
 <!-- /wp:image --></div>
 <!-- /wp:column --></div>
 <!-- /wp:columns -->
@@ -481,8 +481,8 @@ $content = '<!-- wp:group {"align":"full","layout":{"inherit":false,"contentSize
 <!-- /wp:group --></div></div>
 <!-- /wp:cover -->
 
-<!-- wp:cover {"url":"https://wordpress.org/gutenberg-test/files/2022/05/Gradient-Background-2-1.png","id":1202,"hasParallax":true,"dimRatio":10,"isDark":false,"align":"full","style":{"spacing":{"padding":{"top":"120px","right":"0px","bottom":"120px","left":"0px"}}}} -->
-<div class="wp-block-cover alignfull is-light has-parallax" style="padding-top:120px;padding-right:0px;padding-bottom:120px;padding-left:0px;background-image:url(https://wordpress.org/gutenberg-test/files/2022/05/Gradient-Background-2-1.png)"><span aria-hidden="true" class="wp-block-cover__background has-background-dim-10 has-background-dim"></span><div class="wp-block-cover__inner-container"><!-- wp:group {"layout":{"contentSize":"1000px"}} -->
+<!-- wp:cover {"url":"https://wordpress.org/gutenberg/files/2022/05/Gradient-Background-2-1.png","id":1202,"hasParallax":true,"dimRatio":10,"isDark":false,"align":"full","style":{"spacing":{"padding":{"top":"120px","right":"0px","bottom":"120px","left":"0px"}}}} -->
+<div class="wp-block-cover alignfull is-light has-parallax" style="padding-top:120px;padding-right:0px;padding-bottom:120px;padding-left:0px;background-image:url(https://wordpress.org/gutenberg/files/2022/05/Gradient-Background-2-1.png)"><span aria-hidden="true" class="wp-block-cover__background has-background-dim-10 has-background-dim"></span><div class="wp-block-cover__inner-container"><!-- wp:group {"layout":{"contentSize":"1000px"}} -->
 <div class="wp-block-group"><!-- wp:columns {"style":{"spacing":{"padding":{"top":"0px","bottom":"0px","left":"0px"}}}} -->
 <div class="wp-block-columns" style="padding-top:0px;padding-bottom:0px;padding-left:0px"><!-- wp:column {"width":"100%","style":{"spacing":{"padding":{"right":"30px","left":"30px"}}}} -->
 <div class="wp-block-column" style="padding-right:30px;padding-left:30px;flex-basis:100%"><!-- wp:paragraph {"align":"center","style":{"typography":{"lineHeight":1.2,"fontStyle":"normal","fontWeight":"300"}},"textColor":"tertiary","fontSize":"level-4"} -->
@@ -537,7 +537,7 @@ $content = '<!-- wp:group {"align":"full","layout":{"inherit":false,"contentSize
 <!-- /wp:wporg/wporg-gutenberg-link -->
 
 <!-- wp:image {"align":"right","id":17,"width":38,"height":38,"sizeSlug":"full","linkDestination":"none"} -->
-<figure class="wp-block-image alignright size-full is-resized"><img src="https://wordpress.org/gutenberg-test/files/2022/04/site_title-150x150-1.png" alt="" class="wp-image-17" width="38" height="38"/></figure>
+<figure class="wp-block-image alignright size-full is-resized"><img src="https://wordpress.org/gutenberg/files/2022/06/site_icon.png" alt="" class="wp-image-17" width="38" height="38"/></figure>
 <!-- /wp:image --></div>
 <!-- /wp:group --></div>
 <!-- /wp:column --></div>
