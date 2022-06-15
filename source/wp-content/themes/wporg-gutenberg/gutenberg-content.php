@@ -1,6 +1,6 @@
 <?php
 
-$localised_domain = parse_url( home_url( '/' ), PHP_URL_HOST );	
+$localised_domain = parse_url( home_url( '/' ), PHP_URL_HOST );
 
 $title = __( 'Say Hello to Gutenberg, the WordPress Editor', 'wporg' );
 
@@ -24,7 +24,7 @@ $content = '<!-- wp:group {"align":"full","layout":{"inherit":false,"contentSize
 
 <!-- wp:wporg/wporg-gutenberg-button -->
 <div class="wp-block-wporg-wporg-gutenberg-button wp-block-buttons"><!-- wp:button {"width":100,"className":"is-style-outline"} -->
-<div class="wp-block-button has-custom-width wp-block-button__width-100 is-style-outline"><a class="wp-block-button__link wp-element-button" href="https://' . $localised_domain . '/download/">' . esc_html__( 'Try Gutenberg today in WordPress', 'wporg' ) . '</a></div>
+<div class="wp-block-button has-custom-width wp-block-button__width-100 is-style-outline"><a class="wp-block-button__link wp-element-button" href="' . esc_url( "https://{$localised_domain}/download/" ) . '">' . esc_html__( 'Try Gutenberg today in WordPress', 'wporg' ) . '</a></div>
 <!-- /wp:button --></div>
 <!-- /wp:wporg/wporg-gutenberg-button --></div>
 <!-- /wp:group --></div>
@@ -124,7 +124,7 @@ $content = '<!-- wp:group {"align":"full","layout":{"inherit":false,"contentSize
 <!-- wp:column {"verticalAlignment":"top","width":"25%","style":{"spacing":{"padding":{"top":"10px"}}}} -->
 <div class="wp-block-column is-vertically-aligned-top" style="padding-top:10px;flex-basis:25%"><!-- wp:wporg/wporg-gutenberg-button -->
 <div class="wp-block-wporg-wporg-gutenberg-button wp-block-buttons"><!-- wp:button {"width":100,"className":"is-style-outline"} -->
-<div class="wp-block-button has-custom-width wp-block-button__width-100 is-style-outline"><a class="wp-block-button__link wp-element-button" href="https://wordpress.org/plugins/browse/block/">' . esc_html__( 'Browse all blocks', 'wporg' ) . '</a></div>
+<div class="wp-block-button has-custom-width wp-block-button__width-100 is-style-outline"><a class="wp-block-button__link wp-element-button" href="' . esc_url( "https://{$localised_domain}/plugins/browse/block/" ) . '">' . esc_html__( 'Browse all blocks', 'wporg' ) . '</a></div>
 <!-- /wp:button --></div>
 <!-- /wp:wporg/wporg-gutenberg-button --></div>
 <!-- /wp:column --></div>
@@ -257,7 +257,7 @@ $content = '<!-- wp:group {"align":"full","layout":{"inherit":false,"contentSize
 <div class="wp-block-columns"><!-- wp:column {"width":"70%","className":"wporg-gutenberg-block-layout"} -->
 <div class="wp-block-column wporg-gutenberg-block-layout" style="flex-basis:70%"><!-- wp:wporg/wporg-gutenberg-button -->
 <div class="wp-block-wporg-wporg-gutenberg-button wp-block-buttons"><!-- wp:button {"width":100,"className":"is-style-fill"} -->
-<div class="wp-block-button has-custom-width wp-block-button__width-100 is-style-fill"><a class="wp-block-button__link wp-element-button" href="//wordpress.org/patterns/">' . esc_html__( 'Block Pattern Directory', 'wporg' ) . '</a></div>
+<div class="wp-block-button has-custom-width wp-block-button__width-100 is-style-fill"><a class="wp-block-button__link wp-element-button" href="' . esc_url( "https://{$localised_domain}/patterns/" ) . '">' . esc_html__( 'Block Pattern Directory', 'wporg' ) . '</a></div>
 <!-- /wp:button --></div>
 <!-- /wp:wporg/wporg-gutenberg-button -->
 
@@ -431,9 +431,9 @@ $content = '<!-- wp:group {"align":"full","layout":{"inherit":false,"contentSize
 <p class="has-level-1-font-size">' .
 	sprintf(
 	/* translators: 1: The URL to learn.wordpress.org.  */
-	wp_kses_post( __( 'You can learn all the basics on <a href="%1$s">Learn WordPress</a>, a whole section dedicated to helping you get started.', 'wporg' ) ),
-	esc_url( 'https://learn.wordpress.org' )
-) . '</p>
+		wp_kses_post( __( 'You can learn all the basics on <a href="%1$s">Learn WordPress</a>, a whole section dedicated to helping you get started.', 'wporg' ) ),
+		esc_url( 'https://learn.wordpress.org' )
+	) . '</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:wporg/wporg-gutenberg-link -->
 
@@ -449,7 +449,7 @@ $content = '<!-- wp:group {"align":"full","layout":{"inherit":false,"contentSize
 <!-- wp:column {"verticalAlignment":"bottom","width":"60%"} -->
 <div class="wp-block-column is-vertically-aligned-bottom" style="flex-basis:60%"><!-- wp:wporg/wporg-gutenberg-link -->
 <div class="wp-block-wporg-wporg-gutenberg-link"><!-- wp:paragraph {"textColor":"secondary","fontSize":"level-3"} -->
-<p class="has-secondary-color has-text-color has-level-3-font-size"><a href="https://learn.wordpress.org/workshop/how-to-install-wordpress/">' . esc_html__( 'How to Install WordPress ↗') . '</a><br><a href="https://learn.wordpress.org/workshop/how-to-choose-install-a-theme/">' . esc_html__( 'How to Choose and Install a Theme ↗') . '</a><br><a href="https://learn.wordpress.org/workshop/intro-to-block-patterns/">' . esc_html__( 'Intro to Block Patterns ↗') . '</a><br><a href="https://learn.wordpress.org/workshop/advanced-layouts-with-the-block-editor/">' . esc_html__( 'Advanced Layouts With the Block Editor ↗') . '</a></p>
+<p class="has-secondary-color has-text-color has-level-3-font-size"><a href="https://learn.wordpress.org/workshop/how-to-install-wordpress/">' . esc_html__( 'How to Install WordPress ↗' ) . '</a><br><a href="https://learn.wordpress.org/workshop/how-to-choose-install-a-theme/">' . esc_html__( 'How to Choose and Install a Theme ↗' ) . '</a><br><a href="https://learn.wordpress.org/workshop/intro-to-block-patterns/">' . esc_html__( 'Intro to Block Patterns ↗' ) . '</a><br><a href="https://learn.wordpress.org/workshop/advanced-layouts-with-the-block-editor/">' . esc_html__( 'Advanced Layouts With the Block Editor ↗' ) . '</a></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:wporg/wporg-gutenberg-link --></div>
 <!-- /wp:column --></div>
@@ -475,7 +475,7 @@ $content = '<!-- wp:group {"align":"full","layout":{"inherit":false,"contentSize
 
 <!-- wp:wporg/wporg-gutenberg-link -->
 <div class="wp-block-wporg-wporg-gutenberg-link"><!-- wp:paragraph {"textColor":"secondary","fontSize":"level-3"} -->
-<p class="has-secondary-color has-text-color has-level-3-font-size"> <a href="https://developer.wordpress.org/block-editor/explanations/faq/">' . esc_html__( 'Gutenberg FAQs ↗', 'wporg' ) . '</a><br> <a href="https://wordpress.tv/?s=gutenberg">' . esc_html__( 'WordPress.tv talks about Gutenberg ↗') . '</a> <br> <a href="https://developer.wordpress.org/block-editor/contributors/design/#goal-of-gutenberg">' . esc_html__( 'Gutenberg Design Principles ↗') . '</a><br> <a href="https://wordpress.org/support/article/wordpress-editor/">' . esc_html__( 'WordPress Editor Documentation ↗') . '</a><br> <a href="https://make.wordpress.org/core/2020/05/20/ways-to-keep-up-with-full-site-editing-fse/">' . esc_html__( 'Development Updates ↗') . '</a> </p>
+<p class="has-secondary-color has-text-color has-level-3-font-size"> <a href="https://developer.wordpress.org/block-editor/explanations/faq/">' . esc_html__( 'Gutenberg FAQs ↗', 'wporg' ) . '</a><br> <a href="https://wordpress.tv/?s=gutenberg">' . esc_html__( 'WordPress.tv talks about Gutenberg ↗' ) . '</a> <br> <a href="https://developer.wordpress.org/block-editor/contributors/design/#goal-of-gutenberg">' . esc_html__( 'Gutenberg Design Principles ↗' ) . '</a><br> <a href="https://wordpress.org/support/article/wordpress-editor/">' . esc_html__( 'WordPress Editor Documentation ↗' ) . '</a><br> <a href="https://make.wordpress.org/core/2020/05/20/ways-to-keep-up-with-full-site-editing-fse/">' . esc_html__( 'Development Updates ↗' ) . '</a> </p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:wporg/wporg-gutenberg-link --></div>
 <!-- /wp:group --></div></div>
@@ -513,9 +513,9 @@ $content = '<!-- wp:group {"align":"full","layout":{"inherit":false,"contentSize
 <p class="has-level-1-font-size">' .
 	sprintf(
 	/* translators: 1: The URL to the Gutenberg plugin.  */
-	wp_kses_post( __( 'Gutenberg is available as part of WordPress 5.0 and later. New developments and experiments will continue in the <a href="%1$s">Gutenberg plugin</a>.', 'wporg' ) ),
-	esc_url( "https://{$localised_domain}/plugins/gutenberg/" )
-) . '</p>
+		wp_kses_post( __( 'Gutenberg is available as part of WordPress 5.0 and later. New developments and experiments will continue in the <a href="%1$s">Gutenberg plugin</a>.', 'wporg' ) ),
+		esc_url( "https://{$localised_domain}/plugins/gutenberg/" )
+	) . '</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:wporg/wporg-gutenberg-link --></div>
 <!-- /wp:column -->
