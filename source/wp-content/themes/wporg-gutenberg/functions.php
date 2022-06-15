@@ -420,6 +420,9 @@ add_action(
 
 				$post = get_post();
 
+				// Temporarily hardcode content
+				$temporary_content = include __DIR__ . '/gutenberg-content.php';
+
 				wp_add_inline_script(
 					'wp-api-fetch',
 					sprintf(
@@ -429,10 +432,10 @@ add_action(
 								'/wp/v2/pages/' . $post->ID . '?context=edit' => array(
 									'body' => array(
 										'id'             => $post->ID,
-										'title'          => array( 'raw' => $post->post_title ),
+										'title'          => array( 'raw' => $temporary_content['title'] ),
 										'content'        => array(
 											'block_format' => 1,
-											'raw'          => $post->post_content,
+											'raw'          => $temporary_content['content']
 										),
 										'excerpt'        => array( 'raw' => '' ),
 										'date'           => '',
