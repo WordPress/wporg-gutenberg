@@ -444,7 +444,7 @@ add_action(
 										'title'          => array( 'raw' => $temporary_content['title'] ),
 										'content'        => array(
 											'block_format' => 1,
-											'raw'          => $temporary_content['content']
+											'raw'          => $temporary_content['content'],
 										),
 										'excerpt'        => array( 'raw' => '' ),
 										'date'           => '',
