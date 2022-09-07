@@ -271,14 +271,14 @@ if ( ! function_exists( 'gutenberg_editor_scripts_and_styles' ) ) {
 			$editor_settings = get_block_editor_settings( $editor_settings, $editor_context );
 
 			$init_script = <<<JS
-	( function() {
-		window._wpLoadBlockEditor = new Promise( function( resolve ) {
-			wp.domReady( function() {
-				resolve( wp.editPost.initializeEditor( 'editor', "%s", %d, %s, %s ) );
-			} );
-		} );
-	} )();
-	JS;
+			( function() {
+				window._wpLoadBlockEditor = new Promise( function( resolve ) {
+					wp.domReady( function() {
+						resolve( wp.editPost.initializeEditor( 'editor', "%s", %d, %s, %s ) );
+					} );
+				} );
+			} )();
+			JS;
 
 			$script = sprintf(
 				$init_script,
