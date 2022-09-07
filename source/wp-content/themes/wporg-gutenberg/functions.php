@@ -41,7 +41,7 @@ if ( ! function_exists( 'gutenberg_editor_scripts_and_styles' ) ) {
 			/**
 			 * Scripts
 			 */
-			$temporary_content = include __DIR__ . '/gutenberg-content.php';
+			$temporary_content = include __DIR__ . '/gutenberg-content-mobile.php';
 			$script            = sprintf(
 				'wp.domReady( function () { document.querySelector(".wp-site-blocks").innerHTML = %s } );',
 				wp_json_encode( do_blocks( $temporary_content['content'] ) )
