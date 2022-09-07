@@ -440,6 +440,10 @@ add_action(
 				wp_enqueue_style( 'admin-bar' );
 				wp_enqueue_style( 'l10n' );
 
+				if ( wp_is_mobile() ) {
+					return;
+				}
+
 				$post = get_post();
 
 				// Temporarily hardcode content
@@ -505,6 +509,10 @@ add_action(
 		add_action(
 			'enqueue_block_editor_assets',
 			function() {
+				if ( wp_is_mobile() ) {
+					return;
+				}
+
 				wp_enqueue_script( 'plugin-w-button-js', get_stylesheet_directory_uri() . '/plugins/w-button/index.js', array( 'wp-blocks', 'wp-edit-post', 'wp-plugins', 'wp-components' ), filemtime( __DIR__ . '/plugins/w-button/index.js' ) );
 				wp_enqueue_style( 'plugin-w-button-css', get_stylesheet_directory_uri() . '/plugins/w-button/style.css', null, filemtime( __DIR__ . '/plugins/w-button/style.css' ) );
 
