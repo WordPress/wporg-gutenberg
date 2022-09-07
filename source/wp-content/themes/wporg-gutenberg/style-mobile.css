@@ -1,0 +1,56 @@
+/**
+* We use rem units for fonts to make the page responsive.
+*/
+
+html {
+	font-size: 18px;
+}
+
+body,
+p {
+	font-size: inherit !important;
+}
+
+h1,
+h2,
+h3 {
+	word-break: normal;
+	font-weight: inherit !important;
+}
+
+/**
+* We want some styles to be the same across diffrent environments.
+*/
+
+.wp-block-button__link {
+	border-radius: var(--wp--custom--button--border--radius);
+	background-color: #32373c;
+}
+
+/**
+* We want some links to be underlined.
+*/
+
+p > a {
+	text-decoration: underline !important;
+	text-underline-offset: 0.15em !important;
+}
+
+/**
+* There's some weirdness with flex layouts appearing seemingly out of nowhere.
+* This is a utility class to override it. Add as additional CSS class to block.
+*/
+
+.wporg-gutenberg-block-layout {
+	display: block !important;
+}
+
+.wporg-gutenberg-hide-on-mobile {
+	display: none !important;
+}
+
+@media (min-width: 782px) {
+	.wporg-gutenberg-hide-on-mobile {
+		display: inherit !important;
+	}
+}

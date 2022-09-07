@@ -51,10 +51,11 @@ if ( ! function_exists( 'gutenberg_editor_scripts_and_styles' ) ) {
 			/**
 			 * Styles
 			 */
+			wp_enqueue_style( 'custom-mobile-styles', get_stylesheet_directory_uri() . '/style-mobile.css', false, filemtime( __DIR__ . '/style-mobile.css' ) );
 			$block_editor_css = get_block_editor_theme_styles()[0]['css'];
 			wp_add_inline_style(
-				'wp-edit-post',
-				$block_editor_css . 'body,p{font-size:inherit;} h1,h2,h3,h4,h5,h6{font-weight:inherit;} .wp-block-button__link{border-radius: var(--wp--custom--button--border--radius);}'
+				'custom-mobile-styles',
+				$block_editor_css
 			);
 		} else {
 			// Enqueue heartbeat separately as an "optional" dependency of the editor.
