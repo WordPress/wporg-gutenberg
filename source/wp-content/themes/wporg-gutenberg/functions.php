@@ -326,7 +326,7 @@ if ( ! function_exists( 'gutenberg_editor_scripts_and_styles' ) ) {
 
 		if ( wp_is_mobile() ) {
 			$block_editor_css = get_block_editor_theme_styles()[0]['css'];
-			wp_add_inline_style( 'wp-edit-post', $block_editor_css . '.wp-site-blocks{all: unset;}' );
+			wp_add_inline_style( 'wp-edit-post', $block_editor_css . '.wp-site-blocks{all:unset;} body{font-size:inherit;} h1,h2,h3,h4,h5,h6{font-weight:inherit;}' );
 		}
 		/**
 		 * Fires after block assets have been enqueued for the editing interface.
