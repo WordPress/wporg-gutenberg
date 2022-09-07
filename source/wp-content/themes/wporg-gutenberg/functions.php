@@ -38,8 +38,24 @@ if ( ! function_exists( 'gutenberg_editor_scripts_and_styles' ) ) {
 	function gutenberg_editor_scripts_and_styles( $hook ) {
 
 		if ( wp_is_mobile() ) {
+			/**
+			 * Scripts
+			 */
 			$temporary_content = include __DIR__ . '/gutenberg-content.php';
-			echo( do_blocks( $temporary_content['content'] ) );
+			$script            = sprintf(
+				'wp.domReady( function () { document.querySelector(".wp-site-blocks").innerHTML = %s } );',
+				wp_json_encode( do_blocks( $temporary_content['content'] ) )
+			);
+			wp_add_inline_script( 'wp-edit-post', $script );
+
+			/**
+			 * Styles
+			 */
+			$block_editor_css = get_block_editor_theme_styles()[0]['css'];
+			wp_add_inline_style(
+				'wp-edit-post',
+				$block_editor_css . 'body,p{font-size:inherit;} h1,h2,h3,h4,h5,h6{font-weight:inherit;} .wp-block-button__link{border-radius: var(--wp--custom--button--border--radius);}'
+			);
 		} else {
 			// Enqueue heartbeat separately as an "optional" dependency of the editor.
 			// Heartbeat is used for automatic nonce refreshing, but some hosts choose
@@ -324,10 +340,6 @@ if ( ! function_exists( 'gutenberg_editor_scripts_and_styles' ) ) {
 		wp_enqueue_style( 'global-styles-css-custom-properties' );
 		wp_enqueue_style( 'wp-block-spacer' );
 
-		if ( wp_is_mobile() ) {
-			$block_editor_css = get_block_editor_theme_styles()[0]['css'];
-			wp_add_inline_style( 'wp-edit-post', $block_editor_css . '.wp-site-blocks{all:unset;} body{font-size:inherit;} h1,h2,h3,h4,h5,h6{font-weight:inherit;}' );
-		}
 		/**
 		 * Fires after block assets have been enqueued for the editing interface.
 		 *
