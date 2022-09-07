@@ -288,17 +288,17 @@ if ( ! function_exists( 'gutenberg_editor_scripts_and_styles' ) ) {
 				wp_json_encode( $initial_edits )
 			);
 			wp_add_inline_script( 'wp-edit-post', $script );
-		}
 
-		/**
-		 * Scripts
-		 */
-		wp_enqueue_media(
-			array(
-				'post' => $post->ID,
-			)
-		);
-		wp_enqueue_editor();
+			/**
+			 * Scripts
+			 */
+			wp_enqueue_media(
+				array(
+					'post' => $post->ID,
+				)
+			);
+			wp_enqueue_editor();
+		}
 
 		/**
 		 * Styles
