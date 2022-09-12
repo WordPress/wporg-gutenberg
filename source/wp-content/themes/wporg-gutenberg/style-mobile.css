@@ -24,7 +24,18 @@ h3 {
 
 .wp-block-button__link {
 	border-radius: var(--wp--custom--button--border--radius);
-	background-color: #32373c;
+	background-color: var(--wp--custom--button--color--background);
+	border-color: var(--wp--custom--button--border--color);
+	border-width: var(--wp--custom--button--border--width);
+	border-style: var(--wp--custom--button--border--style);
+	color: var(--wp--custom--button--color--text);
+	font-size: var(--wp--custom--button--typography--font-size);
+	font-weight: var(--wp--custom--button--typography--font-weight);
+	line-height: var(--wp--custom--button--typography--line-height);
+	padding-top: var(--wp--custom--button--spacing--padding--top);
+	padding-right: var(--wp--custom--button--spacing--padding--right);
+	padding-bottom: var(--wp--custom--button--spacing--padding--bottom);
+	padding-left: var(--wp--custom--button--spacing--padding--left);
 }
 
 /**
