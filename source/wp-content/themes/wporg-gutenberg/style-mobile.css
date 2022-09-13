@@ -1,0 +1,72 @@
+/**
+* We use rem units for fonts to make the page responsive.
+*/
+
+html {
+	font-size: 18px;
+}
+
+body {
+	background-color: var(--wp--preset--color--white) !important;
+	font-size: inherit !important;
+}
+
+p {
+	font-size: inherit !important;
+}
+
+h1,
+h2,
+h3 {
+	word-break: normal;
+	font-weight: inherit !important;
+}
+
+/**
+* We want some styles to be the same across different environments.
+*/
+
+.wp-block-button__link {
+	border-radius: var(--wp--custom--button--border--radius);
+	background-color: var(--wp--custom--button--color--background);
+	border-color: var(--wp--custom--button--border--color);
+	border-width: var(--wp--custom--button--border--width);
+	border-style: var(--wp--custom--button--border--style);
+	color: var(--wp--custom--button--color--text);
+	font-size: var(--wp--custom--button--typography--font-size);
+	font-weight: var(--wp--custom--button--typography--font-weight);
+	line-height: var(--wp--custom--button--typography--line-height);
+	padding-top: var(--wp--custom--button--spacing--padding--top);
+	padding-right: var(--wp--custom--button--spacing--padding--right);
+	padding-bottom: var(--wp--custom--button--spacing--padding--bottom);
+	padding-left: var(--wp--custom--button--spacing--padding--left);
+}
+
+/**
+* We want some links to be underlined and to have styles consistent with different environments.
+*/
+
+p > a {
+	text-decoration: underline !important;
+	text-underline-offset: 0.15em !important;
+	color: var(--wp--custom--color--primary);
+}
+
+/**
+* There's some weirdness with flex layouts appearing seemingly out of nowhere.
+* This is a utility class to override it. Add as additional CSS class to block.
+*/
+
+.wporg-gutenberg-block-layout {
+	display: block !important;
+}
+
+.wporg-gutenberg-hide-on-mobile {
+	display: none !important;
+}
+
+@media (min-width: 782px) {
+	.wporg-gutenberg-hide-on-mobile {
+		display: inherit !important;
+	}
+}
