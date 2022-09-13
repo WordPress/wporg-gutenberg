@@ -6,7 +6,11 @@ html {
 	font-size: 18px;
 }
 
-body,
+body {
+	background-color: var(--wp--preset--color--white) !important;
+	font-size: inherit !important;
+}
+
 p {
 	font-size: inherit !important;
 }
@@ -19,7 +23,7 @@ h3 {
 }
 
 /**
-* We want some styles to be the same across diffrent environments.
+* We want some styles to be the same across different environments.
 */
 
 .wp-block-button__link {
@@ -39,12 +43,13 @@ h3 {
 }
 
 /**
-* We want some links to be underlined.
+* We want some links to be underlined and to have styles consistent with different environments.
 */
 
 p > a {
 	text-decoration: underline !important;
 	text-underline-offset: 0.15em !important;
+	color: var(--wp--custom--color--primary);
 }
 
 /**
