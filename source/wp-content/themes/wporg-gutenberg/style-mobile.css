@@ -65,8 +65,17 @@ p > a {
 	display: none !important;
 }
 
+.site-header {
+	padding-top: 106px;
+	padding-bottom: 10%;
+}
+
 @media (min-width: 782px) {
 	.wporg-gutenberg-hide-on-mobile {
 		display: inherit !important;
+	}
+
+	.site-header {
+		padding-top: 92px;
 	}
 }
