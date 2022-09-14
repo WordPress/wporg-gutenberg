@@ -79,3 +79,7 @@ p > a {
 		padding-top: 92px;
 	}
 }
+
+.wp-site-blocks > * + * {
+	margin-block-start: unset;
+}
