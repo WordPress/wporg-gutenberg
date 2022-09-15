@@ -5,8 +5,8 @@ $localised_domain = parse_url( home_url( '/' ), PHP_URL_HOST );
 $title = __( 'Say Hello to Gutenberg, the WordPress Editor', 'wporg' );
 
 $content = '<!-- wp:group {"align":"full","layout":{"inherit":false,"contentSize":"1200px"}} -->
-<div class="wp-block-group alignfull"><!-- wp:group {"style":{"elements":{"link":{"color":{"text":"var:preset|color|black"}}},"spacing":{"padding":{"bottom":"10%","top":"60px"}}},"className":"site-header","layout":{"type":"flex","orientation":"vertical","justifyContent":"left","flexWrap":"wrap"}} -->
-<div class="wp-block-group site-header has-link-color" style="padding-top:60px;padding-bottom:10%"><!-- wp:image {"id":17,"width":38,"height":38,"sizeSlug":"full","linkDestination":"none"} -->
+<div class="wp-block-group alignfull"><!-- wp:group {"style":{"elements":{"link":{"color":{"text":"var:preset|color|black"}}}},"className":"site-header","layout":{"type":"flex","orientation":"vertical","justifyContent":"left","flexWrap":"wrap"}} -->
+<div class="wp-block-group site-header has-link-color" ><!-- wp:image {"id":17,"width":38,"height":38,"sizeSlug":"full","linkDestination":"none"} -->
 <figure class="wp-block-image size-full is-resized"><img src="https://wordpress.org/gutenberg/files/2022/06/site_icon.png" alt="" class="wp-image-17" width="38" height="38"/></figure>
 <!-- /wp:image --></div>
 <!-- /wp:group -->
