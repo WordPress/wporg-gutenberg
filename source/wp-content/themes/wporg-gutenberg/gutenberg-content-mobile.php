@@ -457,8 +457,8 @@ $content = '<!-- wp:group {"align":"full","layout":{"inherit":false,"contentSize
 <!-- /wp:group --></div></div>
 <!-- /wp:cover -->
 
-<!-- wp:cover {"customOverlayColor":"#fbfaf7","minHeightUnit":"px","contentPosition":"center center","isDark":false,"align":"full","style":{"spacing":{"padding":{"top":"60px","bottom":"60px"}}}} -->
-<div class="wp-block-cover alignfull is-light" style="padding-top:60px;padding-bottom:60px"><span aria-hidden="true" class="wp-block-cover__background has-background-dim-100 has-background-dim" style="background-color:#fbfaf7"></span><div class="wp-block-cover__inner-container"><!-- wp:group {"layout":{"contentSize":"1200px"}} -->
+<!-- wp:cover {"customOverlayColor":"#fdfdfd","minHeightUnit":"px","contentPosition":"center center","isDark":false,"align":"full","style":{"spacing":{"padding":{"top":"60px","bottom":"60px"}}}} -->
+<div class="wp-block-cover alignfull is-light" style="padding-top:60px;padding-bottom:60px"><span aria-hidden="true" class="wp-block-cover__background has-background-dim-100 has-background-dim" style="background-color:#fdfdfd"></span><div class="wp-block-cover__inner-container"><!-- wp:group {"layout":{"contentSize":"1200px"}} -->
 <div class="wp-block-group"><!-- wp:columns {"verticalAlignment":"center","isStackedOnMobile":false,"style":{"spacing":{"padding":{"top":"0px","bottom":"0px","right":"0px","left":"0px"}}}} -->
 <div class="wp-block-columns are-vertically-aligned-center is-not-stacked-on-mobile" style="padding-top:0px;padding-right:0px;padding-bottom:0px;padding-left:0px"><!-- wp:column {"verticalAlignment":"center","width":"80%"} -->
 <div class="wp-block-column is-vertically-aligned-center" style="flex-basis:80%"><!-- wp:paragraph {"fontSize":"level-2"} -->
@@ -468,7 +468,7 @@ $content = '<!-- wp:group {"align":"full","layout":{"inherit":false,"contentSize
 
 <!-- wp:column {"verticalAlignment":"center","width":"20%"} -->
 <div class="wp-block-column is-vertically-aligned-center" style="flex-basis:20%"><!-- wp:image {"align":"right","id":1157,"width":85,"height":85,"sizeSlug":"full","linkDestination":"none","style":{"color":{"duotone":["#3858e9","#fbfaf7"]}}} -->
-<figure class="wp-block-image alignright size-full is-resized"><img src="https://blockpatterndesigns.mystagingwebsite.com/wp-content/uploads/2021/11/docs.png" alt="" class="wp-image-1157" width="85" height="85"/></figure>
+<figure class="wp-block-image alignright size-full is-resized"><img src="https://wordpress.org/gutenberg/files/2022/10/docs.png" alt="" class="wp-image-1157" width="85" height="85"/></figure>
 <!-- /wp:image --></div>
 <!-- /wp:column --></div>
 <!-- /wp:columns -->
