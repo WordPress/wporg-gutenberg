@@ -467,7 +467,7 @@ $content = '<!-- wp:group {"align":"full","layout":{"inherit":false,"contentSize
 <!-- /wp:column -->
 
 <!-- wp:column {"verticalAlignment":"center","width":"20%"} -->
-<div class="wp-block-column is-vertically-aligned-center" style="flex-basis:20%"><!-- wp:image {"align":"right","id":1157,"width":85,"height":85,"sizeSlug":"full","linkDestination":"none","style":{"color":{"duotone":["#3858e9","#fbfaf7"]}}} -->
+<div class="wp-block-column is-vertically-aligned-center" style="flex-basis:20%"><!-- wp:image {"align":"right","id":1157,"width":85,"height":85,"sizeSlug":"full","linkDestination":"none","style":{"color":{"duotone":"unset"}}} -->
 <figure class="wp-block-image alignright size-full is-resized"><img src="https://wordpress.org/gutenberg/files/2022/10/docs.png" alt="" class="wp-image-1157" width="85" height="85"/></figure>
 <!-- /wp:image --></div>
 <!-- /wp:column --></div>
