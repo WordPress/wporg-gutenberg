@@ -37,7 +37,7 @@ if ( ! function_exists( 'gutenberg_editor_scripts_and_styles' ) ) {
 	 */
 	function gutenberg_editor_scripts_and_styles( $hook ) {
 
-		if ( wp_is_mobile() ) {
+		if ( false ) {
 			/**
 			 * Scripts
 			 */
@@ -440,7 +440,7 @@ add_action(
 				wp_enqueue_style( 'admin-bar' );
 				wp_enqueue_style( 'l10n' );
 
-				if ( wp_is_mobile() ) {
+				if ( false ) {
 					return;
 				}
 
@@ -509,7 +509,7 @@ add_action(
 		add_action(
 			'enqueue_block_editor_assets',
 			function() {
-				if ( wp_is_mobile() ) {
+				if ( false ) {
 					return;
 				}
 
