@@ -24,7 +24,7 @@ $content = '<!-- wp:group {"align":"full","layout":{"inherit":false,"contentSize
 
 <!-- wp:wporg/wporg-gutenberg-button -->
 <div class="wp-block-wporg-wporg-gutenberg-button wp-block-buttons"><!-- wp:button {"width":100,"className":"is-style-outline"} -->
-<div class="wp-block-button has-custom-width wp-block-button__width-100 is-style-outline"><a class="wp-block-button__link wp-element-button" href="' . esc_url( "https://{$localised_domain}/download/" ) . '">' . esc_html__( 'Try Gutenberg today in WordPress', 'wporg' ) . '</a></div>
+<div class="wp-block-button has-custom-width wp-block-button__width-100 is-style-outline"><a class="wp-block-button__link wp-element-button" href="' . esc_url( "https://{$localised_domain}/download/" ) . '"  target="_blank">' . esc_html__( 'Try Gutenberg today in WordPress', 'wporg' ) . '</a></div>
 <!-- /wp:button --></div>
 <!-- /wp:wporg/wporg-gutenberg-button --></div>
 <!-- /wp:group --></div>
@@ -124,7 +124,7 @@ $content = '<!-- wp:group {"align":"full","layout":{"inherit":false,"contentSize
 <!-- wp:column {"verticalAlignment":"top","width":"25%","style":{"spacing":{"padding":{"top":"10px"}}}} -->
 <div class="wp-block-column is-vertically-aligned-top" style="padding-top:10px;flex-basis:25%"><!-- wp:wporg/wporg-gutenberg-button -->
 <div class="wp-block-wporg-wporg-gutenberg-button wp-block-buttons"><!-- wp:button {"width":100,"className":"is-style-outline"} -->
-<div class="wp-block-button has-custom-width wp-block-button__width-100 is-style-outline"><a class="wp-block-button__link wp-element-button" href="' . esc_url( "https://{$localised_domain}/plugins/browse/block/" ) . '">' . esc_html__( 'Browse all blocks', 'wporg' ) . '</a></div>
+<div class="wp-block-button has-custom-width wp-block-button__width-100 is-style-outline"><a class="wp-block-button__link wp-element-button" href="' . esc_url( "https://{$localised_domain}/plugins/browse/block/" ) . '" target="_blank">' . esc_html__( 'Browse all blocks', 'wporg' ) . '</a></div>
 <!-- /wp:button --></div>
 <!-- /wp:wporg/wporg-gutenberg-button --></div>
 <!-- /wp:column --></div>
@@ -257,13 +257,13 @@ $content = '<!-- wp:group {"align":"full","layout":{"inherit":false,"contentSize
 <div class="wp-block-columns"><!-- wp:column {"width":"70%","className":"wporg-gutenberg-block-layout"} -->
 <div class="wp-block-column wporg-gutenberg-block-layout" style="flex-basis:70%"><!-- wp:wporg/wporg-gutenberg-button -->
 <div class="wp-block-wporg-wporg-gutenberg-button wp-block-buttons"><!-- wp:button {"width":100,"style":{"color":{"text":"#ffffff"}, "className":"is-style-fill"} -->
-<div class="wp-block-button has-custom-width wp-block-button__width-100 is-style-fill"><a class="wp-block-button__link wp-element-button" href="' . esc_url( "https://{$localised_domain}/patterns/" ) . '" style="color:#ffffff">' . esc_html__( 'Block Pattern Directory', 'wporg' ) . '</a></div>
+<div class="wp-block-button has-custom-width wp-block-button__width-100 is-style-fill"><a class="wp-block-button__link wp-element-button" href="' . esc_url( "https://{$localised_domain}/patterns/" ) . '" style="color:#ffffff" target="_blank">' . esc_html__( 'Block Pattern Directory', 'wporg' ) . '</a></div>
 <!-- /wp:button --></div>
 <!-- /wp:wporg/wporg-gutenberg-button -->
 
 <!-- wp:wporg/wporg-gutenberg-button -->
 <div class="wp-block-wporg-wporg-gutenberg-button wp-block-buttons"><!-- wp:button {"width":100,"className":"is-style-outline"} -->
-<div class="wp-block-button has-custom-width wp-block-button__width-100 is-style-outline"><a class="wp-block-button__link wp-element-button" href="https://learn.wordpress.org/lesson-plan/how-to-use-wordpress-block-patterns/">' . esc_html__( 'Learn how to create patterns', 'wporg' ) . '</a></div>
+<div class="wp-block-button has-custom-width wp-block-button__width-100 is-style-outline"><a class="wp-block-button__link wp-element-button" href="https://learn.wordpress.org/lesson-plan/how-to-use-wordpress-block-patterns/" target="_blank">' . esc_html__( 'Learn how to create patterns', 'wporg' ) . '</a></div>
 <!-- /wp:button --></div>
 <!-- /wp:wporg/wporg-gutenberg-button --></div>
 <!-- /wp:column -->
@@ -315,7 +315,7 @@ $content = '<!-- wp:group {"align":"full","layout":{"inherit":false,"contentSize
 <!-- wp:column {"verticalAlignment":"top","width":""} -->
 <div class="wp-block-column is-vertically-aligned-top"><!-- wp:wporg/wporg-gutenberg-button -->
 <div class="wp-block-wporg-wporg-gutenberg-button wp-block-buttons"><!-- wp:button {"width":100,"className":"is-style-outline"} -->
-<div class="wp-block-button has-custom-width wp-block-button__width-100 is-style-outline"><a class="wp-block-button__link wp-element-button" href="https://make.wordpress.org/core/handbook/tutorials/navigating-the-community/">' . esc_html__( 'Join the WordPress Community', 'wporg' ) . '</a></div>
+<div class="wp-block-button has-custom-width wp-block-button__width-100 is-style-outline"><a class="wp-block-button__link wp-element-button" href="https://make.wordpress.org/core/handbook/tutorials/navigating-the-community/" target="_blank">' . esc_html__( 'Join the WordPress Community', 'wporg' ) . '</a></div>
 <!-- /wp:button --></div>
 <!-- /wp:wporg/wporg-gutenberg-button --></div>
 <!-- /wp:column --></div>
@@ -341,7 +341,7 @@ $content = '<!-- wp:group {"align":"full","layout":{"inherit":false,"contentSize
 <!-- wp:column {"verticalAlignment":"top"} -->
 <div class="wp-block-column is-vertically-aligned-top"><!-- wp:wporg/wporg-gutenberg-button -->
 <div class="wp-block-wporg-wporg-gutenberg-button wp-block-buttons"><!-- wp:button {"width":100,"className":"is-style-outline"} -->
-<div class="wp-block-button has-custom-width wp-block-button__width-100 is-style-outline"><a class="wp-block-button__link wp-element-button" href="https://developer.wordpress.org/block-editor/explanations/architecture/key-concepts/">' . esc_html__( 'Browse the documentation', 'wporg' ) . '</a></div>
+<div class="wp-block-button has-custom-width wp-block-button__width-100 is-style-outline"><a class="wp-block-button__link wp-element-button" href="https://developer.wordpress.org/block-editor/explanations/architecture/key-concepts/" target="_blank">' . esc_html__( 'Browse the documentation', 'wporg' ) . '</a></div>
 <!-- /wp:button --></div>
 <!-- /wp:wporg/wporg-gutenberg-button --></div>
 <!-- /wp:column --></div>
@@ -367,7 +367,7 @@ $content = '<!-- wp:group {"align":"full","layout":{"inherit":false,"contentSize
 <!-- wp:column {"verticalAlignment":"top","width":""} -->
 <div class="wp-block-column is-vertically-aligned-top"><!-- wp:wporg/wporg-gutenberg-button -->
 <div class="wp-block-wporg-wporg-gutenberg-button wp-block-buttons"><!-- wp:button {"width":100,"className":"is-style-outline"} -->
-<div class="wp-block-button has-custom-width wp-block-button__width-100 is-style-outline"><a class="wp-block-button__link wp-element-button" href="https://developer.wordpress.org/block-editor/explanations/faq/#compatibility">' . esc_html__( 'Learn more about compatibility', 'wporg' ) . '</a></div>
+<div class="wp-block-button has-custom-width wp-block-button__width-100 is-style-outline"><a class="wp-block-button__link wp-element-button" href="https://developer.wordpress.org/block-editor/explanations/faq/#compatibility" target="_blank">' . esc_html__( 'Learn more about compatibility', 'wporg' ) . '</a></div>
 <!-- /wp:button --></div>
 <!-- /wp:wporg/wporg-gutenberg-button --></div>
 <!-- /wp:column --></div>
@@ -393,7 +393,7 @@ $content = '<!-- wp:group {"align":"full","layout":{"inherit":false,"contentSize
 <!-- wp:column {"verticalAlignment":"top"} -->
 <div class="wp-block-column is-vertically-aligned-top"><!-- wp:wporg/wporg-gutenberg-button -->
 <div class="wp-block-wporg-wporg-gutenberg-button wp-block-buttons"><!-- wp:button {"width":100,"className":"is-style-outline"} -->
-<div class="wp-block-button has-custom-width wp-block-button__width-100 is-style-outline"><a class="wp-block-button__link wp-element-button" href="https://make.wordpress.org/accessibility/">' . esc_html__( 'See accessibility improvements', 'wporg' ) . '</a></div>
+<div class="wp-block-button has-custom-width wp-block-button__width-100 is-style-outline"><a class="wp-block-button__link wp-element-button" href="https://make.wordpress.org/accessibility/" target="_blank">' . esc_html__( 'See accessibility improvements', 'wporg' ) . '</a></div>
 <!-- /wp:button --></div>
 <!-- /wp:wporg/wporg-gutenberg-button --></div>
 <!-- /wp:column --></div>
@@ -431,7 +431,7 @@ $content = '<!-- wp:group {"align":"full","layout":{"inherit":false,"contentSize
 <p class="has-level-1-font-size">' .
 	sprintf(
 	/* translators: 1: The URL to learn.wordpress.org.  */
-		wp_kses_post( __( 'You can learn all the basics on <a href="%1$s">Learn WordPress</a>, a whole section dedicated to helping you get started.', 'wporg' ) ),
+		wp_kses_post( __( 'You can learn all the basics on <a href="%1$s" target="_blank">Learn WordPress</a>, a whole section dedicated to helping you get started.', 'wporg' ) ),
 		esc_url( 'https://learn.wordpress.org' )
 	) . '</p>
 <!-- /wp:paragraph --></div>
@@ -449,7 +449,7 @@ $content = '<!-- wp:group {"align":"full","layout":{"inherit":false,"contentSize
 <!-- wp:column {"verticalAlignment":"bottom","width":"60%"} -->
 <div class="wp-block-column is-vertically-aligned-bottom" style="flex-basis:60%"><!-- wp:wporg/wporg-gutenberg-link -->
 <div class="wp-block-wporg-wporg-gutenberg-link"><!-- wp:paragraph {"textColor":"secondary","fontSize":"level-3"} -->
-<p class="has-secondary-color has-text-color has-level-3-font-size"><a href="https://learn.wordpress.org/workshop/how-to-install-wordpress/">' . esc_html__( 'How to Install WordPress ↗' ) . '</a><br><a href="https://learn.wordpress.org/workshop/how-to-choose-install-a-theme/">' . esc_html__( 'How to Choose and Install a Theme ↗' ) . '</a><br><a href="https://learn.wordpress.org/workshop/intro-to-block-patterns/">' . esc_html__( 'Intro to Block Patterns ↗' ) . '</a><br><a href="https://learn.wordpress.org/workshop/advanced-layouts-with-the-block-editor/">' . esc_html__( 'Advanced Layouts With the Block Editor ↗' ) . '</a></p>
+<p class="has-secondary-color has-text-color has-level-3-font-size"><a href="https://learn.wordpress.org/workshop/how-to-install-wordpress/" target="_blank">' . esc_html__( 'How to Install WordPress ↗' ) . '</a><br><a href="https://learn.wordpress.org/workshop/how-to-choose-install-a-theme/" target="_blank">' . esc_html__( 'How to Choose and Install a Theme ↗' ) . '</a><br><a href="https://learn.wordpress.org/workshop/intro-to-block-patterns/" target="_blank">' . esc_html__( 'Intro to Block Patterns ↗' ) . '</a><br><a href="https://learn.wordpress.org/workshop/advanced-layouts-with-the-block-editor/" target="_blank">' . esc_html__( 'Advanced Layouts With the Block Editor ↗' ) . '</a></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:wporg/wporg-gutenberg-link --></div>
 <!-- /wp:column --></div>
@@ -475,7 +475,7 @@ $content = '<!-- wp:group {"align":"full","layout":{"inherit":false,"contentSize
 
 <!-- wp:wporg/wporg-gutenberg-link -->
 <div class="wp-block-wporg-wporg-gutenberg-link"><!-- wp:paragraph {"textColor":"secondary","fontSize":"level-3"} -->
-<p class="has-secondary-color has-text-color has-level-3-font-size"> <a href="https://developer.wordpress.org/block-editor/explanations/faq/">' . esc_html__( 'Gutenberg FAQs ↗', 'wporg' ) . '</a><br> <a href="https://wordpress.tv/?s=gutenberg">' . esc_html__( 'WordPress.tv talks about Gutenberg ↗' ) . '</a> <br> <a href="https://developer.wordpress.org/block-editor/contributors/design/#goal-of-gutenberg">' . esc_html__( 'Gutenberg Design Principles ↗' ) . '</a><br> <a href="https://wordpress.org/support/article/wordpress-editor/">' . esc_html__( 'WordPress Editor Documentation ↗' ) . '</a><br> <a href="https://make.wordpress.org/core/2020/05/20/ways-to-keep-up-with-full-site-editing-fse/">' . esc_html__( 'Development Updates ↗' ) . '</a> </p>
+<p class="has-secondary-color has-text-color has-level-3-font-size"> <a href="https://developer.wordpress.org/block-editor/explanations/faq/" target="_blank">' . esc_html__( 'Gutenberg FAQs ↗', 'wporg' ) . '</a><br> <a href="https://wordpress.tv/?s=gutenberg" target="_blank">' . esc_html__( 'WordPress.tv talks about Gutenberg ↗' ) . '</a> <br> <a href="https://developer.wordpress.org/block-editor/contributors/design/#goal-of-gutenberg" target="_blank">' . esc_html__( 'Gutenberg Design Principles ↗' ) . '</a><br> <a href="https://wordpress.org/support/article/wordpress-editor/" target="_blank">' . esc_html__( 'WordPress Editor Documentation ↗' ) . '</a><br> <a href="https://make.wordpress.org/core/2020/05/20/ways-to-keep-up-with-full-site-editing-fse/" target="_blank">' . esc_html__( 'Development Updates ↗' ) . '</a> </p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:wporg/wporg-gutenberg-link --></div>
 <!-- /wp:group --></div></div>
@@ -493,7 +493,7 @@ $content = '<!-- wp:group {"align":"full","layout":{"inherit":false,"contentSize
 <!-- /wp:group -->
 
 <!-- wp:paragraph {"align":"center","style":{"elements":{"link":{"color":{"text":"var:preset|color|tertiary"}}}},"textColor":"tertiary","fontSize":"small"} -->
-<p class="has-text-align-center has-tertiary-color has-text-color has-link-color has-small-font-size"> — MATT MULLENWEG, IN <a href="https://ma.tt/2017/08/we-called-it-gutenberg-for-a-reason/">MA.TT</a></p>
+<p class="has-text-align-center has-tertiary-color has-text-color has-link-color has-small-font-size"> — MATT MULLENWEG, IN <a href="https://ma.tt/2017/08/we-called-it-gutenberg-for-a-reason/" target="_blank">MA.TT</a></p>
 <!-- /wp:paragraph --></div></div>
 <!-- /wp:cover -->
 
@@ -513,7 +513,7 @@ $content = '<!-- wp:group {"align":"full","layout":{"inherit":false,"contentSize
 <p class="has-level-1-font-size">' .
 	sprintf(
 	/* translators: 1: The URL to the Gutenberg plugin.  */
-		wp_kses_post( __( 'Gutenberg is available as part of WordPress 5.0 and later. New developments and experiments will continue in the <a href="%1$s">Gutenberg plugin</a>.', 'wporg' ) ),
+		wp_kses_post( __( 'Gutenberg is available as part of WordPress 5.0 and later. New developments and experiments will continue in the <a href="%1$s" target="_blank">Gutenberg plugin</a>.', 'wporg' ) ),
 		esc_url( "https://{$localised_domain}/plugins/gutenberg/" )
 	) . '</p>
 <!-- /wp:paragraph --></div>
@@ -530,8 +530,8 @@ $content = '<!-- wp:group {"align":"full","layout":{"inherit":false,"contentSize
 <div class="wp-block-column is-vertically-aligned-bottom"><!-- wp:group {"style":{"spacing":{"padding":{"top":"30px"}}},"layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"space-between"}} -->
 <div class="wp-block-group" style="padding-top:30px"><!-- wp:wporg/wporg-gutenberg-link -->
 <div class="wp-block-wporg-wporg-gutenberg-link"><!-- wp:paragraph {"align":"right","fontSize":"normal"} -->
-<p class="has-text-align-right has-normal-font-size"><a href="https://twitter.com/WordPress">' . esc_html__( 'Twitter ↗', 'wporg' ) . '<br>
-</a><a href="https://github.com/WordPress/gutenberg">' . esc_html__( 'GitHub ↗', 'wporg' ) . '</a>
+<p class="has-text-align-right has-normal-font-size"><a href="https://twitter.com/WordPress" target="_blank">' . esc_html__( 'Twitter ↗', 'wporg' ) . '<br>
+</a><a href="https://github.com/WordPress/gutenberg" target="_blank">' . esc_html__( 'GitHub ↗', 'wporg' ) . '</a>
 </p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:wporg/wporg-gutenberg-link -->
