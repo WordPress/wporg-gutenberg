@@ -408,11 +408,7 @@ $content = '<!-- wp:group {"align":"full","layout":{"inherit":false,"contentSize
 <div class="wp-block-columns is-not-stacked-on-mobile"><!-- wp:column {"width":"80%"} -->
 <div class="wp-block-column" style="flex-basis:80%"><!-- wp:group {"align":"wide","style":{"spacing":{"padding":{"bottom":"60px"}}},"layout":{"contentSize":""}} -->
 <div class="wp-block-group alignwide" style="padding-bottom:60px"><!-- wp:heading {"align":"wide","fontSize":"level-5"} -->
-<h2 class="alignwide has-level-5-font-size" id="be-your-own-builder">' . esc_html__( 'New to WordPress?', 'wporg' ) . '</h2>
-<!-- /wp:heading -->
-
-<!-- wp:heading {"align":"wide","style":{"typography":{"lineHeight":0.1}},"fontSize":"level-5"} -->
-<h2 class="alignwide has-level-5-font-size" id="be-your-own-builder" style="line-height:0.1">' . esc_html__( 'No problem.', 'wporg' ) . '</h2>
+<h2 class="alignwide has-level-5-font-size" id="be-your-own-builder">' . esc_html__( 'New to WordPress?', 'wporg' ) . '<br>' . esc_html__( 'No problem.', 'wporg' ) . '</h2>
 <!-- /wp:heading --></div>
 <!-- /wp:group --></div>
 <!-- /wp:column -->

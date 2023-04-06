@@ -370,11 +370,7 @@
 <div class="wp-block-columns"><!-- wp:column {"width":"90%"} -->
 <div class="wp-block-column" style="flex-basis:90%"><!-- wp:group {"align":"wide","style":{"spacing":{"padding":{"bottom":"60px"}}},"layout":{"contentSize":""}} -->
 <div class="wp-block-group alignwide" style="padding-bottom:60px"><!-- wp:heading {"align":"wide","style":{"typography":{"fontSize":"4.5rem"}}} -->
-<h2 class="alignwide" id="be-your-own-builder" style="font-size:4.5rem">New to WordPress? </h2>
-<!-- /wp:heading -->
-
-<!-- wp:heading {"align":"wide","style":{"typography":{"lineHeight":"0.1","fontSize":"4.5rem"}}} -->
-<h2 class="alignwide" id="be-your-own-builder" style="font-size:4.5rem;line-height:0.1">No problem.</h2>
+<h2 class="alignwide" id="be-your-own-builder" style="font-size:4.5rem">New to WordPress?<br>No problem.</h2>
 <!-- /wp:heading --></div>
 <!-- /wp:group --></div>
 <!-- /wp:column -->
