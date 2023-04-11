@@ -464,12 +464,6 @@ $content = '<!-- wp:group {"align":"full","layout":{"inherit":false,"contentSize
 <div class="wp-block-column is-vertically-aligned-center" style="flex-basis:80%"><!-- wp:paragraph {"fontSize":"level-2"} -->
 <p class="has-level-2-font-size">' . esc_html__( 'Some more helpful content and places to dig deeper about Gutenberg.', 'wporg' ) . '</p>
 <!-- /wp:paragraph --></div>
-<!-- /wp:column -->
-
-<!-- wp:column {"verticalAlignment":"center","width":"20%"} -->
-<div class="wp-block-column is-vertically-aligned-center" style="flex-basis:20%"><!-- wp:image {"align":"right","id":1157,"width":85,"height":85,"sizeSlug":"full","linkDestination":"none","style":{"color":{"duotone":"unset"}}} -->
-<figure class="wp-block-image alignright size-full is-resized"><img src="https://wordpress.org/gutenberg/files/2022/10/docs.png" alt="" class="wp-image-1157" width="85" height="85"/></figure>
-<!-- /wp:image --></div>
 <!-- /wp:column --></div>
 <!-- /wp:columns -->
 
