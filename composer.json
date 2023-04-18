@@ -13,12 +13,27 @@
 		"allow-plugins": {
 			"composer/installers": true,
 			"dealerdirect/phpcodesniffer-composer-installer": true
+		},
+		"preferred-install": {
+			"wordpress/*": "source",
+			"wporg/*": "source"
+		}
+	},
+	"extra": {
+		"installer-paths": {
+			"source/wp-content/mu-plugins/{$name}/": ["type:wordpress-muplugin"],
+			"source/wp-content/plugins/{$name}/": ["type:wordpress-plugin"],
+			"source/wp-content/themes/{$name}/": ["type:wordpress-theme"]
 		}
 	},
 	"repositories": [
 		{
 			"type": "composer",
 			"url": "https://wpackagist.org/"
+		},
+		{
+			"type": "vcs",
+			"url": "git@github.com:WordPress/wporg-mu-plugins.git"
 		},
 		{
 			"type": "vcs",
@@ -29,6 +44,7 @@
 	"require-dev": {
 		"composer/installers": "~1.0",
 		"wporg/wporg-repo-tools": "dev-trunk",
+		"wporg/wporg-mu-plugins": "dev-build",
 		"dealerdirect/phpcodesniffer-composer-installer": "^0.7.0",
 		"wp-coding-standards/wpcs": "2.*",
 		"phpcompatibility/phpcompatibility-wp": "*",
