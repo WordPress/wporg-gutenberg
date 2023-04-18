@@ -24,6 +24,11 @@ These must be run in the project's root folder, _not_ in theme/plugin subfolders
 * Reset the dev site's content: `yarn run env:reset`
 * SSH into docker container: `docker exec -it {container ID} /bin/bash`. You can get the ID from `docker ps`.
 
+### Manual environment updates
+
+Comment out `'activePostLock' => esc_attr( implode( ':', $active_post_lock ) )` in `functions.php@241`. That line is needed for .org but not running it locally. It will cause an error.
+
+
 ### Sync/Deploy
 
 The built files are committed to `dotorg.svn` so they can be deployed. They aren't synced to `meta.svn`, since they're already open in GitHub.
