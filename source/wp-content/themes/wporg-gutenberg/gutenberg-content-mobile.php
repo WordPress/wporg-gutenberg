@@ -242,7 +242,7 @@ $content = '<!-- wp:group {"align":"full","layout":{"inherit":false,"contentSize
 <div class="wp-block-columns" style="padding-right:0px;padding-left:0px"><!-- wp:column {"verticalAlignment":"top","width":"53%","style":{"spacing":{"padding":{"bottom":"0px"}}}} -->
 <div class="wp-block-column is-vertically-aligned-top" style="padding-bottom:0px;flex-basis:53%"><!-- wp:group {"align":"wide","className":"wporg-gutenberg-block-layout","layout":{"type":"default"}} -->
 <div class="wp-block-group alignwide wporg-gutenberg-block-layout"><!-- wp:heading {"align":"wide","fontSize":"level-5"} -->
-<h2 class="alignwide has-level-5-font-size" id="be-your-own-builder">' . esc_html__( 'Give your creativity a head start.', 'wporg' ) . '</h2>
+<h2 class="alignwide has-level-5-font-size" id="head-start">' . esc_html__( 'Give your creativity a head start.', 'wporg' ) . '</h2>
 <!-- /wp:heading -->
 
 <!-- wp:spacer {"height":"40px","className":"wporg-gutenberg-hide-on-mobile"} -->
@@ -408,11 +408,7 @@ $content = '<!-- wp:group {"align":"full","layout":{"inherit":false,"contentSize
 <div class="wp-block-columns is-not-stacked-on-mobile"><!-- wp:column {"width":"80%"} -->
 <div class="wp-block-column" style="flex-basis:80%"><!-- wp:group {"align":"wide","style":{"spacing":{"padding":{"bottom":"60px"}}},"layout":{"contentSize":""}} -->
 <div class="wp-block-group alignwide" style="padding-bottom:60px"><!-- wp:heading {"align":"wide","fontSize":"level-5"} -->
-<h2 class="alignwide has-level-5-font-size" id="be-your-own-builder">' . esc_html__( 'New to WordPress?', 'wporg' ) . '</h2>
-<!-- /wp:heading -->
-
-<!-- wp:heading {"align":"wide","style":{"typography":{"lineHeight":0.1}},"fontSize":"level-5"} -->
-<h2 class="alignwide has-level-5-font-size" id="be-your-own-builder" style="line-height:0.1">' . esc_html__( 'No problem.', 'wporg' ) . '</h2>
+<h2 class="alignwide has-level-5-font-size" id="new-to-wordpress">' . esc_html__( 'New to WordPress?', 'wporg' ) . '<br>' . esc_html__( 'No problem.', 'wporg' ) . '</h2>
 <!-- /wp:heading --></div>
 <!-- /wp:group --></div>
 <!-- /wp:column -->
