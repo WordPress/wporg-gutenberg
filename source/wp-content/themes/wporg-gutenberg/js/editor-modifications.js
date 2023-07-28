@@ -17,8 +17,8 @@ _wpLoadBlockEditor.then( function () {
 // Use a middleware provider to intercept and modify API calls. Short-circuit POST requests, bound queries, allow media, etc.
 wp.apiFetch.use( function ( options, next ) {
 	const isWhitelistedEndpoint =
-		lodash.startsWith( options.path, '/oembed/1.0/proxy' ) ||
-		lodash.startsWith( options.path, '/gutenberg/v1/block-renderer' );
+		options.path.startsWith( '/oembed/1.0/proxy' ) ||
+		options.path.startsWith( '/gutenberg/v1/block-renderer' );
 
 	// Prevent non-whitelisted non-GET requests (ie. POST) to prevent errors
 	if ( options.method && options.method !== 'GET' && ! isWhitelistedEndpoint ) {
@@ -30,7 +30,7 @@ wp.apiFetch.use( function ( options, next ) {
 	options.path = options.path.replace( 'per_page=-1', 'per_page=10' );
 
 	// Load images with the view context, seems to work
-	if ( lodash.startsWith( options.path, '/wp/v2/media/' ) ) {
+	if ( options.path.startsWith( options.path, '/wp/v2/media/' ) ) {
 		options.path = options.path.replace( 'context=edit', 'context=view' );
 	}
 
