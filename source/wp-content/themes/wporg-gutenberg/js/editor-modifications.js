@@ -30,7 +30,7 @@ wp.apiFetch.use( function ( options, next ) {
 	options.path = options.path.replace( 'per_page=-1', 'per_page=10' );
 
 	// Load images with the view context, seems to work
-	if ( options.path.startsWith( options.path, '/wp/v2/media/' ) ) {
+	if ( options.path.startsWith( '/wp/v2/media/' ) ) {
 		options.path = options.path.replace( 'context=edit', 'context=view' );
 	}
 
