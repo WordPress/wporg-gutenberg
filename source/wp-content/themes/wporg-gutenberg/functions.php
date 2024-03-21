@@ -584,14 +584,22 @@ function frontenberg_enable_oembed( $all_caps ) {
 add_filter( 'user_has_cap', 'frontenberg_enable_oembed' );
 
 /**
- * Ajax handler for querying attachments for logged-out users.
+ * Ajax handler for querying attachments on the front-end.
+ *
+ * The default handler is used for wp-admin/upload.php but this is used for all front-end requests.
  *
  * @since 3.5.0
  */
-function frontenberg_wp_ajax_nopriv_query_attachments() {
+function frontenberg_wp_ajax_query_attachments() {
+	if ( current_user_can( 'manage_options' ) && str_contains( $_SERVER['HTTP_REFERER'] ?? '', '/wp-admin/' ) ) {
+		// Let the core handler handle this.
+		return;
+	}
+
 	if ( 97589 !== absint( $_REQUEST['post_id'] ) ) {
 		wp_send_json_error();
 	}
+
 	$query = isset( $_REQUEST['query'] ) ? (array) $_REQUEST['query'] : array();
 	$keys  = array(
 		's',
@@ -612,7 +620,26 @@ function frontenberg_wp_ajax_nopriv_query_attachments() {
 		}
 	}
 
-	$query              = array_intersect_key( $query, array_flip( $keys ) );
+	$query = array_intersect_key( $query, array_flip( $keys ) );
+
+	// Validate that the input looks correct.
+	foreach ( $query as $var => $val ) {
+		if ( empty( $val ) || is_scalar( $val ) ) {
+			continue;
+		}
+
+		if ( in_array( $var, [ 'post__in', 'post__not_in', 'post_mime_type' ] ) ) {
+			// These should be arrays of strings
+			$scalar = array_filter( $val, 'is_scalar' );
+
+			if ( wp_is_numeric_array( $val ) && $scalar == $val ) {
+				continue;
+			}
+		}
+
+		wp_send_json_error( "The value of $var doesn't look right to me." );
+	}
+
 	$query['post_type'] = 'attachment';
 	if ( MEDIA_TRASH
 		&& ! empty( $_REQUEST['query']['post_status'] )
@@ -649,7 +676,8 @@ function frontenberg_wp_ajax_nopriv_query_attachments() {
 
 	wp_send_json_success( $posts );
 }
-add_action( 'wp_ajax_nopriv_query-attachments', 'frontenberg_wp_ajax_nopriv_query_attachments' );
+add_action( 'wp_ajax_nopriv_query-attachments', 'frontenberg_wp_ajax_query_attachments' );
+add_action( 'wp_ajax_query-attachments',        'frontenberg_wp_ajax_query_attachments', 0 ); // Core is at 1, we want to hook in earlier.
 
 /**
  * Removes tagline, which is used more as a description on this site.
