@@ -445,7 +445,7 @@ $content = '<!-- wp:group {"align":"full","layout":{"inherit":false,"contentSize
 <!-- wp:column {"verticalAlignment":"bottom","width":"60%"} -->
 <div class="wp-block-column is-vertically-aligned-bottom" style="flex-basis:60%"><!-- wp:wporg/wporg-gutenberg-link -->
 <div class="wp-block-wporg-wporg-gutenberg-link"><!-- wp:paragraph {"textColor":"secondary","fontSize":"level-3"} -->
-<p class="has-secondary-color has-text-color has-level-3-font-size"><a href="https://learn.wordpress.org/workshop/how-to-install-wordpress/" target="_blank">' . esc_html__( 'How to Install WordPress ↗' ) . '</a><br><a href="https://learn.wordpress.org/workshop/how-to-choose-install-a-theme/" target="_blank">' . esc_html__( 'How to Choose and Install a Theme ↗' ) . '</a><br><a href="https://learn.wordpress.org/workshop/intro-to-block-patterns/" target="_blank">' . esc_html__( 'Intro to Block Patterns ↗' ) . '</a><br><a href="https://learn.wordpress.org/workshop/advanced-layouts-with-the-block-editor/" target="_blank">' . esc_html__( 'Advanced Layouts With the Block Editor ↗' ) . '</a></p>
+<p class="has-secondary-color has-text-color has-level-3-font-size"><a href="https://learn.wordpress.org/workshop/how-to-install-wordpress/" target="_blank">' . esc_html__( 'How to Install WordPress ↗', 'wporg' ) . '</a><br><a href="https://learn.wordpress.org/workshop/how-to-choose-install-a-theme/" target="_blank">' . esc_html__( 'How to Choose and Install a Theme ↗', 'wporg' ) . '</a><br><a href="https://learn.wordpress.org/workshop/intro-to-block-patterns/" target="_blank">' . esc_html__( 'Intro to Block Patterns ↗', 'wporg' ) . '</a><br><a href="https://learn.wordpress.org/workshop/advanced-layouts-with-the-block-editor/" target="_blank">' . esc_html__( 'Advanced Layouts With the Block Editor ↗', 'wporg' ) . '</a></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:wporg/wporg-gutenberg-link --></div>
 <!-- /wp:column --></div>
@@ -465,7 +465,7 @@ $content = '<!-- wp:group {"align":"full","layout":{"inherit":false,"contentSize
 
 <!-- wp:wporg/wporg-gutenberg-link -->
 <div class="wp-block-wporg-wporg-gutenberg-link"><!-- wp:paragraph {"textColor":"secondary","fontSize":"level-3"} -->
-<p class="has-secondary-color has-text-color has-level-3-font-size"> <a href="https://developer.wordpress.org/block-editor/explanations/faq/" target="_blank">' . esc_html__( 'Gutenberg FAQs ↗', 'wporg' ) . '</a><br> <a href="https://wordpress.tv/?s=gutenberg" target="_blank">' . esc_html__( 'WordPress.tv talks about Gutenberg ↗' ) . '</a> <br> <a href="https://developer.wordpress.org/block-editor/contributors/design/#goal-of-gutenberg" target="_blank">' . esc_html__( 'Gutenberg Design Principles ↗' ) . '</a><br> <a href="https://wordpress.org/support/article/wordpress-editor/" target="_blank">' . esc_html__( 'WordPress Editor Documentation ↗' ) . '</a><br> <a href="https://make.wordpress.org/core/2020/05/20/ways-to-keep-up-with-full-site-editing-fse/" target="_blank">' . esc_html__( 'Development Updates ↗' ) . '</a> </p>
+<p class="has-secondary-color has-text-color has-level-3-font-size"> <a href="https://developer.wordpress.org/block-editor/explanations/faq/" target="_blank">' . esc_html__( 'Gutenberg FAQs ↗', 'wporg' ) . '</a><br> <a href="https://wordpress.tv/?s=gutenberg" target="_blank">' . esc_html__( 'WordPress.tv talks about Gutenberg ↗', 'wporg' ) . '</a> <br> <a href="https://developer.wordpress.org/block-editor/contributors/design/#goal-of-gutenberg" target="_blank">' . esc_html__( 'Gutenberg Design Principles ↗', 'wporg' ) . '</a><br> <a href="https://wordpress.org/support/article/wordpress-editor/" target="_blank">' . esc_html__( 'WordPress Editor Documentation ↗', 'wporg' ) . '</a><br> <a href="https://make.wordpress.org/core/2020/05/20/ways-to-keep-up-with-full-site-editing-fse/" target="_blank">' . esc_html__( 'Development Updates ↗', 'wporg' ) . '</a> </p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:wporg/wporg-gutenberg-link --></div>
 <!-- /wp:group --></div></div>
@@ -483,7 +483,12 @@ $content = '<!-- wp:group {"align":"full","layout":{"inherit":false,"contentSize
 <!-- /wp:group -->
 
 <!-- wp:paragraph {"align":"center","style":{"elements":{"link":{"color":{"text":"var:preset|color|tertiary"}}}},"textColor":"tertiary","fontSize":"small"} -->
-<p class="has-text-align-center has-tertiary-color has-text-color has-link-color has-small-font-size"> — MATT MULLENWEG, IN <a href="https://ma.tt/2017/08/we-called-it-gutenberg-for-a-reason/" target="_blank">MA.TT</a></p>
+<p class="has-text-align-center has-tertiary-color has-text-color has-link-color has-small-font-size">' .
+	sprintf(
+	/* translators: 1: The URL to ma.tt.  */
+		wp_kses_post( __( ' — MATT MULLENWEG, IN <a href="%1$s" target="_blank">MA.TT</a>', 'wporg' ) ),
+		esc_url( 'https://ma.tt/2017/08/we-called-it-gutenberg-for-a-reason/' )
+	) . '</p>
 <!-- /wp:paragraph --></div></div>
 <!-- /wp:cover -->
 
@@ -520,7 +525,7 @@ $content = '<!-- wp:group {"align":"full","layout":{"inherit":false,"contentSize
 <div class="wp-block-column is-vertically-aligned-bottom"><!-- wp:group {"style":{"spacing":{"padding":{"top":"30px"}}},"layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"space-between"}} -->
 <div class="wp-block-group" style="padding-top:30px"><!-- wp:wporg/wporg-gutenberg-link -->
 <div class="wp-block-wporg-wporg-gutenberg-link"><!-- wp:paragraph {"align":"right","fontSize":"normal"} -->
-<p class="has-text-align-right has-normal-font-size"><a href="https://twitter.com/WordPress" target="_blank">' . esc_html__( 'Twitter ↗', 'wporg' ) . '<br>
+<p class="has-text-align-right has-normal-font-size"><a href="https://x.com/WordPress" target="_blank">' . esc_html__( 'X ↗', 'wporg' ) . '<br>
 </a><a href="https://github.com/WordPress/gutenberg" target="_blank">' . esc_html__( 'GitHub ↗', 'wporg' ) . '</a>
 </p>
 <!-- /wp:paragraph --></div>
