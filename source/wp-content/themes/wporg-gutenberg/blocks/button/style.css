@@ -21,3 +21,18 @@
 .wp-block-wporg-wporg-gutenberg-button .wp-block-button__link {
 	width: 100%;
 }
+
+/**
+* Outline style, which Blockbase no longer provides.
+* Core's outline rules have zero specificity and lose to the theme.json button styles.
+*/
+.wp-block-wporg-wporg-gutenberg-button .wp-block-button.is-style-outline .wp-block-button__link:not(.has-background) {
+	background-color: transparent;
+	border: var(--wp--custom--button--border--width, 1px) solid var(--wp--preset--color--primary);
+	color: var(--wp--preset--color--primary);
+}
+
+.wp-block-wporg-wporg-gutenberg-button .wp-block-button.is-style-outline .wp-block-button__link:not(.has-background):is(:hover, :focus) {
+	background-color: var(--wp--preset--color--primary);
+	color: var(--wp--preset--color--background);
+}
