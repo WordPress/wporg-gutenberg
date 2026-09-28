@@ -23,8 +23,7 @@
 }
 
 /**
-* Outline style, which Blockbase no longer provides.
-* Core's outline rules have zero specificity and lose to the theme.json button styles.
+* Core's outline styles lose to the theme.json button styles, so reimplement them here.
 */
 .wp-block-wporg-wporg-gutenberg-button .wp-block-button.is-style-outline .wp-block-button__link:not(.has-background) {
 	background-color: transparent;
