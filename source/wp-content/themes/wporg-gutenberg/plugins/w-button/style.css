@@ -36,3 +36,7 @@
 	box-shadow: 0 0 0 3px #000, 0 0 0 4px #757575;
 	border-radius: 2px;
 }
+
+.editor-header__toolbar {
+	padding-left: 32px;
+}
