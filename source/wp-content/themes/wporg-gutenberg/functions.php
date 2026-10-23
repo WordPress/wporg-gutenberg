@@ -556,8 +556,9 @@ function frontenberg_hardcoded_preload_data( $post ) {
 			'generated_slug'     => '',
 			'permalink_template' => home_url( '/' ),
 		),
+		// No DELETE: canUser( 'delete' ) would show a "Delete permanently" button.
 		'headers' => array(
-			'Allow' => 'GET, POST, PUT, PATCH, DELETE',
+			'Allow' => 'GET, POST, PUT, PATCH',
 		),
 	);
 
