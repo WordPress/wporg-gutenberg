@@ -812,19 +812,24 @@ add_action(
 
 /**
  * Let unauthenticated users embed media in Frontenberg.
+ *
+ * @param array $endpoints The available REST endpoints, keyed by route.
+ * @return array
  */
-function frontenberg_enable_oembed( $all_caps ) {
-	if (
-		0 === strpos( $_SERVER['REQUEST_URI'], '/gutenberg/wp-json/oembed/1.0/proxy' ) ||
-		0 === strpos( $_SERVER['REQUEST_URI'], '/gutenberg/wp-json/gutenberg/v1/block-renderer/core/archives' ) ||
-		0 === strpos( $_SERVER['REQUEST_URI'], '/gutenberg/wp-json/gutenberg/v1/block-renderer/core/latest-comments' )
-	) {
-		$all_caps['edit_posts'] = true;
+function frontenberg_enable_oembed( $endpoints ) {
+	if ( empty( $endpoints['/oembed/1.0/proxy'] ) ) {
+		return $endpoints;
 	}
 
-	return $all_caps;
+	foreach ( $endpoints['/oembed/1.0/proxy'] as $key => $handler ) {
+		if ( is_int( $key ) && is_array( $handler ) ) {
+			$endpoints['/oembed/1.0/proxy'][ $key ]['permission_callback'] = '__return_true';
+		}
+	}
+
+	return $endpoints;
 }
-add_filter( 'user_has_cap', 'frontenberg_enable_oembed' );
+add_filter( 'rest_endpoints', 'frontenberg_enable_oembed' );
 
 /**
  * Ajax handler for querying attachments on the front-end.

@@ -26,9 +26,7 @@ window.history.replaceState = function ( state, title, url ) {
 
 // Use a middleware provider to intercept and modify API calls. Short-circuit POST requests, bound queries, allow media, etc.
 wp.apiFetch.use( function ( options, next ) {
-	const isWhitelistedEndpoint =
-		options.path.startsWith( '/oembed/1.0/proxy' ) ||
-		options.path.startsWith( '/gutenberg/v1/block-renderer' );
+	const isWhitelistedEndpoint = options.path.startsWith( '/oembed/1.0/proxy' );
 
 	// Block writes to keep Frontenberg read-only, but let GET and OPTIONS through:
 	// OPTIONS are the editor's canUser() probes, which expect a Response (headers).
