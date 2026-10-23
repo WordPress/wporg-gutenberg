@@ -684,10 +684,7 @@ function frontenberg_hardcoded_preload_data( $post ) {
 		'headers' => $read_only,
 	);
 
-	/*
-	 * Entity config endpoints require edit caps, so build their bodies from the controllers directly.
-	 * view-config exists since WP 7.1, entity-fields and entity-actions since 7.2.
-	 */
+	// Entity config endpoints (WP 7.1+, fields and actions 7.2+) require edit caps, so build their bodies from the controllers.
 	$entity_query  = array(
 		'kind' => 'postType',
 		'name' => $post->post_type,
