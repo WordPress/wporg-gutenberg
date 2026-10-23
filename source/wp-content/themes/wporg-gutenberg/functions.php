@@ -554,8 +554,9 @@ function frontenberg_hardcoded_preload_data( $post ) {
 			'generated_slug'     => '',
 			'permalink_template' => home_url( '/' ),
 		),
+		// No DELETE: canUser( 'delete' ) would show a "Delete permanently" button.
 		'headers' => array(
-			'Allow' => 'GET, POST, PUT, PATCH, DELETE',
+			'Allow' => 'GET, POST, PUT, PATCH',
 		),
 	);
 
@@ -683,6 +684,27 @@ function frontenberg_hardcoded_preload_data( $post ) {
 		'headers' => $read_only,
 	);
 
+	// Entity config endpoints (WP 7.2+) require edit caps, so build their bodies from the controllers directly.
+	$entity_query  = array(
+		'kind' => 'postType',
+		'name' => $post->post_type,
+	);
+	$entity_routes = array(
+		'/wp/v2/entity-fields'  => array( 'WP_REST_Entity_Fields_Controller', $entity_query ),
+		'/wp/v2/entity-actions' => array( 'WP_REST_Entity_Actions_Controller', $entity_query ),
+		'/wp/v2/view-config'    => array( 'WP_REST_View_Config_Controller', $entity_query + array( '_fields' => 'form' ) ),
+	);
+	foreach ( $entity_routes as $route => list( $controller_class, $query ) ) {
+		if ( ! class_exists( $controller_class ) ) {
+			continue;
+		}
+
+		$data[ add_query_arg( $query, $route ) ] = array(
+			'body'    => frontenberg_entity_config_response( new $controller_class(), $query ),
+			'headers' => $read_only,
+		);
+	}
+
 	// canUser() OPTIONS probes; advertising create/update keeps the demo interactive (writes still blocked).
 	$data['OPTIONS'] = array(
 		'/wp/v2/media'     => array( 'body' => array(), 'headers' => array( 'Allow' => 'GET, POST' ) ),
@@ -711,6 +733,65 @@ function frontenberg_public_view_response( $path ) {
 	}
 
 	return rest_get_server()->response_to_data( rest_ensure_response( $response ), false );
+}
+
+/**
+ * Returns an entity config endpoint's body as its controller builds it.
+ *
+ * @param WP_REST_Controller $controller Entity config controller.
+ * @param array              $query      Query parameters, including any _fields.
+ * @return array The response data.
+ */
+function frontenberg_entity_config_response( $controller, $query ) {
+	$request = new WP_REST_Request( 'GET' );
+	$request->set_query_params( $query );
+
+	// These endpoints are new in 7.2: an unexpected shape degrades to an empty body, never a fatal on the front page.
+	$response = rest_ensure_response( $controller->get_items( $request ) );
+	if ( is_wp_error( $response ) ) {
+		return array();
+	}
+
+	$response = rest_filter_response_fields( $response, rest_get_server(), $request );
+	$data     = $response->get_data();
+	if ( ! is_array( $data ) ) {
+		return array();
+	}
+
+	foreach ( array( 'fields', 'actions' ) as $type ) {
+		if ( ! isset( $data[ $type ] ) ) {
+			continue;
+		}
+
+		$data[ $type ] = array_values(
+			array_filter(
+				(array) $data[ $type ],
+				function ( $item ) {
+					return is_array( $item )
+						&& isset( $item['origin']['registeredBy'] )
+						&& 'core' === $item['origin']['registeredBy']
+						&& empty( $item['origin']['updatedBy'] );
+				}
+			)
+		);
+
+		// Script modules list the ids they implement; drop references to filtered-out ones.
+		$ids     = array_column( $data[ $type ], 'id' );
+		$modules = array();
+		foreach ( (array) ( $data['script_modules'] ?? array() ) as $module ) {
+			if ( ! is_array( $module ) || ! isset( $module[ $type ] ) ) {
+				continue;
+			}
+
+			$module[ $type ] = array_values( array_intersect( (array) $module[ $type ], $ids ) );
+			if ( $module[ $type ] ) {
+				$modules[] = $module;
+			}
+		}
+		$data['script_modules'] = $modules;
+	}
+
+	return $data;
 }
 
 add_action(
