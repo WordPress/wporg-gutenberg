@@ -865,7 +865,8 @@ add_action(
 				wp_enqueue_script( 'plugin-w-button-js', get_stylesheet_directory_uri() . '/plugins/w-button/index.js', array( 'wp-blocks', 'wp-edit-post', 'wp-plugins', 'wp-components' ), filemtime( __DIR__ . '/plugins/w-button/index.js' ) );
 				wp_enqueue_style( 'plugin-w-button-css', get_stylesheet_directory_uri() . '/plugins/w-button/style.css', null, filemtime( __DIR__ . '/plugins/w-button/style.css' ) );
 
-				wp_enqueue_script( 'plugin-disable-features-js', get_stylesheet_directory_uri() . '/plugins/disable-features/index.js', array( 'wp-edit-post', 'wp-plugins' ), filemtime( __DIR__ . '/plugins/disable-features/index.js' ) );
+				// Loads after editor-modifications, so its write blocker catches the preference save this script makes on load.
+				wp_enqueue_script( 'plugin-disable-features-js', get_stylesheet_directory_uri() . '/plugins/disable-features/index.js', array( 'wp-edit-post', 'wp-plugins', 'editor-modifications' ), filemtime( __DIR__ . '/plugins/disable-features/index.js' ) );
 
 				wp_enqueue_script( 'plugin-openverse-js', get_stylesheet_directory_uri() . '/plugins/openverse/index.js', array( 'wp-block-editor', 'wp-components', 'wp-compose', 'wp-data', 'wp-element', 'wp-hooks', 'wp-i18n' ), filemtime( __DIR__ . '/plugins/openverse/index.js' ), true );
 				wp_enqueue_style( 'plugin-openverse-css', get_stylesheet_directory_uri() . '/plugins/openverse/style.css', null, filemtime( __DIR__ . '/plugins/openverse/style.css' ) );
