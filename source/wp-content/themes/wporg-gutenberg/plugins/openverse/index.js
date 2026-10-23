@@ -39,7 +39,9 @@
 	/**
 	 * Maps an Openverse result to the media object blocks expect from MediaUpload.
 	 *
-	 * @param {Object} item Openverse result, as returned by the media category.
+	 * @param {Object} item         Openverse result, as returned by the media category.
+	 * @param {string} item.url     Image URL.
+	 * @param {string} item.caption Attribution caption (HTML).
 	 * @return {Object} Media object.
 	 */
 	const toMedia = ( { url, caption } ) => ( { url, caption, type: 'image' } );
@@ -47,11 +49,11 @@
 	/**
 	 * Modal to search Openverse and pick one or more images.
 	 *
-	 * @param {Object}   props
-	 * @param {Object}   props.category Openverse media category.
-	 * @param {boolean}  props.multiple Whether several images can be picked.
-	 * @param {Function} props.onSelect Receives the picked media object(s).
-	 * @param {Function} props.onClose  Closes the modal.
+	 * @param {Object}                           props
+	 * @param {Object}                           props.category Openverse media category.
+	 * @param {boolean}                          props.multiple Whether several images can be picked.
+	 * @param {(media: Object|Object[]) => void} props.onSelect Receives the picked media object(s).
+	 * @param {() => void}                       props.onClose  Closes the modal.
 	 * @return {Element} The modal.
 	 */
 	const OpenverseModal = ( { category, multiple, onSelect, onClose } ) => {
@@ -123,7 +125,12 @@
 
 		return el(
 			Modal,
-			{ className: 'wporg-openverse', title: __( 'Openverse', 'wporg' ), size: 'large', onRequestClose: onClose },
+			{
+				className: 'wporg-openverse',
+				title: __( 'Openverse', 'wporg' ),
+				size: 'large',
+				onRequestClose: onClose,
+			},
 			el(
 				'p',
 				{ className: 'wporg-openverse__intro' },
@@ -196,7 +203,11 @@
 	 *
 	 * Image requests only: other media types get no library button, leaving upload and insert-from-URL.
 	 *
-	 * @param {Object} props MediaUpload props.
+	 * @param {Object}                                props              MediaUpload props.
+	 * @param {string[]}                              props.allowedTypes Allowed media types or mime types.
+	 * @param {boolean}                               props.multiple     Whether several images can be picked.
+	 * @param {(media: Object|Object[]) => void}      props.onSelect     Receives the picked media object(s).
+	 * @param {(args: {open: () => void}) => Element} props.render       Renders the button that opens the picker.
 	 * @return {Element|null} The trigger and modal.
 	 */
 	const OpenverseMediaUpload = ( { allowedTypes, multiple, onSelect, render } ) => {
@@ -221,7 +232,12 @@
 		);
 	};
 
-	wp.hooks.addFilter( 'editor.MediaUpload', 'wporg-gutenberg/openverse-media-upload', () => OpenverseMediaUpload, 100 );
+	wp.hooks.addFilter(
+		'editor.MediaUpload',
+		'wporg-gutenberg/openverse-media-upload',
+		() => OpenverseMediaUpload,
+		100
+	);
 
 	/**
 	 * Labels for the library buttons, which now open Openverse.

@@ -1,8 +1,11 @@
 <?php
+/**
+ * Demo content for the editor: the page title and its block markup.
+ *
+ * @package Gutenbergtheme
+ */
 
-$localised_domain = parse_url( home_url( '/' ), PHP_URL_HOST );
-
-$title = __( 'Say Hello to Gutenberg, the WordPress Editor', 'wporg' );
+$localised_domain = wp_parse_url( home_url( '/' ), PHP_URL_HOST );
 
 $content = '<!-- wp:group {"align":"full","layout":{"inherit":false,"contentSize":"1200px"}} -->
 <div class="wp-block-group alignfull"><!-- wp:group {"style":{"elements":{"link":{"color":{"text":"var:preset|color|black"}}},"spacing":{"padding":{"bottom":"10%","top":"60px"}}},"className":"site-header","layout":{"type":"flex","orientation":"vertical","justifyContent":"left","flexWrap":"wrap"}} -->
@@ -541,4 +544,7 @@ $content = '<!-- wp:group {"align":"full","layout":{"inherit":false,"contentSize
 <!-- /wp:group --></div></div>
 <!-- /wp:cover -->';
 
-return compact( 'title', 'content' );
+return array(
+	'title'   => __( 'Say Hello to Gutenberg, the WordPress Editor', 'wporg' ),
+	'content' => $content,
+);
