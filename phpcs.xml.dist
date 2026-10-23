@@ -17,8 +17,11 @@
 	<exclude-pattern>*/vendor/*</exclude-pattern>
 	<exclude-pattern>*/node_modules/*</exclude-pattern>
 
-	<!-- Scan this project's code; the rest of source/wp-content is installed dependencies. -->
-	<file>./source/wp-content/themes/wporg-gutenberg/</file>
+	<!-- Installed by Composer next to the theme (see installer-paths in composer.json). -->
+	<exclude-pattern>*/source/wp-content/mu-plugins/*</exclude-pattern>
+
+	<!-- Scan all (php) files in the current folder and subfolders -->
+	<file>.</file>
 	<arg name="extensions" value="php" />
 
 	<!-- WordPress.org runs recent versions of WordPress. -->
