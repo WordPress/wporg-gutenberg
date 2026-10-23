@@ -774,9 +774,7 @@ function frontenberg_entity_config_response( $controller, $query ) {
 			array_filter(
 				(array) $data[ $type ],
 				/**
-				 * Keeps core's own, unmodified definitions, except the featured image.
-				 *
-				 * Openverse images have no attachment ID, so they can't be set as the featured image.
+				 * Keeps core's own, unmodified definitions.
 				 *
 				 * @param mixed $item Field or action definition.
 				 * @return bool Whether to keep the definition.
@@ -785,8 +783,7 @@ function frontenberg_entity_config_response( $controller, $query ) {
 					return is_array( $item )
 						&& isset( $item['origin']['registeredBy'] )
 						&& 'core' === $item['origin']['registeredBy']
-						&& empty( $item['origin']['updatedBy'] )
-						&& 'featured_media' !== ( $item['id'] ?? '' );
+						&& empty( $item['origin']['updatedBy'] );
 				}
 			)
 		);
