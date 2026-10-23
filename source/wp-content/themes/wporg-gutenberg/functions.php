@@ -748,9 +748,17 @@ function frontenberg_entity_config_response( $controller, $query ) {
 	$request = new WP_REST_Request( 'GET' );
 	$request->set_query_params( $query );
 
+	// These endpoints are new in 7.2: an unexpected shape degrades to an empty body, never a fatal on the front page.
 	$response = rest_ensure_response( $controller->get_items( $request ) );
+	if ( is_wp_error( $response ) ) {
+		return array();
+	}
+
 	$response = rest_filter_response_fields( $response, rest_get_server(), $request );
 	$data     = $response->get_data();
+	if ( ! is_array( $data ) ) {
+		return array();
+	}
 
 	foreach ( array( 'fields', 'actions' ) as $type ) {
 		if ( ! isset( $data[ $type ] ) ) {
@@ -759,18 +767,25 @@ function frontenberg_entity_config_response( $controller, $query ) {
 
 		$data[ $type ] = array_values(
 			array_filter(
-				$data[ $type ],
+				(array) $data[ $type ],
 				function ( $item ) {
-					return 'core' === $item['origin']['registeredBy'] && empty( $item['origin']['updatedBy'] );
+					return is_array( $item )
+						&& isset( $item['origin']['registeredBy'] )
+						&& 'core' === $item['origin']['registeredBy']
+						&& empty( $item['origin']['updatedBy'] );
 				}
 			)
 		);
 
 		// Script modules list the ids they implement; drop references to filtered-out ones.
-		$ids     = wp_list_pluck( $data[ $type ], 'id' );
+		$ids     = array_column( $data[ $type ], 'id' );
 		$modules = array();
-		foreach ( $data['script_modules'] as $module ) {
-			$module[ $type ] = array_values( array_intersect( $module[ $type ], $ids ) );
+		foreach ( (array) ( $data['script_modules'] ?? array() ) as $module ) {
+			if ( ! is_array( $module ) || ! isset( $module[ $type ] ) ) {
+				continue;
+			}
+
+			$module[ $type ] = array_values( array_intersect( (array) $module[ $type ], $ids ) );
 			if ( $module[ $type ] ) {
 				$modules[] = $module;
 			}
