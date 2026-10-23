@@ -1,0 +1,47 @@
+.wporg-openverse__intro {
+	margin-top: 0;
+}
+
+.wporg-openverse__grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+	gap: 12px;
+	margin-top: 16px;
+}
+
+.wporg-openverse .wporg-openverse__item {
+	display: block;
+	height: auto;
+	padding: 0;
+	aspect-ratio: 4 / 3;
+	overflow: hidden;
+	border-radius: 2px;
+}
+
+.wporg-openverse__item img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.wporg-openverse .wporg-openverse__item.is-selected {
+	box-shadow: 0 0 0 3px var(--wp-admin-theme-color);
+}
+
+.wporg-openverse .components-spinner {
+	display: block;
+	margin: 16px auto;
+}
+
+/* Extends over the modal's 24px bottom padding, so results don't show beneath the buttons. */
+.wporg-openverse__footer {
+	position: sticky;
+	bottom: -24px;
+	display: flex;
+	justify-content: flex-end;
+	gap: 8px;
+	margin: 16px 0 -24px;
+	padding: 16px 0 24px;
+	background: #fff;
+}
