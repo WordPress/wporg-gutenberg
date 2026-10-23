@@ -22,10 +22,10 @@ function DisableFeaturePlugin() {
 		dispatch( 'core/edit-post' ).toggleFeature( 'fullscreenMode' );
 	}
 
-	// Close the sidebar
-	if ( select( 'core/edit-post' ).isEditorSidebarOpened() ) {
+	// Close the sidebar once the editor has opened its default one, which happens after this first render.
+	window._wpLoadBlockEditor.then( function () {
 		dispatch( 'core/edit-post' ).closeGeneralSidebar();
-	}
+	} );
 
 	// Switch back to visual editor
 	if ( select( 'core/edit-post' ).getEditorMode() === 'text' ) {
