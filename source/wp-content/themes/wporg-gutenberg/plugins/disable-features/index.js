@@ -2,6 +2,9 @@ var select = wp.data.select;
 var dispatch = wp.data.dispatch;
 var plugins = wp.plugins;
 
+// Start every load with the sidebar closed, before the editor's mount would open its default one.
+dispatch( 'core/preferences' ).set( 'core', 'isComplementaryAreaVisible', false );
+
 /*
  We have to track whether we rendered because gutenberg will re-render plugins often.
  We only want to execute the code below on first render.
@@ -21,11 +24,6 @@ function DisableFeaturePlugin() {
 	if ( ! select( 'core/edit-post' ).isFeatureActive( 'fullscreenMode' ) ) {
 		dispatch( 'core/edit-post' ).toggleFeature( 'fullscreenMode' );
 	}
-
-	// Close the sidebar once the editor has opened its default one, which happens after this first render.
-	window._wpLoadBlockEditor.then( function () {
-		dispatch( 'core/edit-post' ).closeGeneralSidebar();
-	} );
 
 	// Switch back to visual editor
 	if ( select( 'core/edit-post' ).getEditorMode() === 'text' ) {
