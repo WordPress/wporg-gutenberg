@@ -21,3 +21,6 @@ README-svn.txt
 !/source/wp-content/themes
 !/source/wp-content/themes/wporg-gutenberg
 
+
+# PHPCS result cache.
+.phpcs.cache

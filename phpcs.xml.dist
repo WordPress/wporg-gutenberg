@@ -1,55 +1,50 @@
 <?xml version="1.0" ?>
-<ruleset name="WordPress.org Meta Coding Standards">
-    <!-- Exclude 3rd-party files -->
-    <exclude-pattern>*/vendor/*</exclude-pattern>
-    <exclude-pattern>*/node_modules/*</exclude-pattern>
-    <exclude-pattern>*/build/*</exclude-pattern>
+<ruleset name="WordPress.org Coding Standards">
+	<description>Apply customized version of WordPress Coding Standards to WordPress.org PHP scripts.</description>
 
-    <!-- Show progress, and sniff codes in all reports -->
-    <arg value="ps" />
-    <arg name="colors" />
+	<!-- Show sniff codes in all reports -->
+	<arg value="ps" />
+	<arg name="colors" />
 
-    <!-- Scan this project's code; the rest of source/wp-content is installed dependencies. -->
-    <file>./source/wp-content/themes/wporg-gutenberg/</file>
-    <arg name="extensions" value="php" />
+	<!-- Speed up scans: parallel workers, and a cache of unchanged file results. -->
+	<arg name="parallel" value="10" />
+	<arg name="cache" value=".phpcs.cache" />
 
-    <rule ref="WordPress">
-        <exclude name="Generic.Arrays.DisallowShortArraySyntax.Found" />
-        <exclude name="Squiz.PHP.EmbeddedPhp.ContentAfterOpen" />
-        <exclude name="Squiz.PHP.EmbeddedPhp.ContentBeforeEnd" />
-        <exclude name="WordPress.Files.FileName.InvalidClassFileName" />
-        <exclude name="WordPress.PHP.DevelopmentFunctions.error_log_trigger_error" />
-        <exclude name="WordPress.PHP.DevelopmentFunctions.error_log_print_r" />
-        <exclude name="WordPress.PHP.DisallowShortTernary.Found" />
+	<!-- Report file paths relative to the repository root. -->
+	<arg name="basepath" value="." />
 
-        <exclude name="Generic.Commenting.DocComment.MissingShort" />
-        <exclude name="Squiz.Commenting.FileComment.Missing" />
-        <exclude name="Squiz.Commenting.FileComment.MissingPackageTag" />
-        <exclude name="Squiz.Commenting.FileComment.SpacingAfterOpen" />
-        <exclude name="Squiz.Commenting.ClassComment.Missing" />
-        <exclude name="Squiz.Commenting.FunctionComment.MissingParamTag" />
-        <exclude name="Squiz.Commenting.FunctionComment.MissingParamComment" />
-        <exclude name="Squiz.Commenting.VariableComment.Missing" />
-        <exclude name="Squiz.Commenting.VariableComment.MissingVar" />
-        <exclude name="Squiz.Commenting.InlineComment.InvalidEndChar" />
+	<!-- Exclude 3rd-party files -->
+	<exclude-pattern>*/vendor/*</exclude-pattern>
+	<exclude-pattern>*/node_modules/*</exclude-pattern>
 
-        <!-- The translators comment requires no space after `//` -->
-        <exclude name="Squiz.Commenting.InlineComment.NoSpaceBefore" />
-    </rule>
+	<!-- Scan this project's code; the rest of source/wp-content is installed dependencies. -->
+	<file>./source/wp-content/themes/wporg-gutenberg/</file>
+	<arg name="extensions" value="php" />
 
-    <!-- Verify that the text_domain is set to the desired text-domain. Add an element per valid text domain. -->
-    <rule ref="WordPress.WP.I18n">
-        <properties>
-            <property name="text_domain" type="array">
-                <element value="wporg" />
-            </property>
-        </properties>
-    </rule>
+	<!-- WordPress.org runs recent versions of WordPress. -->
+	<config name="minimum_wp_version" value="6.9"/>
 
-    <!-- Top level, not inside the rule: PHPCompatibility 9 can't read it there and crashes on PHP 8.1+. -->
-    <config name="testVersion" value="7.4-" />
-    <rule ref="PHPCompatibilityWP" />
+	<!-- Check for PHP cross-version compatibility. -->
+	<config name="testVersion" value="8.4-"/>
+	<rule ref="PHPCompatibilityWP"/>
 
-    <!-- Custom project rules go here -->
+	<rule ref="WordPress">
+		<exclude name="WordPress.DB.DirectDatabaseQuery" />
+		<exclude name="WordPress.DB.SlowDBQuery" />
 
+		<!-- Config-driven rewrite utility; must never run as part of a lint standard. -->
+		<exclude name="WordPress.Utils.I18nTextDomainFixer" />
+
+		<!-- Short array syntax is already used throughout the codebase. -->
+		<exclude name="Universal.Arrays.DisallowShortArraySyntax" />
+		<exclude name="Universal.Operators.DisallowShortTernary" />
+	</rule>
+
+	<rule ref="WordPress.WP.I18n">
+		<properties>
+			<property name="text_domain" type="array">
+				<element value="wporg" />
+			</property>
+		</properties>
+	</rule>
 </ruleset>
