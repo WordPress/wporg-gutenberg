@@ -5,23 +5,23 @@
 	"author": "WordPress.org",
 	"license": "GPL-2.0-or-later",
 	"private": true,
-	"dependencies": {},
 	"devDependencies": {
-		"@wordpress/env": "^4.1.0"
+		"@wordpress/env": "12.0.0",
+		"@wordpress/scripts": "37.0.0"
 	},
 	"scripts": {
-		"initial-setup": "composer install && yarn && yarn run update-configs && yarn run install:mu-plugins",
+		"initial-setup": "composer install && npm install && npm run install:mu-plugins",
 		"install:mu-plugins": "cd source/wp-content/mu-plugins/wporg-mu-plugins/ && npm install && npm run build",
-		"update-configs": "TEXTDOMAIN=wporg composer exec update-configs",
+		"format": "wp-scripts format source/wp-content/themes/wporg-gutenberg",
+		"lint:css": "wp-scripts lint-style \"source/wp-content/themes/wporg-gutenberg/**/*.css\"",
+		"lint:js": "wp-scripts lint-js source/wp-content/themes/wporg-gutenberg",
+		"lint:php": "composer run lint",
 		"wp-env": "wp-env",
 		"env": "wp-env start",
 		"env:stop": "wp-env stop",
 		"env:cli": "wp-env run cli",
-		"env:setup": "wp-env start --update && yarn run env:reset && yarn run env:misc",
-		"env:reset": "wp-env clean all && wp-env run cli \"wp site empty --yes\"",
-		"env:misc": "wp-env run cli \"bash env/misc.sh\""
-	},
-	"workspaces": [
-		"source/wp-content/themes/wporg-gutenberg"
-	]
+		"env:setup": "wp-env start --update && npm run env:reset && npm run env:misc",
+		"env:reset": "wp-env clean all && wp-env run cli -- wp site empty --yes",
+		"env:misc": "wp-env run cli -- bash env/misc.sh"
+	}
 }
