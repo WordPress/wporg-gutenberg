@@ -393,11 +393,6 @@ if ( ! function_exists( 'gutenberg_editor_scripts_and_styles' ) ) {
 			/**
 			 * Scripts
 			 */
-			wp_enqueue_media(
-				array(
-					'post' => $post->ID,
-				)
-			);
 			wp_enqueue_editor();
 		}
 
@@ -783,7 +778,9 @@ function frontenberg_entity_config_response( $controller, $query ) {
 					return is_array( $item )
 						&& isset( $item['origin']['registeredBy'] )
 						&& 'core' === $item['origin']['registeredBy']
-						&& empty( $item['origin']['updatedBy'] );
+						&& empty( $item['origin']['updatedBy'] )
+						// Openverse images have no attachment ID, so they can't be the featured image.
+						&& 'featured_media' !== ( $item['id'] ?? '' );
 				}
 			)
 		);
@@ -870,6 +867,9 @@ add_action(
 
 				wp_enqueue_script( 'plugin-disable-features-js', get_stylesheet_directory_uri() . '/plugins/disable-features/index.js', array( 'wp-edit-post', 'wp-plugins' ), filemtime( __DIR__ . '/plugins/disable-features/index.js' ) );
 
+				wp_enqueue_script( 'plugin-openverse-js', get_stylesheet_directory_uri() . '/plugins/openverse/index.js', array( 'wp-block-editor', 'wp-components', 'wp-compose', 'wp-data', 'wp-element', 'wp-hooks', 'wp-i18n' ), filemtime( __DIR__ . '/plugins/openverse/index.js' ), true );
+				wp_enqueue_style( 'plugin-openverse-css', get_stylesheet_directory_uri() . '/plugins/openverse/style.css', null, filemtime( __DIR__ . '/plugins/openverse/style.css' ) );
+
 				wp_enqueue_script( 'editor-modifications', get_stylesheet_directory_uri() . '/js/editor-modifications.js', array( 'wp-blocks', 'wp-edit-post', 'wp-hooks', 'wp-i18n', 'wp-plugins', 'wp-element' ), filemtime( __DIR__ . '/js/editor-modifications.js' ) );
 				wp_enqueue_style( 'custom-editor-styles', get_stylesheet_directory_uri() . '/style-editor.css', false, filemtime( __DIR__ . '/style-editor.css' ) );
 			}
@@ -939,102 +939,6 @@ function frontenberg_enable_oembed( $endpoints ) {
 	return $endpoints;
 }
 add_filter( 'rest_endpoints', 'frontenberg_enable_oembed' );
-
-/**
- * Ajax handler for querying attachments on the front-end.
- *
- * The default handler is used for wp-admin/upload.php but this is used for all front-end requests.
- *
- * @since 3.5.0
- */
-function frontenberg_wp_ajax_query_attachments() {
-	if ( current_user_can( 'manage_options' ) && str_contains( $_SERVER['HTTP_REFERER'] ?? '', '/wp-admin/' ) ) {
-		// Let the core handler handle this.
-		return;
-	}
-
-	if ( 97589 !== absint( $_REQUEST['post_id'] ) ) {
-		wp_send_json_error();
-	}
-
-	$query = isset( $_REQUEST['query'] ) ? (array) $_REQUEST['query'] : array();
-	$keys  = array(
-		's',
-		'order',
-		'orderby',
-		'posts_per_page',
-		'paged',
-		'post_mime_type',
-		'post_parent',
-		'post__in',
-		'post__not_in',
-		'year',
-		'monthnum',
-	);
-	foreach ( get_taxonomies_for_attachments( 'objects' ) as $t ) {
-		if ( $t->query_var && isset( $query[ $t->query_var ] ) ) {
-			$keys[] = $t->query_var;
-		}
-	}
-
-	$query = array_intersect_key( $query, array_flip( $keys ) );
-
-	// Validate that the input looks correct.
-	foreach ( $query as $var => $val ) {
-		if ( empty( $val ) || is_scalar( $val ) ) {
-			continue;
-		}
-
-		if ( in_array( $var, [ 'post__in', 'post__not_in', 'post_mime_type' ] ) ) {
-			// These should be arrays of strings
-			$scalar = array_filter( $val, 'is_scalar' );
-
-			if ( wp_is_numeric_array( $val ) && $scalar == $val ) {
-				continue;
-			}
-		}
-
-		wp_send_json_error( "The value of $var doesn't look right to me." );
-	}
-
-	$query['post_type'] = 'attachment';
-	if ( MEDIA_TRASH
-		&& ! empty( $_REQUEST['query']['post_status'] )
-		&& 'trash' === $_REQUEST['query']['post_status'] ) {
-		$query['post_status'] = 'trash';
-	} else {
-		$query['post_status'] = 'inherit';
-	}
-
-	// Filter query clauses to include filenames.
-	if ( isset( $query['s'] ) ) {
-		add_filter( 'posts_clauses', '_filter_query_attachment_filenames' );
-	}
-
-	if ( empty( $query['post__in'] ) ) {
-		$query['post__in'] = range( 97654, 97659 );
-	}
-
-	/**
-	 * Filters the arguments passed to WP_Query during an Ajax
-	 * call for querying attachments.
-	 *
-	 * @since 3.7.0
-	 *
-	 * @see WP_Query::parse_query()
-	 *
-	 * @param array $query An array of query variables.
-	 */
-	$query = apply_filters( 'ajax_query_attachments_args', $query );
-	$query = new WP_Query( $query );
-
-	$posts = array_map( 'wp_prepare_attachment_for_js', $query->posts );
-	$posts = array_filter( $posts );
-
-	wp_send_json_success( $posts );
-}
-add_action( 'wp_ajax_nopriv_query-attachments', 'frontenberg_wp_ajax_query_attachments' );
-add_action( 'wp_ajax_query-attachments',        'frontenberg_wp_ajax_query_attachments', 0 ); // Core is at 1, we want to hook in earlier.
 
 /**
  * Removes tagline, which is used more as a description on this site.
