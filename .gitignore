@@ -10,12 +10,6 @@ wp-cli.yml
 # Allow local environment overrides.
 .wp-env.override.json
 
-# Configs from wporg-repo-tools.
-.eslintrc.js
-.prettierrc.js
-.stylelintrc
-phpcs.xml.dist
-
 # Production-only files
 README-svn.txt
 
@@ -27,3 +21,6 @@ README-svn.txt
 !/source/wp-content/themes
 !/source/wp-content/themes/wporg-gutenberg
 
+
+# PHPCS result cache.
+.phpcs.cache

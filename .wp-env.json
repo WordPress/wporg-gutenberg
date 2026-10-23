@@ -9,6 +9,7 @@
 		"FEATURE_2021_GLOBAL_HEADER_FOOTER": false
 	},
 	"core": "WordPress/WordPress#master",
+	"testsEnvironment": false,
 	"plugins": [],
 	"themes": [
 		"./source/wp-content/themes/wporg-gutenberg"

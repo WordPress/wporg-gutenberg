@@ -8,6 +8,67 @@
     "packages": [],
     "packages-dev": [
         {
+            "name": "adhocore/jwt",
+            "version": "v1.1.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/adhocore/php-jwt.git",
+                "reference": "b7055ae9024a6627f19f9873b5db19b0f1dcc4e7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/adhocore/php-jwt/zipball/b7055ae9024a6627f19f9873b5db19b0f1dcc4e7",
+                "reference": "b7055ae9024a6627f19f9873b5db19b0f1dcc4e7",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.0 || ^8.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^7.5 || ^8.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Ahc\\Jwt\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jitendra Adhikari",
+                    "email": "jiten.adhikary@gmail.com"
+                }
+            ],
+            "description": "Ultra lightweight JSON web token (JWT) library for PHP5.5+.",
+            "keywords": [
+                "auth",
+                "json-web-token",
+                "jwt",
+                "jwt-auth",
+                "jwt-php",
+                "token"
+            ],
+            "support": {
+                "issues": "https://github.com/adhocore/php-jwt/issues",
+                "source": "https://github.com/adhocore/php-jwt/tree/v1.1.4"
+            },
+            "funding": [
+                {
+                    "url": "https://paypal.me/ji10",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/adhocore",
+                    "type": "github"
+                }
+            ],
+            "time": "2026-05-30T07:58:15+00:00"
+        },
+        {
             "name": "composer/installers",
             "version": "v1.12.0",
             "source": {
@@ -2495,23 +2556,23 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/WordPress/wporg-mu-plugins.git",
-                "reference": "3fa3bbcaab578f660f05da83f8dcfb8cb4b216b2"
+                "reference": "32d4f1fd794df3952d6350386149cb1be9f3172b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/WordPress/wporg-mu-plugins/zipball/3fa3bbcaab578f660f05da83f8dcfb8cb4b216b2",
-                "reference": "3fa3bbcaab578f660f05da83f8dcfb8cb4b216b2",
+                "url": "https://api.github.com/repos/WordPress/wporg-mu-plugins/zipball/32d4f1fd794df3952d6350386149cb1be9f3172b",
+                "reference": "32d4f1fd794df3952d6350386149cb1be9f3172b",
                 "shasum": ""
             },
+            "require": {
+                "adhocore/jwt": "^1.0"
+            },
             "require-dev": {
-                "composer/installers": "~1.0",
-                "dealerdirect/phpcodesniffer-composer-installer": "^0.7.0",
-                "phpcompatibility/phpcompatibility-wp": "*",
+                "composer/installers": "^2.3",
                 "phpunit/phpunit": "^9.5",
-                "wp-coding-standards/wpcs": "2.*",
                 "wp-phpunit/wp-phpunit": "~6.0",
                 "wporg/wporg-repo-tools": "dev-trunk",
-                "yoast/phpunit-polyfills": "^1.0"
+                "yoast/phpunit-polyfills": "^1.1"
             },
             "type": "wordpress-muplugin",
             "extra": {
@@ -2538,7 +2599,7 @@
                 "source": "https://github.com/WordPress/wporg-mu-plugins/tree/build",
                 "issues": "https://github.com/WordPress/wporg-mu-plugins/issues"
             },
-            "time": "2023-04-14T15:57:27+00:00"
+            "time": "2026-10-20T20:25:54+00:00"
         },
         {
             "name": "wporg/wporg-repo-tools",
