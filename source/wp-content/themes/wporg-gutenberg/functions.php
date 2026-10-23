@@ -684,7 +684,7 @@ function frontenberg_hardcoded_preload_data( $post ) {
 		'headers' => $read_only,
 	);
 
-	// Entity config endpoints (WP 7.2+) require edit caps, so build their bodies from the controllers directly.
+	// Entity config endpoints (WP 7.1+, fields and actions 7.2+) require edit caps, so build their bodies from the controllers.
 	$entity_query  = array(
 		'kind' => 'postType',
 		'name' => $post->post_type,
@@ -699,8 +699,15 @@ function frontenberg_hardcoded_preload_data( $post ) {
 			continue;
 		}
 
+		// A core change to these young APIs must cost the preload, never fatal the front page.
+		try {
+			$body = frontenberg_entity_config_response( new $controller_class(), $query );
+		} catch ( Throwable $e ) {
+			continue;
+		}
+
 		$data[ add_query_arg( $query, $route ) ] = array(
-			'body'    => frontenberg_entity_config_response( new $controller_class(), $query ),
+			'body'    => $body,
 			'headers' => $read_only,
 		);
 	}
@@ -746,7 +753,7 @@ function frontenberg_entity_config_response( $controller, $query ) {
 	$request = new WP_REST_Request( 'GET' );
 	$request->set_query_params( $query );
 
-	// These endpoints are new in 7.2: an unexpected shape degrades to an empty body, never a fatal on the front page.
+	// An unexpected response shape degrades to an empty body.
 	$response = rest_ensure_response( $controller->get_items( $request ) );
 	if ( is_wp_error( $response ) ) {
 		return array();
@@ -766,6 +773,12 @@ function frontenberg_entity_config_response( $controller, $query ) {
 		$data[ $type ] = array_values(
 			array_filter(
 				(array) $data[ $type ],
+				/**
+				 * Keeps core's own, unmodified definitions.
+				 *
+				 * @param mixed $item Field or action definition.
+				 * @return bool Whether to keep the definition.
+				 */
 				function ( $item ) {
 					return is_array( $item )
 						&& isset( $item['origin']['registeredBy'] )
@@ -823,6 +836,26 @@ add_action(
 
 				gutenberg_editor_scripts_and_styles( $hook );
 			}
+		);
+
+		add_action(
+			'wp_enqueue_scripts',
+			/**
+			 * Adds the entity field and action script modules to the editor's import map.
+			 *
+			 * Core only does this in wp-admin (on admin_footer). Without them, the preloaded
+			 * entity config can't load its fields' components or any actions. The helpers are
+			 * private, hence the checks: if they go away, the editor falls back to bare fields.
+			 */
+			function () {
+				if ( function_exists( '_wp_add_entity_field_modules_to_editor_script' ) ) {
+					_wp_add_entity_field_modules_to_editor_script();
+				}
+				if ( function_exists( '_wp_add_entity_action_modules_to_editor_script' ) ) {
+					_wp_add_entity_action_modules_to_editor_script();
+				}
+			},
+			20 // After the editor scripts are enqueued (default priority) and before wp_head prints the import map.
 		);
 
 		add_action(
