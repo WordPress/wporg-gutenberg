@@ -353,9 +353,7 @@ if ( ! function_exists( 'gutenberg_editor_scripts_and_styles' ) ) {
 					'ajaxUrl'     => admin_url( 'admin-ajax.php' ),
 				),
 
-				// Whether or not to load the 'postcustom' meta box is stored as a user meta
-				// field so that we're not always loading its assets.
-				'enableCustomFields'     => (bool) get_user_meta( get_current_user_id(), 'enable_custom_fields', true ),
+				// No 'enableCustomFields': its preference submits wp-admin's meta box form, which doesn't exist here.
 			);
 
 			$post_autosave = gutenberg_get_autosave_newer_than_post_save( $post );
