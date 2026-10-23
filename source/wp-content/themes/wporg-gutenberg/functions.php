@@ -1,6 +1,6 @@
 <?php
 /**
- * gutenbergtheme functions and definitions
+ * Theme functions and definitions.
  *
  * @link https://developer.wordpress.org/themes/basics/theme-functions/
  *
@@ -16,10 +16,10 @@ add_filter( 'should_load_separate_core_block_assets', '__return_false', 20 );
 add_action(
 	'enqueue_block_assets',
 	function () {
-		wp_enqueue_script( 'button-js', get_stylesheet_directory_uri() . '/blocks/button/button.js', array( 'wp-blocks', 'wp-element', 'wp-block-editor' ), null );
+		wp_enqueue_script( 'button-js', get_stylesheet_directory_uri() . '/blocks/button/button.js', array( 'wp-blocks', 'wp-element', 'wp-block-editor' ), filemtime( __DIR__ . '/blocks/button/button.js' ), false );
 		wp_enqueue_style( 'button-css', get_stylesheet_directory_uri() . '/blocks/button/style.css', null, filemtime( __DIR__ . '/blocks/button/style.css' ) );
-		wp_enqueue_script( 'link-js', get_stylesheet_directory_uri() . '/blocks/link/link.js', array( 'wp-blocks', 'wp-element', 'wp-block-editor' ), null );
-		wp_enqueue_script( 'shared-modifications', get_stylesheet_directory_uri() . '/js/shared-modifications.js', array( 'wp-blocks', 'wp-hooks' ), filemtime( __DIR__ . '/js/shared-modifications.js' ) );
+		wp_enqueue_script( 'link-js', get_stylesheet_directory_uri() . '/blocks/link/link.js', array( 'wp-blocks', 'wp-element', 'wp-block-editor' ), filemtime( __DIR__ . '/blocks/link/link.js' ), false );
+		wp_enqueue_script( 'shared-modifications', get_stylesheet_directory_uri() . '/js/shared-modifications.js', array( 'wp-blocks', 'wp-hooks' ), filemtime( __DIR__ . '/js/shared-modifications.js' ), false );
 	}
 );
 
@@ -34,367 +34,319 @@ if ( ! function_exists( 'gutenberg_editor_scripts_and_styles' ) ) {
 	 * the Gutenberg editor.
 	 *
 	 * @since 0.1.0
-	 *
-	 * @param string $hook Screen name.
 	 */
-	function gutenberg_editor_scripts_and_styles( $hook ) {
+	function gutenberg_editor_scripts_and_styles() {
+		// Enqueue heartbeat separately as an "optional" dependency of the editor.
+		// Heartbeat is used for automatic nonce refreshing, but some hosts choose
+		// to disable it outright.
+		wp_enqueue_script( 'heartbeat' );
 
-		if ( false ) {
-			/**
-			 * Scripts
-			 */
-			$temporary_content = include __DIR__ . '/gutenberg-content-mobile.php';
-			$script            = sprintf(
-				'wp.domReady( function () { document.querySelector(".wp-site-blocks").innerHTML = %s } );',
-				wp_json_encode( do_blocks( $temporary_content['content'] ) )
-			);
-			wp_add_inline_script( 'wp-edit-post', $script );
+		global $post;
 
-			/**
-			 * Styles
-			 */
-			wp_enqueue_style( 'custom-mobile-styles', get_stylesheet_directory_uri() . '/style-mobile.css', false, filemtime( __DIR__ . '/style-mobile.css' ) );
-			$block_editor_css = get_block_editor_theme_styles()[0]['css'];
-			wp_add_inline_style(
-				'custom-mobile-styles',
-				$block_editor_css
+		// Set initial title to empty string for auto draft for duration of edit.
+		// Otherwise, title defaults to and displays as "Auto Draft".
+		$is_new_post = 'auto-draft' === $post->post_status;
+
+		// Set the post type name.
+		$post_type        = get_post_type( $post );
+		$post_type_object = get_post_type_object( $post_type );
+		$rest_base        = ! empty( $post_type_object->rest_base ) ? $post_type_object->rest_base : $post_type_object->name;
+
+		/*
+		 * rest_preload_api_request() runs as the logged-out user and keeps only
+		 * 200s, so only publicly-readable paths can be preloaded here. Forbidden
+		 * context=edit responses are supplied by frontenberg_hardcoded_preload_data().
+		 */
+		$preload_paths = array(
+			'/wp/v2/types?context=view',
+			'/wp/v2/taxonomies?context=view',
+			// The root site entity ("__unstableBase"); see core-data's entities.js.
+			'/?_fields=' . implode(
+				',',
+				array(
+					'description',
+					'gmt_offset',
+					'home',
+					'image_sizes',
+					'image_size_threshold',
+					'name',
+					'site_icon',
+					'site_icon_url',
+					'site_logo',
+					'timezone_string',
+					'url',
+					'page_for_posts',
+					'page_on_front',
+					'show_on_front',
+				)
+			),
+		);
+
+		/**
+		 * Preload common data by specifying an array of REST API paths that will be preloaded.
+		 *
+		 * Filters the array of paths that will be preloaded.
+		 *
+		 * @param array $preload_paths Array of paths to preload
+		 * @param object $post         The post resource data.
+		 */
+		$preload_paths = apply_filters( 'block_editor_preload_paths', $preload_paths, $post );
+
+		// Ensure the global $post remains the same after
+		// API data is preloaded. Because API preloading
+		// can call the_content and other filters, callbacks
+		// can unexpectedly modify $post resulting in issues
+		// like https://github.com/WordPress/gutenberg/issues/7468.
+		$backup_global_post = $post;
+
+		$preload_data = array_reduce(
+			$preload_paths,
+			'rest_preload_api_request',
+			array()
+		);
+
+		// Restore the global $post as it was before API preloading.
+		$post = $backup_global_post; // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited -- Restores the global.
+
+		wp_add_inline_script(
+			'wp-api-fetch',
+			sprintf( 'wp.apiFetch.use( wp.apiFetch.createPreloadingMiddleware( %s ) );', wp_json_encode( $preload_data ) ),
+			'after'
+		);
+
+		/*
+		 * Serve the forbidden context=edit responses via a *persistent* middleware,
+		 * not createPreloadingMiddleware: initializeEditor() calls clearPreloadedData()
+		 * once its preload Promise.all settles, which rejects early for logged-out
+		 * visitors (several resolvers 401) — before the post's getEntityRecord resolver
+		 * (delayed by the entity config + a store lock) fetches. A cleared preload
+		 * entry would be gone by then; this middleware answers for the page's lifetime.
+		 */
+		wp_add_inline_script(
+			'wp-api-fetch',
+			sprintf(
+				'( function () {
+var responses = %s;
+var get = null, options_map = null;
+function build() {
+	var normalize = wp.url.normalizePath;
+	get = {};
+	options_map = {};
+	Object.keys( responses ).forEach( function ( key ) {
+		if ( "OPTIONS" === key ) {
+			Object.keys( responses[ key ] ).forEach( function ( path ) {
+				options_map[ normalize( path ) ] = responses[ key ][ path ];
+			} );
+		} else {
+			get[ normalize( key ) ] = responses[ key ];
+		}
+	} );
+}
+function respond( entry, parse ) {
+	if ( false === parse ) {
+		return Promise.resolve(
+			new window.Response( JSON.stringify( entry.body ), {
+				status: 200,
+				statusText: "OK",
+				headers: entry.headers || {},
+			} )
+		);
+	}
+	return Promise.resolve( entry.body );
+}
+wp.apiFetch.use( function ( options, next ) {
+	if ( ! get ) {
+		build();
+	}
+	if ( "string" === typeof options.path ) {
+		var method = options.method || "GET";
+		var path = wp.url.normalizePath( options.path );
+		if ( "GET" === method && get[ path ] ) {
+			return respond( get[ path ], options.parse );
+		}
+		if ( "OPTIONS" === method && options_map[ path ] ) {
+			return respond( options_map[ path ], options.parse );
+		}
+	}
+	return next( options );
+} );
+} )();',
+				wp_json_encode( frontenberg_hardcoded_preload_data( $post ) )
+			),
+			'after'
+		);
+
+		wp_add_inline_script(
+			'wp-blocks',
+			sprintf( 'wp.blocks.setCategories( %s );', wp_json_encode( get_block_categories( $post ) ) ),
+			'after'
+		);
+
+		// Assign initial edits, if applicable. These are not initially assigned
+		// to the persisted post, but should be included in its save payload.
+		if ( $is_new_post ) {
+			// Override "(Auto Draft)" new post default title with empty string,
+			// or filtered value.
+			$initial_edits = array(
+				'title'   => $post->post_title,
+				'content' => $post->post_content,
+				'excerpt' => $post->post_excerpt,
 			);
 		} else {
-			// Enqueue heartbeat separately as an "optional" dependency of the editor.
-			// Heartbeat is used for automatic nonce refreshing, but some hosts choose
-			// to disable it outright.
-			wp_enqueue_script( 'heartbeat' );
+			$initial_edits = null;
+		}
 
-			global $post;
+		// Preload server-registered block schemas.
+		wp_add_inline_script(
+			'wp-blocks',
+			'wp.blocks.unstable__bootstrapServerSideBlockDefinitions(' . wp_json_encode( get_block_editor_server_block_settings() ) . ');'
+		);
 
-			// Set initial title to empty string for auto draft for duration of edit.
-			// Otherwise, title defaults to and displays as "Auto Draft".
-			$is_new_post = 'auto-draft' === $post->post_status;
+		/**
+		 * Filters the allowed block types for the editor, defaulting to true (all
+		 * block types supported).
+		 *
+		 * @param bool|array $allowed_block_types Array of block type slugs, or
+		 *                                        boolean to enable/disable all.
+		 * @param object $post                    The post resource data.
+		 */
+		$allowed_block_types = apply_filters( 'allowed_block_types', true, $post );
 
-			// Set the post type name.
-			$post_type        = get_post_type( $post );
-			$post_type_object = get_post_type_object( $post_type );
-			$rest_base        = ! empty( $post_type_object->rest_base ) ? $post_type_object->rest_base : $post_type_object->name;
+		// Get all available templates for the post/page attributes meta-box.
+		// The "Default template" array element should only be added if the array is
+		// not empty so we do not trigger the template select element without any options
+		// besides the default value.
+		$available_templates = wp_get_theme()->get_page_templates( get_post( $post->ID ) );
+		$available_templates = ! empty( $available_templates ) ? array_merge(
+			array(
+				'' => apply_filters( 'default_page_template_title', __( 'Default template', 'wporg' ), 'rest-api' ),
+			),
+			$available_templates
+		) : $available_templates;
 
-			/*
-			 * rest_preload_api_request() runs as the logged-out user and keeps only
-			 * 200s, so only publicly-readable paths can be preloaded here. Forbidden
-			 * context=edit responses are supplied by frontenberg_hardcoded_preload_data().
-			 */
-			$preload_paths = array(
-				'/wp/v2/types?context=view',
-				'/wp/v2/taxonomies?context=view',
-				// The root site entity ("__unstableBase"); see core-data's entities.js.
-				'/?_fields=' . implode(
-					',',
-					array(
-						'description',
-						'gmt_offset',
-						'home',
-						'image_sizes',
-						'image_size_threshold',
-						'name',
-						'site_icon',
-						'site_icon_url',
-						'site_logo',
-						'timezone_string',
-						'url',
-						'page_for_posts',
-						'page_on_front',
-						'show_on_front',
-					)
-				),
-			);
+		// Media settings.
+		$max_upload_size = wp_max_upload_size();
+		if ( ! $max_upload_size ) {
+			$max_upload_size = 0;
+		}
 
+		// Lock settings.
+		$user_id = wp_check_post_lock( $post->ID );
+		if ( $user_id ) {
 			/**
-			 * Preload common data by specifying an array of REST API paths that will be preloaded.
+			 * Filters whether to show the post locked dialog.
 			 *
-			 * Filters the array of paths that will be preloaded.
+			 * Returning a falsey value to the filter will short-circuit displaying the dialog.
 			 *
-			 * @param array $preload_paths Array of paths to preload
-			 * @param object $post         The post resource data.
+			 * @since 3.6.0
+			 *
+			 * @param bool         $display Whether to display the dialog. Default true.
+			 * @param WP_Post      $post    Post object.
+			 * @param WP_User|bool $user    The user id currently editing the post.
 			 */
-			$preload_paths = apply_filters( 'block_editor_preload_paths', $preload_paths, $post );
-
-			// Ensure the global $post remains the same after
-			// API data is preloaded. Because API preloading
-			// can call the_content and other filters, callbacks
-			// can unexpectedly modify $post resulting in issues
-			// like https://github.com/WordPress/gutenberg/issues/7468.
-			$backup_global_post = $post;
-
-			$preload_data = array_reduce(
-				$preload_paths,
-				'rest_preload_api_request',
-				array()
-			);
-
-			// Restore the global $post as it was before API preloading.
-			$post = $backup_global_post;
-
-			wp_add_inline_script(
-				'wp-api-fetch',
-				sprintf( 'wp.apiFetch.use( wp.apiFetch.createPreloadingMiddleware( %s ) );', wp_json_encode( $preload_data ) ),
-				'after'
-			);
-
-			/*
-			 * Serve the forbidden context=edit responses via a *persistent* middleware,
-			 * not createPreloadingMiddleware: initializeEditor() calls clearPreloadedData()
-			 * once its preload Promise.all settles, which rejects early for logged-out
-			 * visitors (several resolvers 401) — before the post's getEntityRecord resolver
-			 * (delayed by the entity config + a store lock) fetches. A cleared preload
-			 * entry would be gone by then; this middleware answers for the page's lifetime.
-			 */
-			wp_add_inline_script(
-				'wp-api-fetch',
-				sprintf(
-					'( function () {
-	var responses = %s;
-	var get = null, options_map = null;
-	function build() {
-		var normalize = wp.url.normalizePath;
-		get = {};
-		options_map = {};
-		Object.keys( responses ).forEach( function ( key ) {
-			if ( "OPTIONS" === key ) {
-				Object.keys( responses[ key ] ).forEach( function ( path ) {
-					options_map[ normalize( path ) ] = responses[ key ][ path ];
-				} );
+			if ( apply_filters( 'show_post_locked_dialog', true, $post, $user_id ) ) {
+				$locked = true;
 			} else {
-				get[ normalize( key ) ] = responses[ key ];
+				$locked = false;
 			}
-		} );
-	}
-	function respond( entry, parse ) {
-		if ( false === parse ) {
-			return Promise.resolve(
-				new window.Response( JSON.stringify( entry.body ), {
-					status: 200,
-					statusText: "OK",
-					headers: entry.headers || {},
-				} )
-			);
-		}
-		return Promise.resolve( entry.body );
-	}
-	wp.apiFetch.use( function ( options, next ) {
-		if ( ! get ) {
-			build();
-		}
-		if ( "string" === typeof options.path ) {
-			var method = options.method || "GET";
-			var path = wp.url.normalizePath( options.path );
-			if ( "GET" === method && get[ path ] ) {
-				return respond( get[ path ], options.parse );
-			}
-			if ( "OPTIONS" === method && options_map[ path ] ) {
-				return respond( options_map[ path ], options.parse );
-			}
-		}
-		return next( options );
-	} );
-} )();',
-					wp_json_encode( frontenberg_hardcoded_preload_data( $post ) )
-				),
-				'after'
-			);
 
-			wp_add_inline_script(
-				'wp-blocks',
-				sprintf( 'wp.blocks.setCategories( %s );', wp_json_encode( get_block_categories( $post ) ) ),
-				'after'
-			);
-
-			// Assign initial edits, if applicable. These are not initially assigned
-			// to the persisted post, but should be included in its save payload.
-			if ( $is_new_post ) {
-				// Override "(Auto Draft)" new post default title with empty string,
-				// or filtered value.
-				$initial_edits = array(
-					'title'   => $post->post_title,
-					'content' => $post->post_content,
-					'excerpt' => $post->post_excerpt,
+			$user_details = null;
+			if ( $locked ) {
+				$user         = get_userdata( $user_id );
+				$user_details = array(
+					'name' => $user->display_name,
 				);
-			} else {
-				$initial_edits = null;
-			}
-
-			// Preload server-registered block schemas.
-			wp_add_inline_script(
-				'wp-blocks',
-				'wp.blocks.unstable__bootstrapServerSideBlockDefinitions(' . json_encode( get_block_editor_server_block_settings() ) . ');'
-			);
-
-			/**
-			 * Filters the allowed block types for the editor, defaulting to true (all
-			 * block types supported).
-			 *
-			 * @param bool|array $allowed_block_types Array of block type slugs, or
-			 *                                        boolean to enable/disable all.
-			 * @param object $post                    The post resource data.
-			 */
-			$allowed_block_types = apply_filters( 'allowed_block_types', true, $post );
-
-			// Get all available templates for the post/page attributes meta-box.
-			// The "Default template" array element should only be added if the array is
-			// not empty so we do not trigger the template select element without any options
-			// besides the default value.
-			$available_templates = wp_get_theme()->get_page_templates( get_post( $post->ID ) );
-			$available_templates = ! empty( $available_templates ) ? array_merge(
-				array(
-					'' => apply_filters( 'default_page_template_title', __( 'Default template', 'gutenberg' ), 'rest-api' ),
-				),
-				$available_templates
-			) : $available_templates;
-
-			// Media settings.
-			$max_upload_size = wp_max_upload_size();
-			if ( ! $max_upload_size ) {
-				$max_upload_size = 0;
-			}
-
-			// Editor Styles.
-			global $editor_styles;
-			$styles = array();
-
-			if ( $editor_styles && current_theme_supports( 'editor-styles' ) ) {
-				foreach ( $editor_styles as $style ) {
-					if ( filter_var( $style, FILTER_VALIDATE_URL ) ) {
-						$styles[] = array(
-							'css' => file_get_contents( $style ),
-						);
-					} else {
-						$file = get_theme_file_path( $style );
-						if ( file_exists( $file ) ) {
-							$styles[] = array(
-								'css'     => file_get_contents( $file ),
-								'baseURL' => get_theme_file_uri( $style ),
-							);
-						}
+				$avatar       = get_avatar( $user_id, 64 );
+				if ( $avatar ) {
+					if ( preg_match( "|src='([^']+)'|", $avatar, $matches ) ) {
+						$user_details['avatar'] = $matches[1];
 					}
 				}
 			}
 
-			// Lock settings.
-			$user_id = wp_check_post_lock( $post->ID );
-			if ( $user_id ) {
-				/**
-				 * Filters whether to show the post locked dialog.
-				 *
-				 * Returning a falsey value to the filter will short-circuit displaying the dialog.
-				 *
-				 * @since 3.6.0
-				 *
-				 * @param bool         $display Whether to display the dialog. Default true.
-				 * @param WP_Post      $post    Post object.
-				 * @param WP_User|bool $user    The user id currently editing the post.
-				 */
-				if ( apply_filters( 'show_post_locked_dialog', true, $post, $user_id ) ) {
-					$locked = true;
-				} else {
-					$locked = false;
-				}
-
-				$user_details = null;
-				if ( $locked ) {
-					$user         = get_userdata( $user_id );
-					$user_details = array(
-						'name' => $user->display_name,
-					);
-					$avatar       = get_avatar( $user_id, 64 );
-					if ( $avatar ) {
-						if ( preg_match( "|src='([^']+)'|", $avatar, $matches ) ) {
-							$user_details['avatar'] = $matches[1];
-						}
-					}
-				}
-
-				$lock_details = array(
-					'isLocked' => $locked,
-					'user'     => $user_details,
-				);
-			} else {
-
-				// Lock the post.
-				$active_post_lock = wp_set_post_lock( $post->ID );
-				$lock_details     = array(
-					'isLocked'       => false,
-					// wp_set_post_lock() returns false when there is no logged-in user
-					// (e.g. a logged-out front-end visitor); cast so implode() does not
-					// fatal on false. On .org the front page is always locked, so this
-					// branch only runs locally.
-					'activePostLock' => esc_attr( implode( ':', (array) $active_post_lock ) ),
-				);
-			}
-
-			$editor_settings = array(
-				'availableTemplates'     => $available_templates,
-				'allowedBlockTypes'      => $allowed_block_types,
-				'disableCustomColors'    => get_theme_support( 'disable-custom-colors' ),
-				'disableCustomFontSizes' => get_theme_support( 'disable-custom-font-sizes' ),
-				'disablePostFormats'     => ! current_theme_supports( 'post-formats' ),
-				'titlePlaceholder'       => apply_filters( 'enter_title_here', __( 'Add title', 'gutenberg' ), $post ),
-				'bodyPlaceholder'        => apply_filters( 'write_your_story', __( 'Start writing or type / to choose a block', 'gutenberg' ), $post ),
-				'isRTL'                  => is_rtl(),
-				'autosaveInterval'       => 10,
-				'maxUploadFileSize'      => $max_upload_size,
-				'allowedMimeTypes'       => get_allowed_mime_types(),
-				'styles'                 => $styles,
-				'imageSizes'             => gutenberg_get_available_image_sizes(),
-				'richEditingEnabled'     => user_can_richedit(),
-				'fullscreenMode'         => true,
-
-				// Ideally, we'd remove this and rely on a REST API endpoint.
-				'postLock'               => $lock_details,
-				'postLockUtils'          => array(
-					'nonce'       => wp_create_nonce( 'lock-post_' . $post->ID ),
-					'unlockNonce' => wp_create_nonce( 'update-post_' . $post->ID ),
-					'ajaxUrl'     => admin_url( 'admin-ajax.php' ),
-				),
-
-				// No 'enableCustomFields': its preference submits wp-admin's meta box form, which doesn't exist here.
+			$lock_details = array(
+				'isLocked' => $locked,
+				'user'     => $user_details,
 			);
+		} else {
 
-			$post_autosave = gutenberg_get_autosave_newer_than_post_save( $post );
-			if ( $post_autosave ) {
-				$editor_settings['autosave'] = array(
-					'editLink' => get_edit_post_link( $post_autosave->ID ),
-				);
-			}
-
-			if ( ! empty( $post_type_object->template ) ) {
-				$editor_settings['template']     = $post_type_object->template;
-				$editor_settings['templateLock'] = ! empty( $post_type_object->template_lock ) ? $post_type_object->template_lock : false;
-			}
-
-			$editor_context  = new WP_Block_Editor_Context( array( 'post' => $post ) );
-			$editor_settings = get_block_editor_settings( $editor_settings, $editor_context );
-
-			$init_script = <<<JS
-			( function() {
-				window._wpLoadBlockEditor = new Promise( function( resolve ) {
-					wp.domReady( function() {
-						resolve( wp.editPost.initializeEditor( 'editor', "%s", %d, %s, %s ) );
-					} );
-				} );
-			} )();
-			JS;
-
-			$script = sprintf(
-				$init_script,
-				$post->post_type,
-				$post->ID,
-				wp_json_encode( $editor_settings ),
-				wp_json_encode( $initial_edits )
+			// Lock the post.
+			$active_post_lock = wp_set_post_lock( $post->ID );
+			$lock_details     = array(
+				'isLocked'       => false,
+				// wp_set_post_lock() returns false when there is no logged-in user
+				// (e.g. a logged-out front-end visitor); cast so implode() does not
+				// fatal on false. On .org the front page is always locked, so this
+				// branch only runs locally.
+				'activePostLock' => esc_attr( implode( ':', (array) $active_post_lock ) ),
 			);
-			wp_add_inline_script( 'wp-edit-post', $script );
-
-			/**
-			 * Scripts
-			 */
-			wp_enqueue_editor();
 		}
+
+		$editor_settings = array(
+			'availableTemplates'     => $available_templates,
+			'allowedBlockTypes'      => $allowed_block_types,
+			'disableCustomColors'    => get_theme_support( 'disable-custom-colors' ),
+			'disableCustomFontSizes' => get_theme_support( 'disable-custom-font-sizes' ),
+			'disablePostFormats'     => ! current_theme_supports( 'post-formats' ),
+			'titlePlaceholder'       => apply_filters( 'enter_title_here', __( 'Add title', 'wporg' ), $post ),
+			'bodyPlaceholder'        => apply_filters( 'write_your_story', __( 'Start writing or type / to choose a block', 'wporg' ), $post ),
+			'isRTL'                  => is_rtl(),
+			'autosaveInterval'       => 10,
+			'maxUploadFileSize'      => $max_upload_size,
+			'allowedMimeTypes'       => get_allowed_mime_types(),
+			'imageSizes'             => gutenberg_get_available_image_sizes(),
+			'richEditingEnabled'     => user_can_richedit(),
+			'fullscreenMode'         => true,
+
+			// Ideally, we'd remove this and rely on a REST API endpoint.
+			'postLock'               => $lock_details,
+			'postLockUtils'          => array(
+				'nonce'       => wp_create_nonce( 'lock-post_' . $post->ID ),
+				'unlockNonce' => wp_create_nonce( 'update-post_' . $post->ID ),
+				'ajaxUrl'     => admin_url( 'admin-ajax.php' ),
+			),
+
+			// No 'enableCustomFields': its preference submits wp-admin's meta box form, which doesn't exist here.
+		);
+
+		$post_autosave = gutenberg_get_autosave_newer_than_post_save( $post );
+		if ( $post_autosave ) {
+			$editor_settings['autosave'] = array(
+				'editLink' => get_edit_post_link( $post_autosave->ID ),
+			);
+		}
+
+		if ( ! empty( $post_type_object->template ) ) {
+			$editor_settings['template']     = $post_type_object->template;
+			$editor_settings['templateLock'] = ! empty( $post_type_object->template_lock ) ? $post_type_object->template_lock : false;
+		}
+
+		$editor_context  = new WP_Block_Editor_Context( array( 'post' => $post ) );
+		$editor_settings = get_block_editor_settings( $editor_settings, $editor_context );
+
+		$init_script = <<<'JS'
+		( function() {
+			window._wpLoadBlockEditor = new Promise( function( resolve ) {
+				wp.domReady( function() {
+					resolve( wp.editPost.initializeEditor( 'editor', "%s", %d, %s, %s ) );
+				} );
+			} );
+		} )();
+		JS;
+
+		$script = sprintf(
+			$init_script,
+			$post->post_type,
+			$post->ID,
+			wp_json_encode( $editor_settings ),
+			wp_json_encode( $initial_edits )
+		);
+		wp_add_inline_script( 'wp-edit-post', $script );
+
+		/**
+		 * Scripts
+		 */
+		wp_enqueue_editor();
 
 		/**
 		 * Styles
@@ -432,7 +384,7 @@ if ( ! function_exists( 'gutenberg_editor_scripts_and_styles' ) ) {
 		 */
 		do_action( 'enqueue_block_editor_assets' );
 
-		// Remove Emoji fallback support
+		// Remove Emoji fallback support.
 		remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
 		remove_action( 'wp_print_styles', 'print_emoji_styles' );
 	}
@@ -452,10 +404,10 @@ if ( ! function_exists( 'gutenberg_get_available_image_sizes' ) ) {
 		$size_names = apply_filters(
 			'image_size_names_choose',
 			array(
-				'thumbnail' => __( 'Thumbnail', 'gutenberg' ),
-				'medium'    => __( 'Medium', 'gutenberg' ),
-				'large'     => __( 'Large', 'gutenberg' ),
-				'full'      => __( 'Full Size', 'gutenberg' ),
+				'thumbnail' => __( 'Thumbnail', 'wporg' ),
+				'medium'    => __( 'Medium', 'wporg' ),
+				'large'     => __( 'Large', 'wporg' ),
+				'full'      => __( 'Full Size', 'wporg' ),
 			)
 		);
 		$all_sizes  = array();
@@ -467,7 +419,7 @@ if ( ! function_exists( 'gutenberg_get_available_image_sizes' ) ) {
 		}
 		return $all_sizes;
 	}
-} // /function_exists()
+}
 
 /**
  * This function was removed from the Gutenberg plugin in v5.4.
@@ -497,7 +449,7 @@ if ( ! function_exists( 'gutenberg_get_autosave_newer_than_post_save' ) ) {
 		wp_delete_post_revision( $autosave->ID );
 		return false;
 	}
-} // /function_exists()
+}
 
 /**
  * Builds the context=edit preload responses a logged-out visitor cannot fetch
@@ -556,7 +508,7 @@ function frontenberg_hardcoded_preload_data( $post ) {
 	);
 
 	// /wp/v2/users/me requires an authenticated user; a generic guest avoids exposing a real account.
-	$guest_user = array(
+	$guest_user   = array(
 		'id'                 => 0,
 		'name'               => __( 'Guest', 'wporg' ),
 		'url'                => '',
@@ -591,7 +543,7 @@ function frontenberg_hardcoded_preload_data( $post ) {
 		'body'    => $post_type_body,
 		'headers' => $read_only,
 	);
-	$data['/wp/v2/taxonomies?context=edit'] = array(
+	$data['/wp/v2/taxonomies?context=edit']                       = array(
 		'body'    => frontenberg_public_view_response( '/wp/v2/taxonomies' ),
 		'headers' => $read_only,
 	);
@@ -629,7 +581,10 @@ function frontenberg_hardcoded_preload_data( $post ) {
 				'version'        => $theme->get( 'Version' ),
 				'status'         => 'active',
 				'is_block_theme' => wp_is_block_theme(),
-				'name'           => array( 'raw' => $theme->get( 'Name' ), 'rendered' => $theme->get( 'Name' ) ),
+				'name'           => array(
+					'raw'      => $theme->get( 'Name' ),
+					'rendered' => $theme->get( 'Name' ),
+				),
 				'theme_supports' => array(
 					'editor-styles'        => current_theme_supports( 'editor-styles' ),
 					'responsive-embeds'    => current_theme_supports( 'responsive-embeds' ),
@@ -653,11 +608,11 @@ function frontenberg_hardcoded_preload_data( $post ) {
 		'body'    => array(),
 		'headers' => array( 'Allow' => 'GET, POST' ),
 	);
-	$data['/wp/v2/templates/lookup?slug=front-page'] = array(
+	$data['/wp/v2/templates/lookup?slug=front-page']   = array(
 		'body'    => (object) array(),
 		'headers' => $read_only,
 	);
-	$data['/wp/v2/templates/lookup?slug=page'] = array(
+	$data['/wp/v2/templates/lookup?slug=page']         = array(
 		'body'    => (object) array(),
 		'headers' => $read_only,
 	);
@@ -667,7 +622,7 @@ function frontenberg_hardcoded_preload_data( $post ) {
 	$theme_json = WP_Theme_JSON_Resolver::get_merged_data( 'theme' );
 	$theme_raw  = $theme_json->get_raw_data();
 
-	$data[ '/wp/v2/global-styles/themes/' . $stylesheet . '?context=view' ] = array(
+	$data[ '/wp/v2/global-styles/themes/' . $stylesheet . '?context=view' ]            = array(
 		'body'    => array(
 			'settings' => $theme_json->get_settings(),
 			'styles'   => isset( $theme_raw['styles'] ) ? $theme_raw['styles'] : array(),
@@ -709,11 +664,26 @@ function frontenberg_hardcoded_preload_data( $post ) {
 
 	// canUser() OPTIONS probes; advertising create/update keeps the demo interactive (writes still blocked).
 	$data['OPTIONS'] = array(
-		'/wp/v2/media'     => array( 'body' => array(), 'headers' => array( 'Allow' => 'GET, POST' ) ),
-		'/wp/v2/pages'     => array( 'body' => array(), 'headers' => array( 'Allow' => 'GET, POST' ) ),
-		'/wp/v2/blocks'    => array( 'body' => array(), 'headers' => array( 'Allow' => 'GET, POST' ) ),
-		'/wp/v2/templates' => array( 'body' => array(), 'headers' => array( 'Allow' => 'GET, POST' ) ),
-		'/wp/v2/settings'  => array( 'body' => array(), 'headers' => array( 'Allow' => 'GET, POST, PUT, PATCH' ) ),
+		'/wp/v2/media'     => array(
+			'body'    => array(),
+			'headers' => array( 'Allow' => 'GET, POST' ),
+		),
+		'/wp/v2/pages'     => array(
+			'body'    => array(),
+			'headers' => array( 'Allow' => 'GET, POST' ),
+		),
+		'/wp/v2/blocks'    => array(
+			'body'    => array(),
+			'headers' => array( 'Allow' => 'GET, POST' ),
+		),
+		'/wp/v2/templates' => array(
+			'body'    => array(),
+			'headers' => array( 'Allow' => 'GET, POST' ),
+		),
+		'/wp/v2/settings'  => array(
+			'body'    => array(),
+			'headers' => array( 'Allow' => 'GET, POST, PUT, PATCH' ),
+		),
 	);
 
 	return $data;
@@ -726,7 +696,7 @@ function frontenberg_hardcoded_preload_data( $post ) {
  * @return array The response data.
  */
 function frontenberg_public_view_response( $path ) {
-	$request  = new WP_REST_Request( 'GET', $path );
+	$request = new WP_REST_Request( 'GET', $path );
 	$request->set_query_params( array( 'context' => 'view' ) );
 	$response = rest_do_request( $request );
 
@@ -806,7 +776,7 @@ function frontenberg_entity_config_response( $controller, $query ) {
 
 add_action(
 	'template_redirect',
-	function() {
+	function () {
 		if ( ! is_front_page() ) {
 			wp_safe_redirect( home_url( '/' ), 301 );
 			exit;
@@ -814,8 +784,9 @@ add_action(
 
 		add_action(
 			'wp_enqueue_scripts',
-			function() {
-				wp_enqueue_script( 'postbox', admin_url( 'js/postbox.min.js' ), array( 'jquery-ui-sortable' ), false, 1 );
+			function () {
+				// Core registers postbox only in wp-admin, but wp-edit-post depends on it.
+				wp_enqueue_script( 'postbox', admin_url( 'js/postbox.min.js' ), array( 'jquery-ui-sortable' ), wp_get_wp_version(), true );
 				wp_enqueue_style( 'dashicons' );
 				wp_enqueue_style( 'media' );
 				wp_enqueue_style( 'admin-menu' );
@@ -826,12 +797,11 @@ add_action(
 
 		add_action(
 			'wp_enqueue_scripts',
-			function( $hook ) {
-				// Gutenberg requires the post-locking functions defined within:
-				// See `show_post_locked_dialog` and `get_post_metadata` filters below.
+			function () {
+				// The editor needs the post-locking functions; see the `show_post_locked_dialog` and `get_post_metadata` filters below.
 				include_once ABSPATH . 'wp-admin/includes/post.php';
 
-				gutenberg_editor_scripts_and_styles( $hook );
+				gutenberg_editor_scripts_and_styles();
 			}
 		);
 
@@ -857,21 +827,17 @@ add_action(
 
 		add_action(
 			'enqueue_block_editor_assets',
-			function() {
-				if ( false ) {
-					return;
-				}
-
-				wp_enqueue_script( 'plugin-w-button-js', get_stylesheet_directory_uri() . '/plugins/w-button/index.js', array( 'wp-blocks', 'wp-edit-post', 'wp-plugins', 'wp-components' ), filemtime( __DIR__ . '/plugins/w-button/index.js' ) );
+			function () {
+				wp_enqueue_script( 'plugin-w-button-js', get_stylesheet_directory_uri() . '/plugins/w-button/index.js', array( 'wp-blocks', 'wp-edit-post', 'wp-plugins', 'wp-components' ), filemtime( __DIR__ . '/plugins/w-button/index.js' ), false );
 				wp_enqueue_style( 'plugin-w-button-css', get_stylesheet_directory_uri() . '/plugins/w-button/style.css', null, filemtime( __DIR__ . '/plugins/w-button/style.css' ) );
 
 				// Loads after editor-modifications, so its write blocker catches the preference save this script makes on load.
-				wp_enqueue_script( 'plugin-disable-features-js', get_stylesheet_directory_uri() . '/plugins/disable-features/index.js', array( 'wp-edit-post', 'wp-plugins', 'editor-modifications' ), filemtime( __DIR__ . '/plugins/disable-features/index.js' ) );
+				wp_enqueue_script( 'plugin-disable-features-js', get_stylesheet_directory_uri() . '/plugins/disable-features/index.js', array( 'wp-edit-post', 'wp-plugins', 'editor-modifications' ), filemtime( __DIR__ . '/plugins/disable-features/index.js' ), false );
 
 				wp_enqueue_script( 'plugin-openverse-js', get_stylesheet_directory_uri() . '/plugins/openverse/index.js', array( 'wp-block-editor', 'wp-components', 'wp-compose', 'wp-data', 'wp-element', 'wp-hooks', 'wp-i18n' ), filemtime( __DIR__ . '/plugins/openverse/index.js' ), true );
 				wp_enqueue_style( 'plugin-openverse-css', get_stylesheet_directory_uri() . '/plugins/openverse/style.css', null, filemtime( __DIR__ . '/plugins/openverse/style.css' ) );
 
-				wp_enqueue_script( 'editor-modifications', get_stylesheet_directory_uri() . '/js/editor-modifications.js', array( 'wp-blocks', 'wp-edit-post', 'wp-hooks', 'wp-i18n', 'wp-plugins', 'wp-element' ), filemtime( __DIR__ . '/js/editor-modifications.js' ) );
+				wp_enqueue_script( 'editor-modifications', get_stylesheet_directory_uri() . '/js/editor-modifications.js', array( 'wp-blocks', 'wp-edit-post', 'wp-hooks', 'wp-i18n', 'wp-plugins', 'wp-element' ), filemtime( __DIR__ . '/js/editor-modifications.js' ), false );
 				wp_enqueue_style( 'custom-editor-styles', get_stylesheet_directory_uri() . '/style-editor.css', false, filemtime( __DIR__ . '/style-editor.css' ) );
 			}
 		);
@@ -880,40 +846,40 @@ add_action(
 		add_filter( 'show_post_locked_dialog', '__return_false' );
 
 		// Everyone can richedit! This avoids a case where a page can be cached where a user can't richedit.
-		$GLOBALS['wp_rich_edit'] = true;
 		add_filter( 'user_can_richedit', '__return_true', 1000 );
 
 		// Homepage is always locked by @wordpressdotorg
 		// This prevents other logged-in users taking a lock of the post on the front-end.
 		add_filter(
 			'get_post_metadata',
-			function( $value, $post_id, $meta_key ) {
-				if ( $meta_key !== '_edit_lock' ) {
+			function ( $value, $post_id, $meta_key ) {
+				if ( '_edit_lock' !== $meta_key ) {
 					return $value;
 				}
 
 				// This filter is only added on a front-page view of the homepage for this site, no other checks are needed here.
 
-				return time() . ':5911429'; // WordPressdotorg user ID
+				return time() . ':5911429'; // WordPressdotorg user ID.
 			},
 			10,
 			3
 		);
 
-		// Disable use XML-RPC
+		// Disable use XML-RPC.
 		add_filter( 'xmlrpc_enabled', '__return_false' );
 
-		// Disable X-Pingback to header
+		/**
+		 * Removes the X-Pingback header.
+		 *
+		 * @param array $headers Response headers.
+		 * @return array
+		 */
 		function disable_x_pingback( $headers ) {
 			unset( $headers['X-Pingback'] );
 
 			return $headers;
 		}
 		add_filter( 'wp_headers', 'disable_x_pingback' );
-
-		function frontenberg_site_title() {
-			return esc_html__( 'The new Gutenberg editing experience', 'wporg' );
-		}
 
 		// Disable Jetpack Blocks for now.
 		add_filter( 'jetpack_gutenberg', '__return_false' );
@@ -985,7 +951,7 @@ if ( ! function_exists( 'gutenbergtheme_setup' ) ) :
 		 */
 		add_theme_support( 'title-tag' );
 
-		// We use the excerpt for blog description
+		// We use the excerpt for blog description.
 		add_post_type_support( 'page', 'excerpt' );
 	}
 endif;
