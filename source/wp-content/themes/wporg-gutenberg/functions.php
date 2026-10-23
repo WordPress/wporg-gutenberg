@@ -721,8 +721,6 @@ add_action(
 			exit;
 		}
 
-		show_admin_bar( true );
-
 		add_action(
 			'wp_enqueue_scripts',
 			function() {
@@ -730,7 +728,6 @@ add_action(
 				wp_enqueue_style( 'dashicons' );
 				wp_enqueue_style( 'media' );
 				wp_enqueue_style( 'admin-menu' );
-				wp_enqueue_style( 'admin-bar' );
 				wp_enqueue_style( 'l10n' );
 			},
 			11
