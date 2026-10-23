@@ -742,6 +742,8 @@ function frontenberg_public_view_response( $path ) {
  *
  * Calls get_items() directly: the route's permission check requires edit caps,
  * and the body is registry data (field, action and view definitions), not content.
+ * Only core's own, unmodified field and action definitions are kept, so nothing a
+ * plugin registers or alters is exposed to logged-out visitors.
  *
  * @param WP_REST_Controller $controller Entity config controller.
  * @param array              $query      Query parameters, including any _fields.
@@ -753,8 +755,35 @@ function frontenberg_entity_config_response( $controller, $query ) {
 
 	$response = rest_ensure_response( $controller->get_items( $request ) );
 	$response = rest_filter_response_fields( $response, rest_get_server(), $request );
+	$data     = $response->get_data();
 
-	return $response->get_data();
+	foreach ( array( 'fields', 'actions' ) as $type ) {
+		if ( ! isset( $data[ $type ] ) ) {
+			continue;
+		}
+
+		$data[ $type ] = array_values(
+			array_filter(
+				$data[ $type ],
+				function ( $item ) {
+					return 'core' === $item['origin']['registeredBy'] && empty( $item['origin']['updatedBy'] );
+				}
+			)
+		);
+
+		// Script modules list the ids they implement; drop references to filtered-out ones.
+		$ids     = wp_list_pluck( $data[ $type ], 'id' );
+		$modules = array();
+		foreach ( $data['script_modules'] as $module ) {
+			$module[ $type ] = array_values( array_intersect( $module[ $type ], $ids ) );
+			if ( $module[ $type ] ) {
+				$modules[] = $module;
+			}
+		}
+		$data['script_modules'] = $modules;
+	}
+
+	return $data;
 }
 
 add_action(
