@@ -5,8 +5,8 @@
     <exclude-pattern>*/node_modules/*</exclude-pattern>
     <exclude-pattern>*/build/*</exclude-pattern>
 
-    <!-- Show sniff codes in all reports -->
-    <arg value="psn" />
+    <!-- Show progress, and sniff codes in all reports -->
+    <arg value="ps" />
     <arg name="colors" />
 
     <!-- Scan this project's code; the rest of source/wp-content is installed dependencies. -->
