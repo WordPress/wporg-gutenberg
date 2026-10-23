@@ -64,23 +64,13 @@ h3 {
 	word-break: normal;
 }
 
-/* Fix the admin bar */
+/* Fix the admin bar, and don't leave room for an admin menu outside fullscreen mode: there is none. */
 .interface-interface-skeleton {
 	top: 0;
-}
-
-/* There's no admin menu, so don't leave room for it when fullscreen mode is off. */
-.interface-interface-skeleton {
 	left: 0;
 }
 
 /* We need this to override blockbase styles */
-@media (max-width: 782px) { // WPAdmin-bar breakpoint
-	.admin-bar .interface-interface-skeleton {
-		top: 46px;
-	}
-}
-
 .admin-bar .interface-interface-skeleton {
 	top: var(--wpadmin-bar--height);
 }
@@ -129,7 +119,6 @@ html {
 }
 
 @media (min-width: 782px) {
-
 	.wporg-gutenberg-hide-on-mobile {
 		display: inherit !important;
 	}
