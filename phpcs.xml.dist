@@ -37,10 +37,6 @@
 
 		<!-- Config-driven rewrite utility; must never run as part of a lint standard. -->
 		<exclude name="WordPress.Utils.I18nTextDomainFixer" />
-
-		<!-- Short array syntax is already used throughout the codebase. -->
-		<exclude name="Universal.Arrays.DisallowShortArraySyntax" />
-		<exclude name="Universal.Operators.DisallowShortTernary" />
 	</rule>
 
 	<rule ref="WordPress.WP.I18n">
