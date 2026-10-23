@@ -69,6 +69,11 @@ h3 {
 	top: 0;
 }
 
+/* There's no admin menu, so don't leave room for it when fullscreen mode is off. */
+.interface-interface-skeleton {
+	left: 0;
+}
+
 /* We need this to override blockbase styles */
 @media (max-width: 782px) { // WPAdmin-bar breakpoint
 	.admin-bar .interface-interface-skeleton {
