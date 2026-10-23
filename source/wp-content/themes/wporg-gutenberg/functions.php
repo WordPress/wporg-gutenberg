@@ -685,6 +685,27 @@ function frontenberg_hardcoded_preload_data( $post ) {
 		'headers' => $read_only,
 	);
 
+	// Entity config endpoints (WP 7.2+) require edit caps, so build their bodies from the controllers directly.
+	$entity_query  = array(
+		'kind' => 'postType',
+		'name' => $post->post_type,
+	);
+	$entity_routes = array(
+		'/wp/v2/entity-fields'  => array( 'WP_REST_Entity_Fields_Controller', $entity_query ),
+		'/wp/v2/entity-actions' => array( 'WP_REST_Entity_Actions_Controller', $entity_query ),
+		'/wp/v2/view-config'    => array( 'WP_REST_View_Config_Controller', $entity_query + array( '_fields' => 'form' ) ),
+	);
+	foreach ( $entity_routes as $route => list( $controller_class, $query ) ) {
+		if ( ! class_exists( $controller_class ) ) {
+			continue;
+		}
+
+		$data[ add_query_arg( $query, $route ) ] = array(
+			'body'    => frontenberg_entity_config_response( new $controller_class(), $query ),
+			'headers' => $read_only,
+		);
+	}
+
 	// canUser() OPTIONS probes; advertising create/update keeps the demo interactive (writes still blocked).
 	$data['OPTIONS'] = array(
 		'/wp/v2/media'     => array( 'body' => array(), 'headers' => array( 'Allow' => 'GET, POST' ) ),
@@ -713,6 +734,26 @@ function frontenberg_public_view_response( $path ) {
 	}
 
 	return rest_get_server()->response_to_data( rest_ensure_response( $response ), false );
+}
+
+/**
+ * Returns an entity config endpoint's body as its controller builds it.
+ *
+ * Calls get_items() directly: the route's permission check requires edit caps,
+ * and the body is registry data (field, action and view definitions), not content.
+ *
+ * @param WP_REST_Controller $controller Entity config controller.
+ * @param array              $query      Query parameters, including any _fields.
+ * @return array The response data.
+ */
+function frontenberg_entity_config_response( $controller, $query ) {
+	$request = new WP_REST_Request( 'GET' );
+	$request->set_query_params( $query );
+
+	$response = rest_ensure_response( $controller->get_items( $request ) );
+	$response = rest_filter_response_fields( $response, rest_get_server(), $request );
+
+	return $response->get_data();
 }
 
 add_action(
