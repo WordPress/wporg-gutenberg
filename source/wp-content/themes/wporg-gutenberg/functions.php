@@ -740,11 +740,6 @@ function frontenberg_public_view_response( $path ) {
 /**
  * Returns an entity config endpoint's body as its controller builds it.
  *
- * Calls get_items() directly: the route's permission check requires edit caps,
- * and the body is registry data (field, action and view definitions), not content.
- * Only core's own, unmodified field and action definitions are kept, so nothing a
- * plugin registers or alters is exposed to logged-out visitors.
- *
  * @param WP_REST_Controller $controller Entity config controller.
  * @param array              $query      Query parameters, including any _fields.
  * @return array The response data.
