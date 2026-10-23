@@ -765,7 +765,9 @@ function frontenberg_entity_config_response( $controller, $query ) {
 					return is_array( $item )
 						&& isset( $item['origin']['registeredBy'] )
 						&& 'core' === $item['origin']['registeredBy']
-						&& empty( $item['origin']['updatedBy'] );
+						&& empty( $item['origin']['updatedBy'] )
+						// Openverse images have no attachment ID, so they can't be the featured image.
+						&& 'featured_media' !== ( $item['id'] ?? '' );
 				}
 			)
 		);
