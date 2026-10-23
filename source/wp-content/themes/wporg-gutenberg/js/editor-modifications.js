@@ -57,7 +57,8 @@ wp.apiFetch.use( function ( options, next ) {
 
 // Add a middleware provider which intercepts all uploads and stores them within the browser
 wp.apiFetch.use( function ( options, next ) {
-	if ( options.method === 'POST' && options.path === '/wp/v2/media' ) {
+	// The editor may add query args, e.g. '/wp/v2/media?_embed=wp:featuredmedia'.
+	if ( options.method === 'POST' && /^\/wp\/v2\/media(\?|$)/.test( options.path ) ) {
 		const file = options.body.get( 'file' );
 
 		window.fakeUploadedMedia = window.fakeUploadedMedia || [];
@@ -102,7 +103,7 @@ wp.apiFetch.use( function ( options, next ) {
 	}
 
 	// Drag droped media of ID 9999xxx is stored within the Browser
-	const pathIdMatch = options.path.match( '^/wp/v2/media/(9999\\\\d+)' );
+	const pathIdMatch = options.path.match( /^\/wp\/v2\/media\/(9999\d+)/ );
 	if ( pathIdMatch ) {
 		return Promise.resolve( window.fakeUploadedMedia[ pathIdMatch[ 1 ] ] );
 	}
