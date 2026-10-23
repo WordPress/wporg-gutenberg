@@ -24,6 +24,15 @@ window.history.replaceState = function ( state, title, url ) {
 	return originalReplaceState( state, title, url );
 };
 
+// Nothing can be saved, so skip the "Leave site?" prompt; capture runs this before the editor's own listener.
+window.addEventListener(
+	'beforeunload',
+	function ( event ) {
+		event.stopImmediatePropagation();
+	},
+	true
+);
+
 // Use a middleware provider to intercept and modify API calls. Short-circuit POST requests, bound queries, allow media, etc.
 wp.apiFetch.use( function ( options, next ) {
 	// Block writes to keep Frontenberg read-only, but let GET and OPTIONS through:
