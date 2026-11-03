@@ -1,42 +1,23 @@
-var el = wp.element.createElement,
-	registerBlockType = wp.blocks.registerBlockType,
-	InnerBlocks = wp.blockEditor.InnerBlocks,
-	useBlockProps = wp.blockEditor.useBlockProps,
-	isAdmin = window.location.pathname.includes( 'wp-admin' );
+// Classic scripts share the global scope, so keep these bindings out of it.
+( () => {
+	const { createElement: el } = wp.element;
+	const { registerBlockType } = wp.blocks;
+	const { InnerBlocks, useBlockProps } = wp.blockEditor;
+	const isAdmin = window.location.pathname.includes( 'wp-admin' );
 
-registerBlockType( 'wporg/wporg-gutenberg-button', {
-	apiVersion: 3,
-	title: 'Demo Button',
-	icon: 'button',
-	category: 'layout',
-
-	attributes: {
-		url: {
-			source: 'attribute',
-			selector: 'a',
-			attribute: 'href',
-		},
-		title: {
-			source: 'attribute',
-			selector: 'a',
-			attribute: 'title',
-		},
-		text: {
-			source: 'text',
-			selector: 'a',
-		},
-	},
-
-	supports: {
-		inserter: isAdmin,
-	},
-
-	edit( props ) {
+	/**
+	 * Renders the block in the editor.
+	 *
+	 * @param {Object} props          Block edit props.
+	 * @param {string} props.clientId The block's client ID.
+	 * @return {Element} The block's editor markup.
+	 */
+	const Edit = ( { clientId } ) => {
 		const blockProps = useBlockProps();
 
 		if ( ! isAdmin ) {
 			const blockEditorData = wp.data.select( 'core/block-editor' );
-			const innerHtml = blockEditorData.getBlock( props.clientId ).innerBlocks[ 0 ].originalContent;
+			const innerHtml = blockEditorData.getBlock( clientId ).innerBlocks[ 0 ].originalContent;
 
 			return el( 'div', {
 				...blockProps,
@@ -51,13 +32,39 @@ registerBlockType( 'wporg/wporg-gutenberg-button', {
 				templateLock: 'all',
 			} )
 		);
-	},
+	};
 
-	save() {
-		return el(
-			'div',
-			useBlockProps.save( { className: 'wp-block-buttons' } ),
-			el( InnerBlocks.Content )
-		);
-	},
-} );
+	registerBlockType( 'wporg/wporg-gutenberg-button', {
+		apiVersion: 3,
+		title: 'Demo Button',
+		icon: 'button',
+		category: 'layout',
+
+		attributes: {
+			url: {
+				source: 'attribute',
+				selector: 'a',
+				attribute: 'href',
+			},
+			title: {
+				source: 'attribute',
+				selector: 'a',
+				attribute: 'title',
+			},
+			text: {
+				source: 'text',
+				selector: 'a',
+			},
+		},
+
+		supports: {
+			inserter: isAdmin,
+		},
+
+		edit: Edit,
+
+		save() {
+			return el( 'div', useBlockProps.save( { className: 'wp-block-buttons' } ), el( InnerBlocks.Content ) );
+		},
+	} );
+} )();
