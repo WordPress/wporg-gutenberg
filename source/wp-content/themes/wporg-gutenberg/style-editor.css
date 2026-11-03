@@ -76,6 +76,15 @@ h3 {
 }
 
 /**
+* Jetpack's Google Translate widget sets `.admin-bar { position: inherit !important; }` on every page,
+* so body inherits the editor's `position: fixed` on html and shrinks to its 240px min-width.
+* Below 600px the admin bar is absolutely positioned and would only be as wide as body.
+*/
+body.admin-bar {
+	position: static !important;
+}
+
+/**
 * WPadmin-bar adds in these styles as inline style.
 * We don't want the space.
 */
