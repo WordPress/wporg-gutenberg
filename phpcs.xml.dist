@@ -1,0 +1,49 @@
+<?xml version="1.0" ?>
+<ruleset name="WordPress.org Coding Standards">
+	<description>Apply customized version of WordPress Coding Standards to WordPress.org PHP scripts.</description>
+
+	<!-- Show sniff codes in all reports -->
+	<arg value="ps" />
+	<arg name="colors" />
+
+	<!-- Speed up scans: parallel workers, and a cache of unchanged file results. -->
+	<arg name="parallel" value="10" />
+	<arg name="cache" value=".phpcs.cache" />
+
+	<!-- Report file paths relative to the repository root. -->
+	<arg name="basepath" value="." />
+
+	<!-- Exclude 3rd-party files -->
+	<exclude-pattern>*/vendor/*</exclude-pattern>
+	<exclude-pattern>*/node_modules/*</exclude-pattern>
+
+	<!-- Installed by Composer next to the theme (see installer-paths in composer.json). -->
+	<exclude-pattern>*/source/wp-content/mu-plugins/*</exclude-pattern>
+
+	<!-- Scan all (php) files in the current folder and subfolders -->
+	<file>.</file>
+	<arg name="extensions" value="php" />
+
+	<!-- WordPress.org runs recent versions of WordPress. -->
+	<config name="minimum_wp_version" value="7.1"/>
+
+	<!-- Check for PHP cross-version compatibility. -->
+	<config name="testVersion" value="8.4-"/>
+	<rule ref="PHPCompatibilityWP"/>
+
+	<rule ref="WordPress">
+		<exclude name="WordPress.DB.DirectDatabaseQuery" />
+		<exclude name="WordPress.DB.SlowDBQuery" />
+
+		<!-- Config-driven rewrite utility; must never run as part of a lint standard. -->
+		<exclude name="WordPress.Utils.I18nTextDomainFixer" />
+	</rule>
+
+	<rule ref="WordPress.WP.I18n">
+		<properties>
+			<property name="text_domain" type="array">
+				<element value="wporg" />
+			</property>
+		</properties>
+	</rule>
+</ruleset>
