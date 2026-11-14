@@ -75,6 +75,11 @@ h3 {
 	top: var(--wpadmin-bar--height);
 }
 
+/* Jetpack's inline `.admin-bar { position: inherit }` makes body fixed on mobile, which shrinks the admin bar. */
+body.admin-bar {
+	position: static !important;
+}
+
 /**
 * WPadmin-bar adds in these styles as inline style.
 * We don't want the space.
