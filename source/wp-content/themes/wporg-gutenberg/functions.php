@@ -911,7 +911,7 @@ function frontenberg_enable_oembed( $endpoints ) {
 add_filter( 'rest_endpoints', 'frontenberg_enable_oembed' );
 
 /**
- * Titles the page after its heading and removes the tagline.
+ * Titles the page after its heading and the site brand, and removes the tagline.
  *
  * The site title is an option, so it stays in English on every locale.
  *
@@ -926,6 +926,7 @@ add_filter( 'rest_endpoints', 'frontenberg_enable_oembed' );
  */
 function gutenberg_title_parts( $title ) {
 	$title['title'] = __( 'Say Hello to Gutenberg, the WordPress Editor', 'wporg' );
+	$title['site']  = function_exists( '\WordPressdotorg\site_brand' ) ? \WordPressdotorg\site_brand() : 'WordPress.org';
 	unset( $title['tagline'] );
 
 	return $title;
@@ -985,6 +986,11 @@ function add_social_meta_tags() {
 	$default_image = wp_get_attachment_url( get_post_thumbnail_id( $post->ID ), 'thumbnail' );
 	$site_title    = function_exists( '\WordPressdotorg\site_brand' ) ? \WordPressdotorg\site_brand() : 'WordPress.org';
 
+	if ( ! class_exists( 'GP_Locales' ) && defined( 'GLOTPRESS_LOCALES_PATH' ) ) {
+		require_once GLOTPRESS_LOCALES_PATH;
+	}
+	$gp_locale = class_exists( 'GP_Locales' ) ? \GP_Locales::by_field( 'wp_locale', get_locale() ) : null;
+
 	$og_fields = array(
 		'og:title'       => __( 'Say Hello to Gutenberg, the WordPress Editor', 'wporg' ),
 		'og:description' => $description,
@@ -992,7 +998,7 @@ function add_social_meta_tags() {
 		'og:type'        => 'website',
 		'og:url'         => home_url( '/' ),
 		'og:image'       => esc_url( $default_image ),
-		'og:locale'      => get_locale(),
+		'og:locale'      => ! empty( $gp_locale->facebook_locale ) ? $gp_locale->facebook_locale : get_locale(),
 	);
 
 	foreach ( $og_fields as $property => $content ) {
