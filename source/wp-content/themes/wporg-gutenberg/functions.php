@@ -11,6 +11,9 @@ if ( ! defined( 'WPORGPATH' ) ) {
 	define( 'WPORGPATH', get_theme_file_path( '/inc/' ) );
 }
 
+// Lists the locale sites' copies of this page as hreflang alternates, via the WordPress.org SEO mu-plugin.
+add_filter( 'wporg_hreflang_enabled', '__return_true' );
+
 add_filter( 'should_load_separate_core_block_assets', '__return_false', 20 );
 
 add_action(
