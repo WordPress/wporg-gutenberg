@@ -908,7 +908,9 @@ function frontenberg_enable_oembed( $endpoints ) {
 add_filter( 'rest_endpoints', 'frontenberg_enable_oembed' );
 
 /**
- * Removes tagline, which is used more as a description on this site.
+ * Titles the page after its heading and removes the tagline.
+ *
+ * The site title is an option, so it stays in English on every locale.
  *
  * @param array $title {
  *     The document title parts.
@@ -920,6 +922,7 @@ add_filter( 'rest_endpoints', 'frontenberg_enable_oembed' );
  * }
  */
 function gutenberg_title_parts( $title ) {
+	$title['title'] = __( 'Say Hello to Gutenberg, the WordPress Editor', 'wporg' );
 	unset( $title['tagline'] );
 
 	return $title;
@@ -974,17 +977,19 @@ function add_social_meta_tags() {
 		return;
 	}
 
-	$excerpt       = get_the_excerpt( $post );
+	// The page excerpt can't be translated, the page's own intro already is.
+	$description   = __( 'Experience the flexibility that blocks allow, whether you’re building your first site or write code for a living.', 'wporg' );
 	$default_image = wp_get_attachment_url( get_post_thumbnail_id( $post->ID ), 'thumbnail' );
 	$site_title    = function_exists( '\WordPressdotorg\site_brand' ) ? \WordPressdotorg\site_brand() : 'WordPress.org';
 
 	$og_fields = array(
-		'og:title'       => esc_html__( 'The new Gutenberg editing experience', 'wporg' ),
-		'og:description' => $excerpt,
+		'og:title'       => __( 'Say Hello to Gutenberg, the WordPress Editor', 'wporg' ),
+		'og:description' => $description,
 		'og:site_name'   => $site_title,
 		'og:type'        => 'website',
-		'og:url'         => home_url(),
+		'og:url'         => home_url( '/' ),
 		'og:image'       => esc_url( $default_image ),
+		'og:locale'      => get_locale(),
 	);
 
 	foreach ( $og_fields as $property => $content ) {
@@ -1009,5 +1014,13 @@ function add_social_meta_tags() {
 		'<meta name="twitter:creator" content="%1$s" />' . "\n",
 		esc_attr( '@WordPress' )
 	);
+
+	printf(
+		'<meta name="twitter:image" content="%1$s" />' . "\n",
+		esc_url( $default_image )
+	);
 }
 add_action( 'wp_head', 'add_social_meta_tags' );
+
+// Jetpack builds a second, untranslated set of these tags from the site options.
+add_filter( 'jetpack_enable_open_graph', '__return_false' );
