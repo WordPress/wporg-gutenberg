@@ -998,8 +998,11 @@ function add_social_meta_tags() {
 		'og:type'        => 'website',
 		'og:url'         => home_url( '/' ),
 		'og:image'       => esc_url( $default_image ),
-		'og:locale'      => ! empty( $gp_locale->facebook_locale ) ? $gp_locale->facebook_locale : get_locale(),
 	);
+
+	if ( ! empty( $gp_locale->facebook_locale ) ) {
+		$og_fields['og:locale'] = $gp_locale->facebook_locale;
+	}
 
 	foreach ( $og_fields as $property => $content ) {
 		printf(
